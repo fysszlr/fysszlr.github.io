@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OOpre Lec3-如何管理对象 | fysszlr&#39;s blog</title>
+<noscript>开启Javascript是必要的</noscript>
+<link rel="icon" type="image/x-icon" href="/img/yomiya.png">
+<link rel="apple-touch-icon" href="/img/yomiya.png">
+<meta name="apple-mobile-web-app-title" content="fysszlr&#39;s blog">
+<link rel="bookmark" href="/img/yomiya.png">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/yomiya.png">
+<meta name="description" content="宵宫屹立于大地之上（喵~">
+<meta name="theme-color" content="#1C1C1F">
+<link rel="stylesheet" href="/css/var.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+    <script data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/pace/1.2.4/pace.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+
+<link rel="stylesheet" href="/lib/snackbar.min.css">
+
+
+<script src="/lib/qrcode.min.js"></script>
+
+
+
+
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-9-17 23:50:00","lazyload":{"enable":false,"error":"/img/temporary.jpeg"},"hightlight":{"enable":true,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":true,"comment":{"enable":false,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body id="body">
+        
+            <div id="loading-box" onclick="preloader.endLoading();" class style="zoom: 1;">
+    <div class="loading-bg">
+        <img class="loading-img nolazyload" alt="loading image"
+            src="/img/yomiya.png">
+        </div>
+</div>
+<script>
+    const preloader = {
+        endLoading: () => {
+            document.getElementById('loading-box').classList.add("loaded")
+        },
+        initLoading: () => {
+            document.getElementById('loading-box').classList.remove("loaded")
+        },
+        removePaceDone: () => {
+            document.getElementById('body').classList = 'pace-done'
+        }
+    }
+    window.addEventListener('load',()=> { preloader.endLoading() })
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+</script>
+<style>
+    #loading-box {
+        -webkit-user-select: none;
+    }
+
+    #loading-box .loading-bg {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: var(--heo-background);
+        z-index: 1999;
+        opacity: 1;
+        transition: 0.2s;
+        pointer-events: all;
+        animation: showLoading 0.3s 0s backwards;
+    }
+
+    #loading-box.loaded .loading-bg {
+        pointer-events: none;
+        transition: 0.2s;
+        animation: hideLoading 0.3s 0s forwards;
+    }
+
+    #loading-box .loading-img {
+        width: 100px;
+        margin: auto;
+        animation-duration: 0.2s;
+        animation-name: loadingAction;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+    @keyframes loadingAction {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0.6;
+        }
+    }
+
+    @keyframes hideLoading {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes showLoading {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+        
+        <div id="console" style="zoom: 1;" class="">
+    <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
+        <i class="fas fa-circle-xmark"></i>
+    </div>
+    
+        <div class="console-card-group">
+            <div class="console-card-group-left">
+                <div class="console-card" id="card-newest-comments" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">互动</div>
+                        <div class="author-content-item-title">最新评论</div>
+                    </div>
+                    <div class="aside-list"></div>
+                </div>
+    
+            </div>
+            <div class="console-card-group-right">
+                <div class="console-card tags" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">标签</div>
+                        <div class="author-content-item-title">寻找感兴趣的领域</div>
+                    </div>
+                    <div class="card-tag-cloud">
+                        
+                            <a href="/tags/OOpre/" style="font-size: 0.8rem; color: #d3d3d3">OOpre<sup>1</sup></a>
+                        
+                            <a href="/tags/c-c/" style="font-size: 0.8rem; color: #d3d3d3">c++&amp;c#<sup>2</sup></a>
+                        
+                            <a href="/tags/%E6%AF%9B%E6%A6%82/" style="font-size: 0.8rem; color: #d3d3d3">毛概<sup>1</sup></a>
+                        
+                            <a href="/tags/%E8%80%81%E5%B8%88/" style="font-size: 0.8rem; color: #d3d3d3">老师<sup>1</sup></a>
+                        
+                            <a href="/tags/fysszlr/" style="font-size: 0.8rem; color: #d3d3d3">fysszlr<sup>1</sup></a>
+                        
+                            <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" style="font-size: 0.8rem; color: #d3d3d3">西方音乐鉴赏<sup>1</sup></a>
+                        
+                    </div>
+                </div>
+                <div class="console-card history" onclick="acrylic.hideConsole()">
+                    <ul class="card-archive-list">
+    
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/09/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/09</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+        
+</ul>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="button-group">
+        <div class="console-btn-item"> <a class="darkmode_switchbutton" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow" data-pjax-state=""><i class="fas fa-moon"
+                    style="font-size: 1rem;"></i></a></div>
+        
+    </div>
+    <div class="console-mask" onclick="acrylic.hideConsole()" href="javascript:void(0);" rel="external nofollow"></div>
+</div>
+        <div id="sidebar" style="zoom: 1;">
+    <div id="menu-mask" style="display: none;"></div>
+    <div id="sidebar-menus" class>
+        <span class="sidebar-menu-item-title">功能</span>
+        <div class="sidebar-menu-item">
+            <a class="darkmode_switchbutton menu-child" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow">
+                <i class="fas fa-moon" style="font-size: 1rem;"></i>
+                <span>显示模式</span>
+            </a>
+        </div>
+        
+            <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          博客
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="主页">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                主页
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" href="/about" rel="external nofollow" title="关于">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                关于
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          笔记
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/tags/c-c/" rel="external nofollow" title="c++&amp;c#">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                c++&amp;c#
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+        
+        <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/fcircle/">
+                                <i class="fas fa-fish-fins"></i>
+                                <span> 友链鱼塘</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/links/">
+                                <i class="fas fa-user-group"></i>
+                                <span> 友情链接</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="javascript:travelling()">
+                                <i class="fas fa-bus"></i>
+                                <span> 宝藏博主</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/says" rel="external nofollow">
+                    <span> 即刻</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="https://github.com/fysszlr" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+             
+        </div>
+    
+</div>
+        <span class="sidebar-menu-item-title">标签</span>
+        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
+            <div class="item-headline">
+                <i class="fas fa-tags"></i>
+                <span>标签</span>
+            </div>
+            <div class="card-tag-cloud">
+                
+                    <a href="/tags/OOpre/" style="font-size: 1em; color: #d3d3d3">OOpre
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/c-c/" style="font-size: 1em; color: #d3d3d3">c++&amp;c#
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%AF%9B%E6%A6%82/" style="font-size: 1em; color: #d3d3d3">毛概
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%80%81%E5%B8%88/" style="font-size: 1em; color: #d3d3d3">老师
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/fysszlr/" style="font-size: 1em; color: #d3d3d3">fysszlr
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" style="font-size: 1em; color: #d3d3d3">西方音乐鉴赏
+                        <sup>1</sup>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+        
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
+    <nav id="nav" class="show">
+    <div id="nav-group">
+        <div id="blog_name">
+            
+                <div class="back-home-button" tabindex="-1">
+                    <i class="back-home-button-icon fas fa-grip-vertical"></i>
+                    <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          博客
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="主页">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                主页
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" href="/about" rel="external nofollow" title="关于">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                关于
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          笔记
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/tags/c-c/" rel="external nofollow" title="c++&amp;c#">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                c++&amp;c#
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+                </div>
+            
+            <a id="site-name" href="/" title="返回博客主页">
+                    
+                        <span class="heoicon">fysszlr</span>
+                    
+            </a>
+        </div>
+        <div id="page-name-mask">
+            <div id="page-name">
+                <a id="page-name-text" onclick="acrylic.toTop()">OOpre Lec3-如何管理对象</a>
+            </div>
+        </div>
+        <div id="menus">
+            <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/fcircle/">
+                                <i class="fas fa-fish-fins"></i>
+                                <span> 友链鱼塘</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/links/">
+                                <i class="fas fa-user-group"></i>
+                                <span> 友情链接</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="javascript:travelling()">
+                                <i class="fas fa-bus"></i>
+                                <span> 宝藏博主</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/says" rel="external nofollow">
+                    <span> 即刻</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="https://github.com/fysszlr" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+             
+        </div>
+    
+</div>
+        </div>
+        <!-- <div id="nav-left">
+            <div id="fps-group">
+                <div id="fps">145</div><span class="fpsText">FPS</span>
+            </div>
+        </div> -->
+        <div id="nav-right">
+            
+    <div class="nav-button only-home" id="travellings_button">
+        <a class="site-page"  target="_blank" rel="noopener external nofollow" href="https://www.travellings.cn/go.html" title="开往-友链接力"  width="120">
+            <i class="fa-solid fa-train-subway" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="randomPost_button">
+        <a class="site-page" onclick="toRandomPost()"
+            title="随机前往一个文章">
+            <i class="fas fa-shuffle" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+
+    <div class="nav-button" id="nav-console">
+        <a class="console_switchbutton" onclick="acrylic.showConsole()"
+        title="显示中控台" href="javascript:void(0);" rel="external nofollow">
+        <i class="fas fa-bars-progress" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+<div class="nav-button" id="nav-totop" onclick="acrylic.toTop()">
+    <a class="totopbtn">
+        <i class="fas fa-arrow-up"></i>
+        <span id="percent">0</span>
+    </a>
+</div>
+<div id="toggle-menu">
+    <a class="site-page">
+        <i class="fas fa-bars fa-fw" style="font-size: 1rem;"></i>
+    </a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/OOpre/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">OOpre</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">OOpre Lec3-如何管理对象</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2023-09-20T17:52:38+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为北京">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>北京</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <p>开个坑，更新OOpre(简称op)的学习内容<br><del>原神，启动！</del><br><del>（别问为什么没有前两周的内容，问就是传错仓库没了）</del></p>
+<p>在这里放个佬的文章orz orz <a target="_blank" rel="noopener" href="https://swkfk.top/books/oopre/lecture_1.html">Lec1</a> <a target="_blank" rel="noopener" href="https://swkfk.top/books/oopre/lecture_2.html">Lec2</a> （但他应该不知道我看到了）</p>
+<hr>
+<h1 id="Lec3-如何管理对象"><a href="#Lec3-如何管理对象" class="headerlink" title="Lec3-如何管理对象"></a>Lec3-如何管理对象</h1><h2 id="对象与引用"><a href="#对象与引用" class="headerlink" title="对象与引用"></a>对象与引用</h2><ul>
+<li><p>对象是程序通过new产生的实例，引用是程序中声明的变量</p>
+</li>
+<li><h5 id="对象究竟是什么"><a href="#对象究竟是什么" class="headerlink" title="对象究竟是什么"></a><strong>对象</strong>究竟是什么</h5><ul>
+<li>对象是对内存的一个区域</li>
+<li>对象包含属性数据和指向类的指针</li>
+</ul>
+</li>
+</ul>
+<p>​		这部分内容参考c++&amp;c#</p>
+<ul>
+<li><h5 id="引用究竟是是什么"><a href="#引用究竟是是什么" class="headerlink" title="引用究竟是是什么"></a><strong>引用</strong>究竟是是什么</h5><ul>
+<li><p>对象引用指向对象的地址</p>
+</li>
+<li><p>对象引用存在null的可能性，但对象不可能</p>
+<p>这句话的含义是，在编程中，你可能会有一个引用（或者说指针）指向一个对象，但是这个引用可能为null。换句话说，这个引用并不指向任何对象。当你尝试使用这个引用访问对象时，如果它是null，你的程序就会产生错误。但是，对象本身不可能为null，因为它始终存在于内存中的某个位置。</p>
+<p>例如，在Java语言中，你可以创建一个对象的引用，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object obj;</span><br></pre></td></tr></table></figure>
+<p>在这个情况下，<code>obj</code> 是一个引用，但它并没有指向任何对象。也就是说，<code>obj</code> 是null。如果你尝试调用 <code>obj</code> 的任何方法或访问其属性，程序就会抛出一个 <code>NullPointerException</code>。</p>
+<p>为了解决这个问题，你需要确保在使用引用之前，它已经被初始化为一个实际的对象。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br></pre></td></tr></table></figure>
+<p>在这个情况下，<code>obj</code> 是一个引用，并且它指向一个实际的 <code>Object</code> 对象。现在你可以安全地调用 <code>obj</code> 的方法和访问其属性，而不会抛出 <code>NullPointerException</code>。</p>
+</li>
+</ul>
+</li>
+<li><h5 id="Java与C的联系与区别"><a href="#Java与C的联系与区别" class="headerlink" title="Java与C的联系与区别"></a>Java与C的联系与区别</h5><p>Java的对象引用相当于c中的指针变量，指向一片内存空间</p>
+</li>
+<li><h5 id="对象与引用-1"><a href="#对象与引用-1" class="headerlink" title="对象与引用"></a>对象与引用</h5><ul>
+<li><strong>区别</strong><ul>
+<li>对象有实际存在的内存区域；引用是一个标识符，指向对象所在地址</li>
+<li>只能通过对象引用去访问或改变对象的方法或数据</li>
+</ul>
+</li>
+<li><strong>联系</strong><ul>
+<li>对象引用与对象息息相关</li>
+<li>一个对象可能对应多个对象引用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="常见容器及其作用"><a href="#常见容器及其作用" class="headerlink" title="常见容器及其作用"></a>常见容器及其作用</h2><ul>
+<li>ArrayList </li>
+<li>LinkedList </li>
+<li>HashMap</li>
+<li>HashSet</li>
+<li>Queue</li>
+<li>Deque</li>
+<li>TreeMap</li>
+<li>PriorityQueue</li>
+<li>……</li>
+</ul>
+<p>这么多容器，该如何挑选呢?</p>
+<ol>
+<li><h5 id="ArrayList-LinkedList"><a href="#ArrayList-LinkedList" class="headerlink" title="ArrayList &amp;&amp; LinkedList"></a>ArrayList &amp;&amp; LinkedList</h5><p><strong>逻辑特征</strong>：ArrayList——数组 </p>
+<p>​					LinkedList——链表</p>
+<p><strong>优点</strong>：两者均可以<strong>按照顺序关系或按照下标</strong>访问对象</p>
+<p><strong>缺点</strong>：查找某个对象需要遍历，<strong>查找速度比较慢</strong></p>
+</li>
+<li><h5 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h5><p><strong>逻辑特征</strong>：基于哈希表的键值映射，可以使用键来快速查找和访问值。没有固定顺序，不允许重复的键</p>
+<p><strong>优点</strong>：<strong>快速查找（或删除）</strong>某元素，尤其是该元素有唯一的id时</p>
+<p><strong>缺点</strong>：存储<strong>无序</strong>，难以按照存储先后大小访问</p>
+</li>
+<li><h5 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h5><p><strong>逻辑特征</strong>：基于哈希表实现的无序集合，不允许存储重复元素。常数时间的插入和查找</p>
+<p><strong>优点</strong>：保持集合元素的唯一性互异性。便于<strong>自动去重</strong></p>
+<p><strong>缺点</strong>：内部存储无序，与HashMap相同的问题</p>
+</li>
+<li><h5 id="Queue-Deque-TreeMap-PriorityQueue"><a href="#Queue-Deque-TreeMap-PriorityQueue" class="headerlink" title="Queue Deque TreeMap PriorityQueue"></a>Queue Deque TreeMap PriorityQueue</h5><p><strong>Queue</strong>：队列，LinkedList是其具体实现</p>
+<p><strong>Deque</strong>：双向队列，java老版本的Stack已经过时，推荐使用Deque</p>
+<p><strong>TreeMap</strong>：有序映射，红黑树实现，根据键值来排序，可以<strong>自定义比较器</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TreeMap&lt;id, object&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>PriorityQueue</strong>：优先队列，基于Heap(堆)实现</p>
+<hr>
+</li>
+</ol>
+<h2 id="层次化对象管理方法"><a href="#层次化对象管理方法" class="headerlink" title="层次化对象管理方法"></a>层次化对象管理方法</h2><p>针对不同的需求，需要建立不用类型、不同层次的容器加以进行数据的处理</p>
+<p><strong>组合关系（Composition）</strong>：有多个对象组合形成一个更大对象，整体与部分存在</p>
+<p><strong>聚合关系（Aggregation）</strong>：若关联关系，以对象引用作为其成员变量，向印度对象引用可以为null</p>
+<p>本质上是属性识别问题</p>
+<h2 id="作业内容介绍"><a href="#作业内容介绍" class="headerlink" title="作业内容介绍"></a>作业内容介绍</h2>
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="https://github.com/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "https://github.com/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=OOpre Lec3-如何管理对象&amp;url=https://github.com/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/&amp;pic=https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/OOpre/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                OOpre
+                                <span class="tagsPageCount">1</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>OOpre Lec3-如何管理对象</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/">https://github.com/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">fysszlr&#39;s blog</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        <div class="prev-post pull-left">
+            <a href="/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/">
+                <div class="pagination-info">
+                    <div class="label">上一篇</div>
+                    <div class="prev_info">c++&amp;c# 第三讲：封装</div>
+                </div>
+            </a>
+        </div>
+        <div class="next-post pull-right">
+            <a href="/2023/09/20/%E6%AF%9B%E6%A6%82-pzl%E8%80%81%E5%B8%88%E5%B1%95%E7%A4%BA%E7%82%B9%E8%AF%84%E5%90%88%E9%9B%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%96%BD%E5%B7%A5%E4%B8%AD%EF%BC%89/">
+                <div class="pagination-info">
+                    <div class="label">下一篇</div>
+                    <div class="next_info">毛概 pzl老师展示点评合集（持续施工中）</div>
+                </div>
+            </a>
+        </div>
+    
+</nav>
+            
+    </div>
+    <div class="aside-content" id="aside-content">
+    
+    
+        
+        <div class="card-widget card-info">
+    <div class="card-content">
+        <div class="card-info-avatar is-center">
+            <div class="author-info__sayhi" id="author-info__sayhi">
+            </div>
+            <img class="avatar-img entered loaded" data-lazy-src="/img/temporary.jpeg" onerror="this.onerror=null;this.src='/img/temporary.jpeg'" alt="avatar" data-ll-status="loaded" src="">
+            <div class="author-info__name">
+                fysszlr
+            </div>
+            <div class="author-info__description">站长正在熬夜学习<b>计算机组成原理</b>，blog有空就更新www<br>希望你可以在这里找到对你有用的知识和教程喵~</div>
+        </div>
+    </div>
+    <div class="banner-button-group">
+        <a class="banner-button" href="/about">
+            <i class="fas fa-circle-chevron-right"></i>
+            <span class="banner-button-text">关于</span>
+        </a>
+    </div>
+    <div class="card-info-social-icons is-center">
+        
+            <a class="social-icon" href="https://github.com/fysszlr" title="Github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        
+            <a class="social-icon" href="mailto:fysszlr@qq.com" title="Mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        
+    </div>
+</div>
+     
+    
+    <div class="sticky_layout">
+        
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1"><span class="toc-text">Lec3-如何管理对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%BC%95%E7%94%A8"><span class="toc-text">对象与引用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%A9%B6%E7%AB%9F%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">对象究竟是什么</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E7%A9%B6%E7%AB%9F%E6%98%AF%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">引用究竟是是什么</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Java%E4%B8%8EC%E7%9A%84%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB"><span class="toc-text">Java与C的联系与区别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%BC%95%E7%94%A8-1"><span class="toc-text">对象与引用</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%AE%B9%E5%99%A8%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8"><span class="toc-text">常见容器及其作用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ArrayList-LinkedList"><span class="toc-text">ArrayList &amp;&amp; LinkedList</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HashMap"><span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HashSet"><span class="toc-text">HashSet</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Queue-Deque-TreeMap-PriorityQueue"><span class="toc-text">Queue Deque TreeMap PriorityQueue</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E5%8C%96%E5%AF%B9%E8%B1%A1%E7%AE%A1%E7%90%86%E6%96%B9%E6%B3%95"><span class="toc-text">层次化对象管理方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D"><span class="toc-text">作业内容介绍</span></a></li></ol></li></ol>
+    </div>
+</div>
+            
+        
+            
+        <div class="card-widget card-recent-post">
+    <div class="item-headline">
+        <i class="fas fa-list-ol"></i>
+        <span>最近发布</span>
+    </div>
+    <div class="aside-list">
+        
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/09/25/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F%E7%AC%94%E8%AE%B0/" title="西方音乐鉴赏笔记">
+                    <img
+                        alt="西方音乐鉴赏笔记"
+                        src="https://images.pexels.com/photos/210764/pexels-photo-210764.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/09/25/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F%E7%AC%94%E8%AE%B0/">
+                            笔记
+                        </a>
+                    
+                    <a class="title" href="/2023/09/25/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F%E7%AC%94%E8%AE%B0/" title="西方音乐鉴赏笔记">
+                        西方音乐鉴赏笔记
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/" title="c++&amp;c# 第三讲：封装">
+                    <img
+                        alt="c++&amp;c# 第三讲：封装"
+                        src="https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/">
+                            笔记
+                        </a>
+                    
+                    <a class="title" href="/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/" title="c++&amp;c# 第三讲：封装">
+                        c++&amp;c# 第三讲：封装
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/" title="OOpre Lec3-如何管理对象">
+                    <img
+                        alt="OOpre Lec3-如何管理对象"
+                        src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/" title="OOpre Lec3-如何管理对象">
+                        OOpre Lec3-如何管理对象
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/09/20/%E6%AF%9B%E6%A6%82-pzl%E8%80%81%E5%B8%88%E5%B1%95%E7%A4%BA%E7%82%B9%E8%AF%84%E5%90%88%E9%9B%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%96%BD%E5%B7%A5%E4%B8%AD%EF%BC%89/" title="毛概 pzl老师展示点评合集（持续施工中）">
+                    <img
+                        alt="毛概 pzl老师展示点评合集（持续施工中）"
+                        src="https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/09/20/%E6%AF%9B%E6%A6%82-pzl%E8%80%81%E5%B8%88%E5%B1%95%E7%A4%BA%E7%82%B9%E8%AF%84%E5%90%88%E9%9B%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%96%BD%E5%B7%A5%E4%B8%AD%EF%BC%89/">
+                            笔记
+                        </a>
+                    
+                    <a class="title" href="/2023/09/20/%E6%AF%9B%E6%A6%82-pzl%E8%80%81%E5%B8%88%E5%B1%95%E7%A4%BA%E7%82%B9%E8%AF%84%E5%90%88%E9%9B%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%96%BD%E5%B7%A5%E4%B8%AD%EF%BC%89/" title="毛概 pzl老师展示点评合集（持续施工中）">
+                        毛概 pzl老师展示点评合集（持续施工中）
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/09/18/c-c-%E7%AC%AC%E4%B8%80%E8%AE%B2-%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9AA-Better-C/" title="c++&amp;c# 第一讲&amp;第二讲：A Better C">
+                    <img
+                        alt="c++&amp;c# 第一讲&amp;第二讲：A Better C"
+                        src="https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/09/18/c-c-%E7%AC%AC%E4%B8%80%E8%AE%B2-%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9AA-Better-C/">
+                            笔记
+                        </a>
+                    
+                    <a class="title" href="/2023/09/18/c-c-%E7%AC%AC%E4%B8%80%E8%AE%B2-%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9AA-Better-C/" title="c++&amp;c# 第一讲&amp;第二讲：A Better C">
+                        c++&amp;c# 第一讲&amp;第二讲：A Better C
+                    </a>
+                </div>
+            </div>
+            
+    </div>
+</div>
+     
+        
+    </div>
+</div> 
+</main>
+                <footer id="footer">
+                    <div id="footer_deal">
+    
+        <a class="deal_link" target="_blank" href="https://www.github.com/fysszlr" rel="external nofollow noopener" title="Github">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    
+    <img class="footer_mini_logo" src="/img/yomiya.png"
+        title="返回顶部" onclick="acrylic.toTop()">
+    
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com/274642803" rel="external nofollow noopener" title="bilibili">
+            <i class="fa-brands fa-bilibili"></i>
+        </a>
+    
+</div>    
+<div id="heo-footer">
+    
+        <div class="footer-group">
+            <h3 class="footer-title">导航</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" href="/archives/" title="文章归档" rel="noopener external nofollow noreferrer">文章归档</a>
+                
+                    <a class="footer-item" href="/categories/" title="文章分类" rel="noopener external nofollow noreferrer">文章分类</a>
+                
+                    <a class="footer-item" href="/tags/" title="文章标签" rel="noopener external nofollow noreferrer">文章标签</a>
+                
+                    <a class="footer-item" href="/link/" title="友链" rel="noopener external nofollow noreferrer">友链</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">Acrylic</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://acrylic.zhheo.com/" title="主题官网" rel="noopener external nofollow noreferrer noopener">主题官网</a>
+                
+                    <a class="footer-item" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic" title="Github" rel="noopener external nofollow noreferrer">Github</a>
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                    
+            </div>
+        </div>
+    
+    
+</div>
+<div id="footer-section">
+    <div class="footer-section-links">
+        <div class="footer-section-left">
+            <div id="footer-section-tips">
+                <div class="copyright">©2023 - 2023 By 
+                    <a class="footer-section-link" href="/" rel="external nofollow">fysszlr</a>
+                    <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
+                    <a class="footer-section-link" href="" rel="external nofollow" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section-right">
+            <a class="footer-section-link" href="">订阅</a>
+            
+            <a class="footer-section-link cc" target="_blank" href="https://creativecommons.org/licenses/by/4.0/" title="cc协议">
+                <i class="fas fa-closed-captioning"></i>
+            </a>
+        </div>
+    </div>
+</div>
+                </footer>
+            </div>
+         
+        <div>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    
+
+<script src="/lib/pjax.min.js"></script>
+
+
+
+<script src="/lib/snackbar.min.js"></script>
+
+
+    
+<script src="/lib/view-image.min.js"></script>
+
+
+
+    
+<link rel="stylesheet" href="/lib/swiper.min.css">
+
+    
+<script src="/lib/swiper.min.js"></script>
+
+
+<div id="js-pjax">
+    
+     
+</div>
+
+
+    
+<script src="/js/extend/covercolor/local.js"></script>
+
+        
+
+
+
+    <script>
+  let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax'
+  ]
+  
+  const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+  })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+</script>
+    
+</div>
+        
+     
+        <div class="needEndHide" id="nav-music" onclick="acrylic.musicToggle()">
+    <div id="nav-music-hoverTips">音乐已暂停</div>
+    <meting-js id="1708664797" server="tencent" type="playlist" mutex="true"
+        preload="none" data-lrctype="0" order="random" theme="var(--heo-main)"></meting-js>
+</div>
+    
+    </body>
+</html>
+<!-- fireworks -->
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!-- FunnyTitle -->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+<!-- 动态线条背景
+<script type="text/javascript"
+color="25,25,112" opacity='0.5' zIndex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"> -->
+</script>
+<!-- 数字雨 -->
+<canvas id="canvas" width="1440" height="900" ></canvas>
+<script type="text/javascript" src="/js/DigitalRain.js"></script><script>const posts=["2023/09/25/西方音乐鉴赏笔记/","2023/09/22/c-c-第三讲：封装/","2023/09/20/OOpre Lec3-如何管理对象/","2023/09/20/毛概-pzl老师展示点评合集（持续施工中）/","2023/09/18/c-c-第一讲-第二讲：A-Better-C/","2023/09/17/第一次の建站/"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>

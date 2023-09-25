@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>c++&amp;c# 第三讲：封装 | fysszlr&#39;s blog</title>
+<noscript>开启Javascript是必要的</noscript>
+<link rel="icon" type="image/x-icon" href="/img/yomiya.png">
+<link rel="apple-touch-icon" href="/img/yomiya.png">
+<meta name="apple-mobile-web-app-title" content="fysszlr&#39;s blog">
+<link rel="bookmark" href="/img/yomiya.png">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/yomiya.png">
+<meta name="description" content="宵宫屹立于大地之上（喵~">
+<meta name="theme-color" content="#1C1C1F">
+<link rel="stylesheet" href="/css/var.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+    <script data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/pace/1.2.4/pace.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+
+<link rel="stylesheet" href="/lib/snackbar.min.css">
+
+
+<script src="/lib/qrcode.min.js"></script>
+
+
+
+
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-9-17 23:50:00","lazyload":{"enable":false,"error":"/img/temporary.jpeg"},"hightlight":{"enable":true,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":true,"comment":{"enable":false,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body id="body">
+        
+            <div id="loading-box" onclick="preloader.endLoading();" class style="zoom: 1;">
+    <div class="loading-bg">
+        <img class="loading-img nolazyload" alt="loading image"
+            src="/img/yomiya.png">
+        </div>
+</div>
+<script>
+    const preloader = {
+        endLoading: () => {
+            document.getElementById('loading-box').classList.add("loaded")
+        },
+        initLoading: () => {
+            document.getElementById('loading-box').classList.remove("loaded")
+        },
+        removePaceDone: () => {
+            document.getElementById('body').classList = 'pace-done'
+        }
+    }
+    window.addEventListener('load',()=> { preloader.endLoading() })
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+</script>
+<style>
+    #loading-box {
+        -webkit-user-select: none;
+    }
+
+    #loading-box .loading-bg {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: var(--heo-background);
+        z-index: 1999;
+        opacity: 1;
+        transition: 0.2s;
+        pointer-events: all;
+        animation: showLoading 0.3s 0s backwards;
+    }
+
+    #loading-box.loaded .loading-bg {
+        pointer-events: none;
+        transition: 0.2s;
+        animation: hideLoading 0.3s 0s forwards;
+    }
+
+    #loading-box .loading-img {
+        width: 100px;
+        margin: auto;
+        animation-duration: 0.2s;
+        animation-name: loadingAction;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+    @keyframes loadingAction {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0.6;
+        }
+    }
+
+    @keyframes hideLoading {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes showLoading {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+        
+        <div id="console" style="zoom: 1;" class="">
+    <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
+        <i class="fas fa-circle-xmark"></i>
+    </div>
+    
+        <div class="console-card-group">
+            <div class="console-card-group-left">
+                <div class="console-card" id="card-newest-comments" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">互动</div>
+                        <div class="author-content-item-title">最新评论</div>
+                    </div>
+                    <div class="aside-list"></div>
+                </div>
+    
+            </div>
+            <div class="console-card-group-right">
+                <div class="console-card tags" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">标签</div>
+                        <div class="author-content-item-title">寻找感兴趣的领域</div>
+                    </div>
+                    <div class="card-tag-cloud">
+                        
+                            <a href="/tags/OOpre/" style="font-size: 0.8rem; color: #d3d3d3">OOpre<sup>1</sup></a>
+                        
+                            <a href="/tags/c-c/" style="font-size: 0.8rem; color: #d3d3d3">c++&amp;c#<sup>2</sup></a>
+                        
+                            <a href="/tags/%E6%AF%9B%E6%A6%82/" style="font-size: 0.8rem; color: #d3d3d3">毛概<sup>1</sup></a>
+                        
+                            <a href="/tags/%E8%80%81%E5%B8%88/" style="font-size: 0.8rem; color: #d3d3d3">老师<sup>1</sup></a>
+                        
+                            <a href="/tags/fysszlr/" style="font-size: 0.8rem; color: #d3d3d3">fysszlr<sup>1</sup></a>
+                        
+                            <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" style="font-size: 0.8rem; color: #d3d3d3">西方音乐鉴赏<sup>1</sup></a>
+                        
+                    </div>
+                </div>
+                <div class="console-card history" onclick="acrylic.hideConsole()">
+                    <ul class="card-archive-list">
+    
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/09/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/09</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+        
+</ul>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="button-group">
+        <div class="console-btn-item"> <a class="darkmode_switchbutton" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow" data-pjax-state=""><i class="fas fa-moon"
+                    style="font-size: 1rem;"></i></a></div>
+        
+    </div>
+    <div class="console-mask" onclick="acrylic.hideConsole()" href="javascript:void(0);" rel="external nofollow"></div>
+</div>
+        <div id="sidebar" style="zoom: 1;">
+    <div id="menu-mask" style="display: none;"></div>
+    <div id="sidebar-menus" class>
+        <span class="sidebar-menu-item-title">功能</span>
+        <div class="sidebar-menu-item">
+            <a class="darkmode_switchbutton menu-child" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow">
+                <i class="fas fa-moon" style="font-size: 1rem;"></i>
+                <span>显示模式</span>
+            </a>
+        </div>
+        
+            <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          博客
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="主页">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                主页
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" href="/about" rel="external nofollow" title="关于">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                关于
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          笔记
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/tags/c-c/" rel="external nofollow" title="c++&amp;c#">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                c++&amp;c#
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+        
+        <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/fcircle/">
+                                <i class="fas fa-fish-fins"></i>
+                                <span> 友链鱼塘</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/links/">
+                                <i class="fas fa-user-group"></i>
+                                <span> 友情链接</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="javascript:travelling()">
+                                <i class="fas fa-bus"></i>
+                                <span> 宝藏博主</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/says" rel="external nofollow">
+                    <span> 即刻</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="https://github.com/fysszlr" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+             
+        </div>
+    
+</div>
+        <span class="sidebar-menu-item-title">标签</span>
+        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
+            <div class="item-headline">
+                <i class="fas fa-tags"></i>
+                <span>标签</span>
+            </div>
+            <div class="card-tag-cloud">
+                
+                    <a href="/tags/OOpre/" style="font-size: 1em; color: #d3d3d3">OOpre
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/c-c/" style="font-size: 1em; color: #d3d3d3">c++&amp;c#
+                        <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%AF%9B%E6%A6%82/" style="font-size: 1em; color: #d3d3d3">毛概
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%80%81%E5%B8%88/" style="font-size: 1em; color: #d3d3d3">老师
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/fysszlr/" style="font-size: 1em; color: #d3d3d3">fysszlr
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" style="font-size: 1em; color: #d3d3d3">西方音乐鉴赏
+                        <sup>1</sup>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+        
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
+    <nav id="nav" class="show">
+    <div id="nav-group">
+        <div id="blog_name">
+            
+                <div class="back-home-button" tabindex="-1">
+                    <i class="back-home-button-icon fas fa-grip-vertical"></i>
+                    <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          博客
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="主页">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                主页
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" href="/about" rel="external nofollow" title="关于">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                关于
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          笔记
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/tags/c-c/" rel="external nofollow" title="c++&amp;c#">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                c++&amp;c#
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+                </div>
+            
+            <a id="site-name" href="/" title="返回博客主页">
+                    
+                        <span class="heoicon">fysszlr</span>
+                    
+            </a>
+        </div>
+        <div id="page-name-mask">
+            <div id="page-name">
+                <a id="page-name-text" onclick="acrylic.toTop()">c++&amp;c# 第三讲：封装</a>
+            </div>
+        </div>
+        <div id="menus">
+            <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/fcircle/">
+                                <i class="fas fa-fish-fins"></i>
+                                <span> 友链鱼塘</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/links/">
+                                <i class="fas fa-user-group"></i>
+                                <span> 友情链接</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="javascript:travelling()">
+                                <i class="fas fa-bus"></i>
+                                <span> 宝藏博主</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/says" rel="external nofollow">
+                    <span> 即刻</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="https://github.com/fysszlr" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+             
+        </div>
+    
+</div>
+        </div>
+        <!-- <div id="nav-left">
+            <div id="fps-group">
+                <div id="fps">145</div><span class="fpsText">FPS</span>
+            </div>
+        </div> -->
+        <div id="nav-right">
+            
+    <div class="nav-button only-home" id="travellings_button">
+        <a class="site-page"  target="_blank" rel="noopener external nofollow" href="https://www.travellings.cn/go.html" title="开往-友链接力"  width="120">
+            <i class="fa-solid fa-train-subway" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="randomPost_button">
+        <a class="site-page" onclick="toRandomPost()"
+            title="随机前往一个文章">
+            <i class="fas fa-shuffle" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+
+    <div class="nav-button" id="nav-console">
+        <a class="console_switchbutton" onclick="acrylic.showConsole()"
+        title="显示中控台" href="javascript:void(0);" rel="external nofollow">
+        <i class="fas fa-bars-progress" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+<div class="nav-button" id="nav-totop" onclick="acrylic.toTop()">
+    <a class="totopbtn">
+        <i class="fas fa-arrow-up"></i>
+        <span id="percent">0</span>
+    </a>
+</div>
+<div id="toggle-menu">
+    <a class="site-page">
+        <i class="fas fa-bars fa-fw" style="font-size: 1rem;"></i>
+    </a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <span class="post-meta-categories">
+                
+                    <a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                
+            </span>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/c-c/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">c++&amp;c#</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">c++&amp;c# 第三讲：封装</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2023-09-22T17:08:12+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为北京">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>北京</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <h1 id="第三讲：封装"><a href="#第三讲：封装" class="headerlink" title="第三讲：封装"></a>第三讲：封装</h1><h2 id="class与struct默认访问权限不同"><a href="#class与struct默认访问权限不同" class="headerlink" title="class与struct默认访问权限不同"></a>class与struct默认访问权限不同</h2><p>如下:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>&#123;</span><br><span class="line">    <span class="comment">//默认为pravite</span></span><br><span class="line">    <span class="type">int</span> ID；</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Teacher</span>&#123;</span><br><span class="line">    <span class="comment">//默认为public</span></span><br><span class="line">    <span class="type">int</span> ID;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="constructor-构造函数"><a href="#constructor-构造函数" class="headerlink" title="constructor 构造函数"></a>constructor 构造函数</h2><p><strong>要求</strong>：与类同名，传递任意参数，没有返回值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>&#123;</span><br><span class="line">    <span class="type">char</span> *name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">   	<span class="built_in">Student</span>(<span class="type">char</span>*,<span class="type">int</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Student::<span class="built_in">Student</span>(<span class="type">char</span> *aname,<span class="type">int</span> aage)&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;name=aname;</span><br><span class="line">    <span class="keyword">this</span>-&gt;age=aage;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span></span>&#123;</span><br><span class="line">    <span class="function">Student <span class="title">s1</span><span class="params">((<span class="type">char</span>*)<span class="string">&quot;ZhangSan&quot;</span>,<span class="number">18</span>)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>与在class里自己写void InitStudent相比，设置构造函数可以要求程序员必要在创建对象时赋初值</p>
+<p>同时，<a target="_blank" rel="noopener" href="https://fysszlr.github.io/2023/09/18/c-c-%E7%AC%AC%E4%B8%80%E8%AE%B2-%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9AA-Better-C/">上一讲</a>介绍的同名参数和默认参数也可以在这里使用</p>
+<hr>
+<h2 id="default-constructor-默认构造"><a href="#default-constructor-默认构造" class="headerlink" title="default constructor 默认构造"></a>default constructor 默认构造</h2><p>在类的内部一直存在一个默认的构造函数，它<strong>初始没有任何作用</strong>，直到你写一个自己的构造函数为止</p>
+<p>例如，假如你已经写了一个构造函数，但新建对象时没有进行构造</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Student s0;</span><br></pre></td></tr></table></figure>
+
+<p>此时便会报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no appropriate default constructor available</span><br></pre></td></tr></table></figure>
+
+<p>即找不到适合的默认构造</p>
+<p>此时可以定义并声明一个<kbd>Student();</kbd>来解决</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>&#123;</span><br><span class="line">    <span class="type">int</span> ID;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Student</span>();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Student::<span class="built_in">Student</span>()&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Student s0;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>特别注意</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">Student <span class="title">s2</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//这句话问题很大，可能被编译器认为是声明了一个函数，导致出错（而且编译不会报错）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="char-和char-比较"><a href="#char-和char-比较" class="headerlink" title="char[]和char*比较"></a>char[]和char*比较</h2><p><strong>char</strong>*</p>
+<ul>
+<li>优点：占用内存小，复制方便</li>
+<li>缺点：很容易导致丢失，如</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Student s1;</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="type">char</span> *p=<span class="string">&quot;name&quot;</span>;</span><br><span class="line">    	s1-&gt;name=p;    </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//此时p作为动态空间已经被释放了，导致s1中name出错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>char[]</strong></p>
+<p>与char*相反<del>（懒得写了）</del></p>
+<hr>
+<h2 id="类型也是类"><a href="#类型也是类" class="headerlink" title="类型也是类"></a>类型也是类</h2><p>我们所使用的int等类型也是类</p>
+<p>所以此两语句等价</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">j</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>若以后遇到想要使用一个变量的地址，但又害怕该变量为动态变量，可以使用如下语句</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Test::<span class="built_in">Test</span>(<span class="type">int</span> ID)&#123;</span><br><span class="line">    <span class="comment">//Test中有int* p</span></span><br><span class="line">    <span class="keyword">this</span>-&gt;p = <span class="keyword">new</span> <span class="built_in">int</span>(ID);</span><br><span class="line">    <span class="comment">//创建新整型，并传回地址</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="destructor-析构函数-new-delete"><a href="#destructor-析构函数-new-delete" class="headerlink" title="destructor 析构函数(new delete)"></a>destructor 析构函数(new delete)</h2><p>不同于java会自动删除内存，c++的内存释放必须要自己进行</p>
+<p>上个部分的例子中，new int会将ID创建在堆区，而Test创建的对象在栈区，导致内存泄漏(memory leak)</p>
+<p>此时便可以用析构函数在Test释放时自动清楚内存</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Test</span>(<span class="type">int</span>,<span class="type">int</span>);</span><br><span class="line">    ~<span class="built_in">Test</span>();</span><br><span class="line">    <span class="comment">//析构函数</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Test::<span class="built_in">Test</span>(<span class="type">int</span> ai,<span class="type">int</span> ID)&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;i = ai;</span><br><span class="line">    <span class="keyword">this</span>-&gt;p = <span class="keyword">new</span> <span class="built_in">int</span>(ID);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Test::~<span class="built_in">Test</span>()&#123;</span><br><span class="line">    <span class="keyword">delete</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">Test <span class="title">t1</span><span class="params">(<span class="number">1</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line">    <span class="comment">//自动调用~Test();</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="malloc-free-vs-new-delete"><a href="#malloc-free-vs-new-delete" class="headerlink" title="malloc&#x2F;free vs. new&#x2F;delete"></a>malloc&#x2F;free vs. new&#x2F;delete</h2><ul>
+<li><p>malloc free是一对库函数</p>
+</li>
+<li><p>new delete是一对运算符</p>
+</li>
+</ul>
+<p>看以下代码</p>
+  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Test *p = (Test*)<span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(Test));</span><br><span class="line">Test *p = <span class="keyword">new</span> <span class="built_in">Test</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>使用malloc中，p在栈区，生成的Test<strong>在堆区</strong><br>使用new中，p在栈区，生成的Test<strong>也在堆区</strong><br>总结：new &#x3D; malloc + constructor<br>     delete &#x3D; deconstructor + free</p>
+<hr>
+<h2 id="handle-句柄"><a href="#handle-句柄" class="headerlink" title="handle 句柄"></a>handle 句柄</h2><p>一个例子</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>&#123;</span><br><span class="line">    <span class="type">char</span> * name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">char</span> * handle;<span class="comment">//句柄</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="https://github.com/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "https://github.com/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=c++&amp;c# 第三讲：封装&amp;url=https://github.com/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/&amp;pic=https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/c-c/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                c++&amp;c#
+                                <span class="tagsPageCount">2</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>c++&amp;c# 第三讲：封装</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/">https://github.com/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">fysszlr&#39;s blog</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        <div class="prev-post pull-left">
+            <a href="/2023/09/25/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F%E7%AC%94%E8%AE%B0/">
+                <div class="pagination-info">
+                    <div class="label">上一篇</div>
+                    <div class="prev_info">西方音乐鉴赏笔记</div>
+                </div>
+            </a>
+        </div>
+        <div class="next-post pull-right">
+            <a href="/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/">
+                <div class="pagination-info">
+                    <div class="label">下一篇</div>
+                    <div class="next_info">OOpre Lec3-如何管理对象</div>
+                </div>
+            </a>
+        </div>
+    
+</nav>
+            
+    </div>
+    <div class="aside-content" id="aside-content">
+    
+    
+        
+        <div class="card-widget card-info">
+    <div class="card-content">
+        <div class="card-info-avatar is-center">
+            <div class="author-info__sayhi" id="author-info__sayhi">
+            </div>
+            <img class="avatar-img entered loaded" data-lazy-src="/img/temporary.jpeg" onerror="this.onerror=null;this.src='/img/temporary.jpeg'" alt="avatar" data-ll-status="loaded" src="">
+            <div class="author-info__name">
+                fysszlr
+            </div>
+            <div class="author-info__description">站长正在熬夜学习<b>计算机组成原理</b>，blog有空就更新www<br>希望你可以在这里找到对你有用的知识和教程喵~</div>
+        </div>
+    </div>
+    <div class="banner-button-group">
+        <a class="banner-button" href="/about">
+            <i class="fas fa-circle-chevron-right"></i>
+            <span class="banner-button-text">关于</span>
+        </a>
+    </div>
+    <div class="card-info-social-icons is-center">
+        
+            <a class="social-icon" href="https://github.com/fysszlr" title="Github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        
+            <a class="social-icon" href="mailto:fysszlr@qq.com" title="Mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        
+    </div>
+</div>
+     
+    
+    <div class="sticky_layout">
+        
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85"><span class="toc-text">第三讲：封装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#class%E4%B8%8Estruct%E9%BB%98%E8%AE%A4%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90%E4%B8%8D%E5%90%8C"><span class="toc-text">class与struct默认访问权限不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constructor-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">constructor 构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#default-constructor-%E9%BB%98%E8%AE%A4%E6%9E%84%E9%80%A0"><span class="toc-text">default constructor 默认构造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#char-%E5%92%8Cchar-%E6%AF%94%E8%BE%83"><span class="toc-text">char[]和char*比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E4%B9%9F%E6%98%AF%E7%B1%BB"><span class="toc-text">类型也是类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#destructor-%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0-new-delete"><span class="toc-text">destructor 析构函数(new delete)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#malloc-free-vs-new-delete"><span class="toc-text">malloc&#x2F;free vs. new&#x2F;delete</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#handle-%E5%8F%A5%E6%9F%84"><span class="toc-text">handle 句柄</span></a></li></ol></li></ol>
+    </div>
+</div>
+            
+        
+            
+        <div class="card-widget card-recent-post">
+    <div class="item-headline">
+        <i class="fas fa-list-ol"></i>
+        <span>最近发布</span>
+    </div>
+    <div class="aside-list">
+        
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/09/25/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F%E7%AC%94%E8%AE%B0/" title="西方音乐鉴赏笔记">
+                    <img
+                        alt="西方音乐鉴赏笔记"
+                        src="https://images.pexels.com/photos/210764/pexels-photo-210764.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/09/25/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F%E7%AC%94%E8%AE%B0/">
+                            笔记
+                        </a>
+                    
+                    <a class="title" href="/2023/09/25/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F%E7%AC%94%E8%AE%B0/" title="西方音乐鉴赏笔记">
+                        西方音乐鉴赏笔记
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/" title="c++&amp;c# 第三讲：封装">
+                    <img
+                        alt="c++&amp;c# 第三讲：封装"
+                        src="https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/">
+                            笔记
+                        </a>
+                    
+                    <a class="title" href="/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/" title="c++&amp;c# 第三讲：封装">
+                        c++&amp;c# 第三讲：封装
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/" title="OOpre Lec3-如何管理对象">
+                    <img
+                        alt="OOpre Lec3-如何管理对象"
+                        src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg">
+                </a>
+                <div class="content">
+                    
+                    <a class="title" href="/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/" title="OOpre Lec3-如何管理对象">
+                        OOpre Lec3-如何管理对象
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/09/20/%E6%AF%9B%E6%A6%82-pzl%E8%80%81%E5%B8%88%E5%B1%95%E7%A4%BA%E7%82%B9%E8%AF%84%E5%90%88%E9%9B%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%96%BD%E5%B7%A5%E4%B8%AD%EF%BC%89/" title="毛概 pzl老师展示点评合集（持续施工中）">
+                    <img
+                        alt="毛概 pzl老师展示点评合集（持续施工中）"
+                        src="https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/09/20/%E6%AF%9B%E6%A6%82-pzl%E8%80%81%E5%B8%88%E5%B1%95%E7%A4%BA%E7%82%B9%E8%AF%84%E5%90%88%E9%9B%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%96%BD%E5%B7%A5%E4%B8%AD%EF%BC%89/">
+                            笔记
+                        </a>
+                    
+                    <a class="title" href="/2023/09/20/%E6%AF%9B%E6%A6%82-pzl%E8%80%81%E5%B8%88%E5%B1%95%E7%A4%BA%E7%82%B9%E8%AF%84%E5%90%88%E9%9B%86%EF%BC%88%E6%8C%81%E7%BB%AD%E6%96%BD%E5%B7%A5%E4%B8%AD%EF%BC%89/" title="毛概 pzl老师展示点评合集（持续施工中）">
+                        毛概 pzl老师展示点评合集（持续施工中）
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/09/18/c-c-%E7%AC%AC%E4%B8%80%E8%AE%B2-%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9AA-Better-C/" title="c++&amp;c# 第一讲&amp;第二讲：A Better C">
+                    <img
+                        alt="c++&amp;c# 第一讲&amp;第二讲：A Better C"
+                        src="https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/09/18/c-c-%E7%AC%AC%E4%B8%80%E8%AE%B2-%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9AA-Better-C/">
+                            笔记
+                        </a>
+                    
+                    <a class="title" href="/2023/09/18/c-c-%E7%AC%AC%E4%B8%80%E8%AE%B2-%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9AA-Better-C/" title="c++&amp;c# 第一讲&amp;第二讲：A Better C">
+                        c++&amp;c# 第一讲&amp;第二讲：A Better C
+                    </a>
+                </div>
+            </div>
+            
+    </div>
+</div>
+     
+        
+    </div>
+</div> 
+</main>
+                <footer id="footer">
+                    <div id="footer_deal">
+    
+        <a class="deal_link" target="_blank" href="https://www.github.com/fysszlr" rel="external nofollow noopener" title="Github">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    
+    <img class="footer_mini_logo" src="/img/yomiya.png"
+        title="返回顶部" onclick="acrylic.toTop()">
+    
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com/274642803" rel="external nofollow noopener" title="bilibili">
+            <i class="fa-brands fa-bilibili"></i>
+        </a>
+    
+</div>    
+<div id="heo-footer">
+    
+        <div class="footer-group">
+            <h3 class="footer-title">导航</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" href="/archives/" title="文章归档" rel="noopener external nofollow noreferrer">文章归档</a>
+                
+                    <a class="footer-item" href="/categories/" title="文章分类" rel="noopener external nofollow noreferrer">文章分类</a>
+                
+                    <a class="footer-item" href="/tags/" title="文章标签" rel="noopener external nofollow noreferrer">文章标签</a>
+                
+                    <a class="footer-item" href="/link/" title="友链" rel="noopener external nofollow noreferrer">友链</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">Acrylic</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://acrylic.zhheo.com/" title="主题官网" rel="noopener external nofollow noreferrer noopener">主题官网</a>
+                
+                    <a class="footer-item" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic" title="Github" rel="noopener external nofollow noreferrer">Github</a>
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                    
+            </div>
+        </div>
+    
+    
+</div>
+<div id="footer-section">
+    <div class="footer-section-links">
+        <div class="footer-section-left">
+            <div id="footer-section-tips">
+                <div class="copyright">©2023 - 2023 By 
+                    <a class="footer-section-link" href="/" rel="external nofollow">fysszlr</a>
+                    <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
+                    <a class="footer-section-link" href="" rel="external nofollow" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section-right">
+            <a class="footer-section-link" href="">订阅</a>
+            
+            <a class="footer-section-link cc" target="_blank" href="https://creativecommons.org/licenses/by/4.0/" title="cc协议">
+                <i class="fas fa-closed-captioning"></i>
+            </a>
+        </div>
+    </div>
+</div>
+                </footer>
+            </div>
+         
+        <div>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    
+
+<script src="/lib/pjax.min.js"></script>
+
+
+
+<script src="/lib/snackbar.min.js"></script>
+
+
+    
+<script src="/lib/view-image.min.js"></script>
+
+
+
+    
+<link rel="stylesheet" href="/lib/swiper.min.css">
+
+    
+<script src="/lib/swiper.min.js"></script>
+
+
+<div id="js-pjax">
+    
+     
+</div>
+
+
+    
+<script src="/js/extend/covercolor/local.js"></script>
+
+        
+
+
+
+    <script>
+  let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax'
+  ]
+  
+  const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+  })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+</script>
+    
+</div>
+        
+     
+        <div class="needEndHide" id="nav-music" onclick="acrylic.musicToggle()">
+    <div id="nav-music-hoverTips">音乐已暂停</div>
+    <meting-js id="1708664797" server="tencent" type="playlist" mutex="true"
+        preload="none" data-lrctype="0" order="random" theme="var(--heo-main)"></meting-js>
+</div>
+    
+    </body>
+</html>
+<!-- fireworks -->
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!-- FunnyTitle -->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+<!-- 动态线条背景
+<script type="text/javascript"
+color="25,25,112" opacity='0.5' zIndex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"> -->
+</script>
+<!-- 数字雨 -->
+<canvas id="canvas" width="1440" height="900" ></canvas>
+<script type="text/javascript" src="/js/DigitalRain.js"></script><script>const posts=["2023/09/25/西方音乐鉴赏笔记/","2023/09/22/c-c-第三讲：封装/","2023/09/20/OOpre Lec3-如何管理对象/","2023/09/20/毛概-pzl老师展示点评合集（持续施工中）/","2023/09/18/c-c-第一讲-第二讲：A-Better-C/","2023/09/17/第一次の建站/"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>
