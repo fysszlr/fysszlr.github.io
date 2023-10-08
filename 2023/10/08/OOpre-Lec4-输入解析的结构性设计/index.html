@@ -146,9 +146,9 @@
                     </div>
                     <div class="card-tag-cloud">
                         
-                            <a href="/tags/CO/" style="font-size: 0.8rem; color: #d3d3d3">CO<sup>1</sup></a>
-                        
                             <a href="/tags/OOpre/" style="font-size: 0.8rem; color: #d3d3d3">OOpre<sup>2</sup></a>
+                        
+                            <a href="/tags/CO/" style="font-size: 0.8rem; color: #d3d3d3">CO<sup>1</sup></a>
                         
                             <a href="/tags/c-c/" style="font-size: 0.8rem; color: #d3d3d3">c++&amp;c#<sup>2</sup></a>
                         
@@ -347,12 +347,12 @@
             </div>
             <div class="card-tag-cloud">
                 
-                    <a href="/tags/CO/" style="font-size: 1em; color: #d3d3d3">CO
-                        <sup>1</sup>
-                    </a>
-                
                     <a href="/tags/OOpre/" style="font-size: 1em; color: #d3d3d3">OOpre
                         <sup>2</sup>
+                    </a>
+                
+                    <a href="/tags/CO/" style="font-size: 1em; color: #d3d3d3">CO
+                        <sup>1</sup>
                     </a>
                 
                     <a href="/tags/c-c/" style="font-size: 1em; color: #d3d3d3">c++&amp;c#
@@ -589,6 +589,12 @@
                 原创
             </a>
             
+            <span class="post-meta-categories">
+                
+                    <a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                
+            </span>
+            
             <div class="tag_share">
                 <div class="post-meta__tag-list">
                     
@@ -658,6 +664,15 @@
 <li>验证数据</li>
 <li>转换为程序内部数据</li>
 </ol>
+<h2 id="输入序列结构刀对象层次结构的映射"><a href="#输入序列结构刀对象层次结构的映射" class="headerlink" title="输入序列结构刀对象层次结构的映射"></a>输入序列结构刀对象层次结构的映射</h2><ul>
+<li><p>输入解析</p>
+<p>将输入数据从原始格式转换为程序所能处理的数据（结构）的过程</p>
+</li>
+<li><p>对象构造</p>
+<p>将输入解析的数据（结构）银蛇刀对象（层次结构）的过程</p>
+<p>需要设计合适的对象模型（数据结构设计）</p>
+</li>
+</ul>
 
         </article>
         <div class="post-tools" id="post-tools">
@@ -788,7 +803,7 @@
         <span>文章目录</span>
     </div>
     <div class="toc-content" id="toc-content">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1"><span class="toc-text">Lec4-输入解析的结构性设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%BA%8F%E5%88%97%E7%BB%93%E6%9E%84%E7%9A%84%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90"><span class="toc-text">输入序列结构的特征分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%EF%BC%9F"><span class="toc-text">为什么需要输入解析？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-text">输入解析的步骤</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1"><span class="toc-text">Lec4-输入解析的结构性设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%BA%8F%E5%88%97%E7%BB%93%E6%9E%84%E7%9A%84%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90"><span class="toc-text">输入序列结构的特征分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%EF%BC%9F"><span class="toc-text">为什么需要输入解析？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-text">输入解析的步骤</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%BA%8F%E5%88%97%E7%BB%93%E6%9E%84%E5%88%80%E5%AF%B9%E8%B1%A1%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E7%9A%84%E6%98%A0%E5%B0%84"><span class="toc-text">输入序列结构刀对象层次结构的映射</span></a></li></ol></li></ol>
     </div>
 </div>
             
@@ -809,6 +824,10 @@
                         src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg">
                 </a>
                 <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/10/08/OOpre-Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1/">
+                            笔记
+                        </a>
                     
                     <a class="title" href="/2023/10/08/OOpre-Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1/" title="OOpre Lec4-输入解析的结构性设计">
                         OOpre Lec4-输入解析的结构性设计
@@ -881,6 +900,10 @@
                         src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg">
                 </a>
                 <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/">
+                            笔记
+                        </a>
                     
                     <a class="title" href="/2023/09/20/OOpre%20Lec3-%E5%A6%82%E4%BD%95%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1/" title="OOpre Lec3-如何管理对象">
                         OOpre Lec3-如何管理对象
