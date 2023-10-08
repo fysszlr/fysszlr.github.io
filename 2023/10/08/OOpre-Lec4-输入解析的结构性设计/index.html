@@ -156,9 +156,9 @@
                         
                             <a href="/tags/%E8%80%81%E5%B8%88/" style="font-size: 0.8rem; color: #d3d3d3">老师<sup>1</sup></a>
                         
-                            <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" style="font-size: 0.8rem; color: #d3d3d3">西方音乐鉴赏<sup>1</sup></a>
-                        
                             <a href="/tags/fysszlr/" style="font-size: 0.8rem; color: #d3d3d3">fysszlr<sup>1</sup></a>
+                        
+                            <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" style="font-size: 0.8rem; color: #d3d3d3">西方音乐鉴赏<sup>1</sup></a>
                         
                     </div>
                 </div>
@@ -367,11 +367,11 @@
                         <sup>1</sup>
                     </a>
                 
-                    <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" style="font-size: 1em; color: #d3d3d3">西方音乐鉴赏
+                    <a href="/tags/fysszlr/" style="font-size: 1em; color: #d3d3d3">fysszlr
                         <sup>1</sup>
                     </a>
                 
-                    <a href="/tags/fysszlr/" style="font-size: 1em; color: #d3d3d3">fysszlr
+                    <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" style="font-size: 1em; color: #d3d3d3">西方音乐鉴赏
                         <sup>1</sup>
                     </a>
                 
@@ -651,7 +651,7 @@
 <hr>
 <h1 id="Lec4-输入解析的结构性设计"><a href="#Lec4-输入解析的结构性设计" class="headerlink" title="Lec4-输入解析的结构性设计"></a>Lec4-输入解析的结构性设计</h1><h2 id="输入序列结构的特征分析"><a href="#输入序列结构的特征分析" class="headerlink" title="输入序列结构的特征分析"></a>输入序列结构的特征分析</h2><h4 id="为什么需要输入解析？"><a href="#为什么需要输入解析？" class="headerlink" title="为什么需要输入解析？"></a>为什么需要输入解析？</h4><ul>
 <li><p>如果用户输入的数据格式不正确获证解析出错，就会导致结果错</p>
-<p>$garbage\ in\rightarrow garbage\ out$ </p>
+<p>garbage in$\rightarrow$garbage out </p>
 </li>
 <li><p>方便用户交互与体验</p>
 </li>
@@ -664,15 +664,112 @@
 <li>验证数据</li>
 <li>转换为程序内部数据</li>
 </ol>
-<h2 id="输入序列结构刀对象层次结构的映射"><a href="#输入序列结构刀对象层次结构的映射" class="headerlink" title="输入序列结构刀对象层次结构的映射"></a>输入序列结构刀对象层次结构的映射</h2><ul>
+<h2 id="输入序列结构到对象层次结构的映射"><a href="#输入序列结构到对象层次结构的映射" class="headerlink" title="输入序列结构到对象层次结构的映射"></a>输入序列结构到对象层次结构的映射</h2><ul>
 <li><p>输入解析</p>
-<p>将输入数据从原始格式转换为程序所能处理的数据（结构）的过程</p>
+<p>将输入数据从原始格式转换为程序所能处理的<strong>数据（结构）</strong>的过程</p>
 </li>
 <li><p>对象构造</p>
-<p>将输入解析的数据（结构）银蛇刀对象（层次结构）的过程</p>
-<p>需要设计合适的对象模型（数据结构设计）</p>
+<p>将输入解析的<strong>数据（结构）</strong>映射到<strong>对象（层次结构）</strong>的过程</p>
+<p>需要设计合适的<strong>对象模型（数据结构设计）</strong></p>
 </li>
 </ul>
+<h2 id="正则表达式的模式结构介绍"><a href="#正则表达式的模式结构介绍" class="headerlink" title="正则表达式的模式结构介绍"></a>正则表达式的模式结构介绍</h2><p><del>啊啊啊都一节课过去了，这个最重要的部分他怎么还没开始讲（小声）</del></p>
+<h4 id="语法介绍"><a href="#语法介绍" class="headerlink" title="语法介绍"></a>语法介绍</h4><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>匹配前面的模式零次或多次</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前面的模式一次或多次</td>
+</tr>
+<tr>
+<td>？</td>
+<td>匹配前面的模式零次或一次</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>匹配前面的模式恰好 n 次</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>匹配前面的模式至少 n 次</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>匹配前面的模式至少 n 次且不超过 m 次</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>匹配括号内的任意一个字符</td>
+</tr>
+<tr>
+<td>[^ ]</td>
+<td>匹配除了括号内的字符以外的任意一个字符</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串的开头</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结尾</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配单词边界</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配非单词边界</td>
+</tr>
+<tr>
+<td>( )</td>
+<td>用于分组和捕获子表达式</td>
+</tr>
+<tr>
+<td>( ?)</td>
+<td>非贪婪匹配</td>
+</tr>
+<tr>
+<td>(?: )</td>
+<td>用于分组但不捕获子表达式</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义字符，用于匹配特殊字符本身</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配任意字符（除了换行符）</td>
+</tr>
+<tr>
+<td>|</td>
+<td>用于指定多个模式的选择</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配任意数字字符</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配任意字母数字字符</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任意空白字符</td>
+</tr>
+</tbody></table>
+<h4 id="贪婪匹配"><a href="#贪婪匹配" class="headerlink" title="贪婪匹配"></a>贪婪匹配</h4><p>正则表达式默认采用<strong>贪婪匹配</strong>——任何一个模式，都会尽可能匹配多个字符</p>
+<p>在模式表达式后添加？，即代表<strong>非贪婪匹配</strong></p>
+<h4 id="层次正则"><a href="#层次正则" class="headerlink" title="层次正则"></a>层次正则</h4><p>如果查找元字符本身，比如查找.,或者*，就出现了问题：没法指定它们，因为被解释成其它的意思，这时必须使用\来取消这些字符的特殊意义</p>
+<h2 id="作业内容"><a href="#作业内容" class="headerlink" title="作业内容"></a>作业内容</h2><p>引入战斗模式和战斗日志（原神怎么你了）🤣👉🤡</p>
 
         </article>
         <div class="post-tools" id="post-tools">
@@ -803,7 +900,7 @@
         <span>文章目录</span>
     </div>
     <div class="toc-content" id="toc-content">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1"><span class="toc-text">Lec4-输入解析的结构性设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%BA%8F%E5%88%97%E7%BB%93%E6%9E%84%E7%9A%84%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90"><span class="toc-text">输入序列结构的特征分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%EF%BC%9F"><span class="toc-text">为什么需要输入解析？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-text">输入解析的步骤</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%BA%8F%E5%88%97%E7%BB%93%E6%9E%84%E5%88%80%E5%AF%B9%E8%B1%A1%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E7%9A%84%E6%98%A0%E5%B0%84"><span class="toc-text">输入序列结构刀对象层次结构的映射</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1"><span class="toc-text">Lec4-输入解析的结构性设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%BA%8F%E5%88%97%E7%BB%93%E6%9E%84%E7%9A%84%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90"><span class="toc-text">输入序列结构的特征分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%EF%BC%9F"><span class="toc-text">为什么需要输入解析？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-text">输入解析的步骤</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%BA%8F%E5%88%97%E7%BB%93%E6%9E%84%E5%88%B0%E5%AF%B9%E8%B1%A1%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E7%9A%84%E6%98%A0%E5%B0%84"><span class="toc-text">输入序列结构到对象层次结构的映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E6%A8%A1%E5%BC%8F%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D"><span class="toc-text">正则表达式的模式结构介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="toc-text">语法介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D"><span class="toc-text">贪婪匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E6%AD%A3%E5%88%99"><span class="toc-text">层次正则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E5%86%85%E5%AE%B9"><span class="toc-text">作业内容</span></a></li></ol></li></ol>
     </div>
 </div>
             
