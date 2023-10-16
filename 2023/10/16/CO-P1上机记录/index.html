@@ -146,7 +146,7 @@
                     </div>
                     <div class="card-tag-cloud">
                         
-                            <a href="/tags/CO/" style="font-size: 0.8rem; color: #d3d3d3">CO<sup>3</sup></a>
+                            <a href="/tags/CO/" style="font-size: 0.8rem; color: #d3d3d3">CO<sup>4</sup></a>
                         
                             <a href="/tags/OOpre/" style="font-size: 0.8rem; color: #d3d3d3">OOpre<sup>3</sup></a>
                         
@@ -348,7 +348,7 @@
             <div class="card-tag-cloud">
                 
                     <a href="/tags/CO/" style="font-size: 1em; color: #d3d3d3">CO
-                        <sup>3</sup>
+                        <sup>4</sup>
                     </a>
                 
                     <a href="/tags/OOpre/" style="font-size: 1em; color: #d3d3d3">OOpre
@@ -580,7 +580,7 @@
 </nav>
     
         <div class="coverdiv" id="coverdiv">
-    <img id="post-cover" class="nolazyload" src="/img/IMG_252.png" alt="cover">
+    <img id="post-cover" class="nolazyload" src="https://images.pexels.com/photos/463684/pexels-photo-463684.jpeg" alt="cover">
 </div>
 <div id="post-info">
     <div id="post-firstinfo">
@@ -589,8 +589,19 @@
                 原创
             </a>
             
+            <span class="post-meta-categories">
+                
+                    <a class="post-meta-categories" href="/categories/%E7%BB%8F%E9%AA%8C/">经验</a>
+                
+            </span>
+            
             <div class="tag_share">
                 <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/CO/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">CO</span>
+                        </a>
                     
                 </div>
             </div>
@@ -636,7 +647,141 @@
                 <main class="layout" id="content-inner">
     <div id="post">
         <article class="post-content" id="article-container">
-            
+            <p>依旧是在遇到了大量突发情况下惊险完成了P1，于是想着将我的想法与遇到的问题写下，期望能够对大家有些许的启发www~</p>
+<hr>
+<h2 id="T1：P1-L1-dotProduct-2023"><a href="#T1：P1-L1-dotProduct-2023" class="headerlink" title="T1：P1_L1_dotProduct_2023"></a>T1：<a target="_blank" rel="noopener" href="http://cscore.buaa.edu.cn/#/problem?ProblemId=1144&PieId=1121">P1_L1_dotProduct_2023</a></h2><h3 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h3><h4 id="法一：暴力大法好"><a href="#法一：暴力大法好" class="headerlink" title="法一：暴力大法好"></a>法一：暴力大法好</h4><p>应该有不少同学和我一样，考试中不确定for怎么写，直接<code>ctrl+c</code> <code>ctrl+v</code>写了32位的🤪🤪</p>
+<p>硬要说有什么优化的话…vector_a和vector_b字数太长了，<del>看着有点烦</del>容易打错字，可以自己定义两个32位wire替代~</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] a;</span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] b;</span><br><span class="line"><span class="keyword">assign</span> a = vector_a;</span><br><span class="line"><span class="keyword">assign</span> b = vector_b;</span><br><span class="line"><span class="keyword">assign</span> result =</span><br><span class="line">    (a[<span class="number">0</span>] &amp; b[<span class="number">0</span>]) +</span><br><span class="line">    (a[<span class="number">1</span>] &amp; b[<span class="number">1</span>]) +</span><br><span class="line">    <span class="comment">//......</span></span><br><span class="line">    (a[<span class="number">31</span>] &amp; b[<span class="number">31</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>当然，你也可以在C或者Python或者JAVA（或者verilog）中打表来减少复制时间</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>;i &lt; <span class="number">32</span>;i++) </span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;(a[&quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;] &amp; b[&quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot;]);&quot;</span> &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<h4 id="法二：for循环"><a href="#法二：for循环" class="headerlink" title="法二：for循环"></a>法二：for循环</h4><p>在Verilog里写for循环优雅地解决问题当然是我们最提倡的方式</p>
+<p>一般来说，verilog里的for循环可以这么写</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">integer</span> i;</span><br><span class="line"><span class="keyword">always</span> @(*) <span class="keyword">begin</span></span><br><span class="line">    <span class="comment">//preliminary</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>;i &lt; max_i;i = i + <span class="number">1</span>) <span class="keyword">begin</span></span><br><span class="line">        	<span class="comment">//do something</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>将进行位运算的步骤放进for循环里，很轻松就可以求解问题</p>
+<hr>
+<h2 id="T2：T2：P1-L4-coloring-2023"><a href="#T2：T2：P1-L4-coloring-2023" class="headerlink" title="T2：T2：P1_L4_coloring_2023"></a>T2：<a target="_blank" rel="noopener" href="http://cscore.buaa.edu.cn/#/problem?ProblemId=1171&PieId=1121">T2：P1_L4_coloring_2023</a></h2><h3 id="题解：-1"><a href="#题解：-1" class="headerlink" title="题解："></a>题解：</h3><p>本题有两种设计状态的方式：</p>
+<ol>
+<li><p>用一个变量存储当前状态</p>
+<table>
+<thead>
+<tr>
+<th>当前序列</th>
+<th>编码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>无颜色</td>
+<td>000</td>
+</tr>
+<tr>
+<td>红</td>
+<td>001</td>
+</tr>
+<tr>
+<td>红红</td>
+<td>010</td>
+</tr>
+<tr>
+<td>绿</td>
+<td>011</td>
+</tr>
+<tr>
+<td>绿绿</td>
+<td>100</td>
+</tr>
+<tr>
+<td>蓝</td>
+<td>101</td>
+</tr>
+<tr>
+<td>蓝蓝</td>
+<td>110</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>用两个变量存储当前状态</p>
+<table>
+<thead>
+<tr>
+<th>当前颜色</th>
+<th>当前数量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>无颜色</td>
+<td>0</td>
+</tr>
+<tr>
+<td>红</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>2</td>
+</tr>
+<tr>
+<td>绿</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>2</td>
+</tr>
+<tr>
+<td>蓝</td>
+<td>1</td>
+</tr>
+<tr>
+<td></td>
+<td>2</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p>从状态数上，两种方法差不多，但在实际编程中，第二种表示方法由于可以用if合并一些情况的处理方式，也许会稍微快一点</p>
+<p>下面以方法二模式列出代码</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>] now; <span class="comment">//当前颜色</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">1</span>:<span class="number">0</span>] cnt; <span class="comment">//当前数量</span></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (!rst_n) <span class="keyword">begin</span></span><br><span class="line">        <span class="comment">//preliminary</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">case</span> (cnt) </span><br><span class="line">            <span class="number">0</span> : <span class="keyword">begin</span></span><br><span class="line">                <span class="comment">//do something</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">            <span class="number">1</span> : <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">if</span> (color == now) <span class="keyword">begin</span></span><br><span class="line">                    <span class="comment">//do something</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> ( (now ^ color) == <span class="number">1</span>) <span class="keyword">begin</span> <span class="comment">//判断是否红绿相接，下同</span></span><br><span class="line">                    <span class="comment">//do something</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">                    <span class="comment">//do something</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">            <span class="number">2</span> : <span class="keyword">begin</span></span><br><span class="line">                <span class="keyword">if</span> (color == now) <span class="keyword">begin</span></span><br><span class="line">                    <span class="comment">//do something</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> ( (now ^ color) == <span class="number">1</span>) <span class="keyword">begin</span></span><br><span class="line">                    <span class="comment">//do something</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">                    <span class="comment">//do something</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">            <span class="keyword">default</span> : <span class="keyword">begin</span></span><br><span class="line">                <span class="comment">//do something</span></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">endcase</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>有以下两点需要注意一下：</p>
+<ol>
+<li>本题为<strong>异步复位</strong>，且为<strong>低电平有效</strong>，假如实在想不起来<code> negedge</code>，就只能试试用组合逻辑实现清零操作了（据说有佬成功了orz）</li>
+<li>在初始化的时候，不建议把颜色清成0，否则当下一个输入1的时候电路就会出错。解决办法为特判一下或者一开始就把颜色清成2，这样就不会和任何输入冲突。（因为这个挂了好几次~😿)</li>
+</ol>
+<hr>
+<h2 id="T3：numberNest"><a href="#T3：numberNest" class="headerlink" title="T3：numberNest"></a>T3：numberNest</h2><h3 id="题意："><a href="#题意：" class="headerlink" title="题意："></a>题意：</h3><p>定义两个相同数字之间的部分为“数字匹配”，对于数字匹配，有以下要求：</p>
+<ol>
+<li>一个数字的匹配中的数字必须比这个数大，如123321是合理的，而121121是不合理的</li>
+<li>一个数字匹配的下一个数字只能比这个数字大1，如1234444321是合理的，而1331是不合理的</li>
+</ol>
+<p>输入：串行输入的数字序列</p>
+<p>输出：当前输入的序列是否合理，合理输出0；不合理输出1，并将当前序列清空</p>
+<p>（由于记忆问题，题目描述可能有略微区别，还请大家多多谅解www~）</p>
+<h3 id="题解：-2"><a href="#题解：-2" class="headerlink" title="题解："></a>题解：</h3><p>本题依旧有两个解法：</p>
+<h4 id="法一：状态机大法"><a href="#法一：状态机大法" class="headerlink" title="法一：状态机大法"></a>法一：状态机大法</h4><p>题目对数据限制了最多为5，据此可以列出状态机</p>
+<p>相信一定会有别的大佬详细讲解这种方法的，我就不献丑啦🎶~</p>
+<h4 id="法二：两个if法"><a href="#法二：两个if法" class="headerlink" title="法二：两个if法"></a>法二：两个if法</h4><p>定义一个状态state，为当前正在进行匹配的数字，如123的state为3，122的state为1，空串的state为0</p>
+<p>不难发现，在任何情况下，我们的合理输入(用in表示)只有两种：</p>
+<ol>
+<li><p>in &#x3D; state + 1</p>
+<p>序列开始了下一个匹配，需要将state加一</p>
+</li>
+<li><p>in &#x3D; state </p>
+<p>序列结束了当前匹配，需要将state减一</p>
+</li>
+</ol>
+<p>（这么说可能稍微有点抽象，大家可以自己构造几个数据跑一跑）</p>
+<p>相反，只要不满足上面的情况，就说明序列不合理</p>
+<p>我们可以简单地写出代码</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">2</span>:<span class="number">0</span>] state;</span><br><span class="line"><span class="keyword">always</span> @ (<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> rst_n) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (!rst_n) <span class="keyword">begin</span></span><br><span class="line">        state &lt;= <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> (in == state + <span class="number">1</span>) <span class="keyword">begin</span></span><br><span class="line">            check &lt;= <span class="number">0</span>;</span><br><span class="line">            state &lt;= state + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (in == state) <span class="keyword">begin</span></span><br><span class="line">            check &lt;= <span class="number">0</span>;</span><br><span class="line">            state &lt;= state - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">       	<span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">           	check &lt;= <span class="number">1</span>;</span><br><span class="line">            state &lt;= <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>这种方法的优点在于<del>代码比较短</del>，可拓展性比较好（指对数据范围的依赖小）</p>
+<hr>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>本次考试的三个题目，并没有简单地考查状态机或组合电路等基本知识，而是要求考生对Verilog编程语言具有较深刻的理解和熟练掌握，才能较为轻松地解决。</p>
+<p>同时，本次考试加大了对测试块（TB）编写的要求，对于P4及以后的练习，很可能会出现不编写测试块就无法解决的问题。愿我们都能在此之前武装到牙齿，能够从容面对即将到来的挑战~</p>
+
         </article>
         <div class="post-tools" id="post-tools">
             <div class="post-tools-left">
@@ -659,7 +804,7 @@
     </div>
 </div>
                 <div class="share-link weibo"><a class="share-button" target="_blank"
-    href="https://service.weibo.com/share/share.php?title=CO P1上机记录&amp;url=https://github.com/2023/10/16/CO-P1%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/&amp;pic=/img/IMG_252.png"
+    href="https://service.weibo.com/share/share.php?title=CO P1上机记录&amp;url=https://github.com/2023/10/16/CO-P1%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/&amp;pic=https://images.pexels.com/photos/463684/pexels-photo-463684.jpeg"
     title="分享到微博" rel="noopener external nofollow noreferrer noopener">
     <i class="fab fa-weibo" style="font-size:22px"></i>
 </a>
@@ -673,6 +818,12 @@
             <div class="post-tools-right">
                 <div class="tag_share">
                     <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/CO/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                CO
+                                <span class="tagsPageCount">4</span>
+                            </a>
                         
                     </div>
                 </div>
@@ -760,7 +911,7 @@
         <span>文章目录</span>
     </div>
     <div class="toc-content" id="toc-content">
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#T1%EF%BC%9AP1-L1-dotProduct-2023"><span class="toc-text">T1：P1_L1_dotProduct_2023</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3%EF%BC%9A"><span class="toc-text">题解：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%95%E4%B8%80%EF%BC%9A%E6%9A%B4%E5%8A%9B%E5%A4%A7%E6%B3%95%E5%A5%BD"><span class="toc-text">法一：暴力大法好</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%95%E4%BA%8C%EF%BC%9Afor%E5%BE%AA%E7%8E%AF"><span class="toc-text">法二：for循环</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T2%EF%BC%9AT2%EF%BC%9AP1-L4-coloring-2023"><span class="toc-text">T2：T2：P1_L4_coloring_2023</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3%EF%BC%9A-1"><span class="toc-text">题解：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#T3%EF%BC%9AnumberNest"><span class="toc-text">T3：numberNest</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E6%84%8F%EF%BC%9A"><span class="toc-text">题意：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3%EF%BC%9A-2"><span class="toc-text">题解：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%95%E4%B8%80%EF%BC%9A%E7%8A%B6%E6%80%81%E6%9C%BA%E5%A4%A7%E6%B3%95"><span class="toc-text">法一：状态机大法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%B8%A4%E4%B8%AAif%E6%B3%95"><span class="toc-text">法二：两个if法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">总结：</span></a></li></ol>
     </div>
 </div>
             
@@ -778,9 +929,13 @@
                 <a class="thumbnail" href="/2023/10/16/CO-P1%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/" title="CO P1上机记录">
                     <img
                         alt="CO P1上机记录"
-                        src="/img/IMG_252.png">
+                        src="https://images.pexels.com/photos/463684/pexels-photo-463684.jpeg">
                 </a>
                 <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/10/16/CO-P1%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/">
+                            经验
+                        </a>
                     
                     <a class="title" href="/2023/10/16/CO-P1%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/" title="CO P1上机记录">
                         CO P1上机记录
