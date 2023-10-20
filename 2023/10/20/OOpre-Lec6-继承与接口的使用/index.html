@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>标签 c++&amp;c# | fysszlr&#39;s blog</title>
+<title>OOpre Lec6-继承与接口的使用 | fysszlr&#39;s blog</title>
 <noscript>开启Javascript是必要的</noscript>
 <link rel="icon" type="image/x-icon" href="/img/yomiya.png">
 <link rel="apple-touch-icon" href="/img/yomiya.png">
@@ -32,7 +32,7 @@
 
 
 
-<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-9-17 23:50:00","lazyload":{"enable":false,"error":"/img/temporary.jpeg"},"hightlight":{"enable":true,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":true,"comment":{"enable":false,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":false,"is_page":false,"page":false};</script>
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-9-17 23:50:00","lazyload":{"enable":false,"error":"/img/temporary.jpeg"},"hightlight":{"enable":true,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":true,"comment":{"enable":false,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
     <meta name="generator" content="Hexo 6.3.0"></head>
     <body id="body">
         
@@ -380,8 +380,8 @@
     </div>
 </div>    
         
-            <div class="page" id="body-wrap">
-                <header class="not-top-img" id="page-header">
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
     <nav id="nav" class="show">
     <div id="nav-group">
         <div id="blog_name">
@@ -446,7 +446,7 @@
         </div>
         <div id="page-name-mask">
             <div id="page-name">
-                <a id="page-name-text" onclick="acrylic.toTop()">fysszlr&#39;s blog</a>
+                <a id="page-name-text" onclick="acrylic.toTop()">OOpre Lec6-继承与接口的使用</a>
             </div>
         </div>
         <div id="menus">
@@ -578,134 +578,220 @@
         </div>
     </div>
 </nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <span class="post-meta-categories">
+                
+                    <a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                
+            </span>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/OOpre/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">OOpre</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">OOpre Lec6-继承与接口的使用</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2023-10-20T14:09:53+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为北京">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>北京</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
         
 </header>
                 <main class="layout" id="content-inner">
-    <div id="tag">
-        <div id="tag-page-tags">
-            
-                <a href="/tags/CO/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    CO
-                    <span class="tagsPageCount">4</span>
-                </a>
-            
-                <a href="/tags/OOpre/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    OOpre
-                    <span class="tagsPageCount">4</span>
-                </a>
-            
-                <a href="/tags/c-c/" class="select">
-                    <span class="tags-punctuation">#</span> 
-                    c++&amp;c#
-                    <span class="tagsPageCount">3</span>
-                </a>
-            
-                <a href="/tags/fysszlr/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    fysszlr
-                    <span class="tagsPageCount">1</span>
-                </a>
-            
-                <a href="/tags/%E6%AF%9B%E6%A6%82/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    毛概
-                    <span class="tagsPageCount">1</span>
-                </a>
-            
-                <a href="/tags/%E8%80%81%E5%B8%88/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    老师
-                    <span class="tagsPageCount">1</span>
-                </a>
-            
-                <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" class="">
-                    <span class="tags-punctuation">#</span> 
-                    西方音乐鉴赏
-                    <span class="tagsPageCount">2</span>
-                </a>
-            
-        </div>
-        <div class="article-sort-title">c++&amp;c#</div>
-        <div class="article-sort">
-            
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <h1 id="Lec6-继承与接口的使用"><a href="#Lec6-继承与接口的使用" class="headerlink" title="Lec6-继承与接口的使用"></a>Lec6-继承与接口的使用</h1><hr>
+<h2 id="继承及其应用"><a href="#继承及其应用" class="headerlink" title="继承及其应用"></a>继承及其应用</h2><h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><ul>
+<li>子类可以访问父类的公共（public）和受保护 （protected）成员 </li>
+<li>私有（private）成员无法被直接被访问，但可以通过调用父类的方法来访问</li>
+</ul>
+<p>可以使用obj instanceof MyCLass 表达式来判断对象 obj是否为MyClass的实例化对象</p>
+<h3 id="super"><a href="#super" class="headerlink" title="super"></a>super</h3><ul>
+<li><p>使用 super.attribute 可以 引用父类中定义的非私有属性</p>
+</li>
+<li><p>如果子类重写了父类的某个方法，那么子类通过super.methodName() 可以 调用父类所实现的那个方法</p>
+<p>(this.methodName()是子类自己重写的方法)</p>
+</li>
+<li><p>一般<strong>使用 super(arguments) 来调用父类的构造方法</strong>，从而完成对父类所定义属性的初始化</p>
+</li>
+</ul>
+<h3 id="Override"><a href="#Override" class="headerlink" title="@Override"></a>@Override</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">getClassName</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> “XBottle<span class="string">&quot;; </span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 
-    
-        <div class="article-sort-item year">2023</div>
-    
-    <div class="article-sort-item">
-        <a class="article-sort-item-img" href="/2023/10/13/c-c-%E7%AC%AC%E5%9B%9B%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85(%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86)/" title="c++&amp;c# 第四讲：封装(第二部分)">
-            <img src="https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg"
-                alt="c++&amp;c# 第四讲：封装(第二部分)">
-        </a>
-        <div class="article-sort-item-info">
-            <a class="article-sort-item-title" href="/2023/10/13/c-c-%E7%AC%AC%E5%9B%9B%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85(%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86)/" title="c++&amp;c# 第四讲：封装(第二部分)"
-                onclick="window.event.cancelBubble=true;">
-                c++&amp;c# 第四讲：封装(第二部分)
-            </a>
-            <div class="article-sort-item-tags">
+<p>可在子类重写父类方法时标注，非强制要求，可选</p>
+<p>子类方法的<strong>方法名</strong>和<strong>参数列表</strong>必须与父类方法<strong>完全相同</strong></p>
+<hr>
+<h2 id="接口及其应用"><a href="#接口及其应用" class="headerlink" title="接口及其应用"></a>接口及其应用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Myinterface</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">myMethod1</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">myMethod2</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">myMethod3</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Myclass</span> <span class="keyword">implements</span> <span class="title class_">Myinterface</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myMethod1</span><span class="params">()</span> &#123;</span><br><span class="line">    	System.out.println(<span class="string">&quot;Implementation of myMethod1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myMethod2</span><span class="params">()</span> &#123;</span><br><span class="line">    	System.out.println(<span class="string">&quot;Implementation of myMethod2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myMethod3</span><span class="params">()</span> &#123;</span><br><span class="line">    	System.out.println(<span class="string">&quot;Implementation of myMethod3&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>要求接口中的所有方法都被实现（覆写）</li>
+<li>可以用a instanceof B判断对象a是否实现了接口B，即是否类型B的实例</li>
+<li>若父类实现了某个接口，则子类也可以使用父类的接口方法</li>
+</ul>
+<hr>
+<h2 id="接口和继承的区别"><a href="#接口和继承的区别" class="headerlink" title="接口和继承的区别"></a>接口和继承的区别</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>数量</th>
+<th>关系</th>
+<th>概念本质</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>继承</td>
+<td>一个类只能有一个父类</td>
+<td>子类继承了父类的所有属性和方法</td>
+<td>建立了数据抽象层次</td>
+</tr>
+<tr>
+<td>接口</td>
+<td>一个类可以实现多个接口</td>
+<td>实现接口中所定义的全部方法</td>
+<td>建立了行为抽象层次</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="作业内容与建议"><a href="#作业内容与建议" class="headerlink" title="作业内容与建议"></a>作业内容与建议</h2><ul>
+<li>仍为冒险者游戏，在第四次作业的基础上迭代开发</li>
+<li>允许冒险者雇佣另一个冒险者，且赋予装备、药水瓶、食物、冒 险者价值的概念 </li>
+<li>细化装备和药水瓶的类型，具有不同的功效 </li>
+<li>建议把装备、药水瓶、食物和冒险者都看作是价值体 （commodity） </li>
+<li>建议引入Commodity接口来建立行为层次关系</li>
+<li>冒险者 Adventurer 类、装备 Equipment 类、药水瓶 Bottle 类、食物 Food  类实现该接口 </li>
+<li>装备和药水瓶的细分，建议通过继承实现</li>
+</ul>
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
                 
-                    <a class="article-meta__tags" href="/tags/c-c/" onclick="window.event.cancelBubble=true;">
-                        <span class="tags-punctuation">#</span>
-                        c++&amp;c#
-                    </a>
-                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="https://github.com/2023/10/20/OOpre-Lec6-%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
             </div>
         </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "https://github.com/2023/10/20/OOpre-Lec6-%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8/");
+        </script>
     </div>
-
-    
-    <div class="article-sort-item">
-        <a class="article-sort-item-img" href="/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/" title="c++&amp;c# 第三讲：封装">
-            <img src="https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg"
-                alt="c++&amp;c# 第三讲：封装">
-        </a>
-        <div class="article-sort-item-info">
-            <a class="article-sort-item-title" href="/2023/09/22/c-c-%E7%AC%AC%E4%B8%89%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85/" title="c++&amp;c# 第三讲：封装"
-                onclick="window.event.cancelBubble=true;">
-                c++&amp;c# 第三讲：封装
-            </a>
-            <div class="article-sort-item-tags">
-                
-                    <a class="article-meta__tags" href="/tags/c-c/" onclick="window.event.cancelBubble=true;">
-                        <span class="tags-punctuation">#</span>
-                        c++&amp;c#
-                    </a>
-                
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=OOpre Lec6-继承与接口的使用&amp;url=https://github.com/2023/10/20/OOpre-Lec6-%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8/&amp;pic=https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/OOpre/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                OOpre
+                                <span class="tagsPageCount">4</span>
+                            </a>
+                        
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-
-    
-    <div class="article-sort-item">
-        <a class="article-sort-item-img" href="/2023/09/18/c-c-%E7%AC%AC%E4%B8%80%E8%AE%B2-%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9AA-Better-C/" title="c++&amp;c# 第一讲&amp;第二讲：A Better C">
-            <img src="https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg"
-                alt="c++&amp;c# 第一讲&amp;第二讲：A Better C">
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>OOpre Lec6-继承与接口的使用</span>
         </a>
-        <div class="article-sort-item-info">
-            <a class="article-sort-item-title" href="/2023/09/18/c-c-%E7%AC%AC%E4%B8%80%E8%AE%B2-%E7%AC%AC%E4%BA%8C%E8%AE%B2%EF%BC%9AA-Better-C/" title="c++&amp;c# 第一讲&amp;第二讲：A Better C"
-                onclick="window.event.cancelBubble=true;">
-                c++&amp;c# 第一讲&amp;第二讲：A Better C
-            </a>
-            <div class="article-sort-item-tags">
-                
-                    <a class="article-meta__tags" href="/tags/c-c/" onclick="window.event.cancelBubble=true;">
-                        <span class="tags-punctuation">#</span>
-                        c++&amp;c#
-                    </a>
-                
-            </div>
-        </div>
     </div>
-
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/2023/10/20/OOpre-Lec6-%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8/">https://github.com/2023/10/20/OOpre-Lec6-%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8/</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">fysszlr&#39;s blog</a>
+            </span>
         </div>
-        <nav id="pagination">
-    <div class="pagination">
+</div>
+        <nav class="pagination-post" id="pagination">
+    
         
-        <span class="page-number current">1</span>
-    </div>
-</nav>       
+            <div class="next-post pull-full">
+                <a href="/2023/10/16/CO-P1%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/">
+                    <div class="pagination-info">
+                        <div class="label">下一篇</div>
+                        <div class="next_info">CO P1上机记录</div>
+                    </div>
+                </a>
+            </div>
+                
+        
+    
+</nav>
+            
     </div>
     <div class="aside-content" id="aside-content">
     
@@ -743,29 +829,17 @@
 </div>
      
     
+    <div class="sticky_layout">
         
-        <div class="card-widget heo-right-widget" id="card-wechat" style="background: #0099FF ;">
-    <div id="flip-wrapper">
-        <div id="flip-content">
-            <div class="face">
-                <div class="left">
-                    <span class="title">Wechat</span>
-                    <span class="desc">添加站长微信与我交流 <i class="fa-solid fa-play"></i></span>
-                </div>
-            </div>
-            <div class="back face">
-                <div class="left">
-                    <span class="title">扫一扫</span>
-                    <span class="desc">获取更多信息和帮助(迫真) <i class="fa-solid fa-play"></i></span>
-                </div>
-                <img class="nolazyload" src="/img/wechat.png">
-            </div>
-        </div>
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lec6-%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">Lec6-继承与接口的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8"><span class="toc-text">继承及其应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#extends"><span class="toc-text">extends</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#super"><span class="toc-text">super</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Override"><span class="toc-text">@Override</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8"><span class="toc-text">接口及其应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%92%8C%E7%BB%A7%E6%89%BF%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">接口和继承的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E5%86%85%E5%AE%B9%E4%B8%8E%E5%BB%BA%E8%AE%AE"><span class="toc-text">作业内容与建议</span></a></li></ol></li></ol>
     </div>
 </div>
-     
-    
-    <div class="sticky_layout">
             
         
             
@@ -872,68 +946,6 @@
             </div>
             
     </div>
-</div>
-     
-        
-            
-        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
-    <div class="card-tag-cloud">
-    
-        <a href="/tags/CO/" style="font-size: 0.8rem; color: #d3d3d3">CO<sup>4</sup></a>
-    
-        <a href="/tags/OOpre/" style="font-size: 0.8rem; color: #d3d3d3">OOpre<sup>4</sup></a>
-    
-        <a href="/tags/c-c/" style="font-size: 0.8rem; color: #d3d3d3">c++&amp;c#<sup>3</sup></a>
-    
-        <a href="/tags/fysszlr/" style="font-size: 0.8rem; color: #d3d3d3">fysszlr<sup>1</sup></a>
-    
-        <a href="/tags/%E6%AF%9B%E6%A6%82/" style="font-size: 0.8rem; color: #d3d3d3">毛概<sup>1</sup></a>
-    
-        <a href="/tags/%E8%80%81%E5%B8%88/" style="font-size: 0.8rem; color: #d3d3d3">老师<sup>1</sup></a>
-    
-        <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" style="font-size: 0.8rem; color: #d3d3d3">西方音乐鉴赏<sup>2</sup></a>
-    
-</div>
-    <ul class="card-archive-list">
-    
-     
-        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/')" data-pjax-state=""><span
-            class="card-archive-list-date">2023</span>
-            <div class="card-archive-list-count-group"><span class="card-archive-list-count">15</span><span
-                    class="card-archive-list-count-unit">篇</span></div>
-            </a>
-        </li>
-        
-</ul>
-
-    <hr>
-    <div class="webinfo">
-    
-        <div class="webinfo-item">
-            <div class="webinfo-item-title">
-                <i class="item-icon fas fa-file-alt"></i>
-                <div class="item-name">文章总数 :</div>
-            </div>
-            <div class="item-count">15</div>
-        </div>
-    
-    
-        
-        
-    
-    
-        <div class="webinfo-item">
-            <div class="webinfo-item-title">
-                <i class="item-icon fas fa-stopwatch"></i>
-                <div class="item-name">建站天数 :</div>
-            </div>
-            <div class="item-count" id="runtimeshow">
-            </div>
-        </div>
-    
-    
-    
-</div>
 </div>
      
         
