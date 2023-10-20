@@ -150,7 +150,7 @@
                         
                             <a href="/tags/OOpre/" style="font-size: 0.8rem; color: #d3d3d3">OOpre<sup>4</sup></a>
                         
-                            <a href="/tags/c-c/" style="font-size: 0.8rem; color: #d3d3d3">c++&amp;c#<sup>3</sup></a>
+                            <a href="/tags/c-c/" style="font-size: 0.8rem; color: #d3d3d3">c++&amp;c#<sup>4</sup></a>
                         
                             <a href="/tags/fysszlr/" style="font-size: 0.8rem; color: #d3d3d3">fysszlr<sup>1</sup></a>
                         
@@ -168,7 +168,7 @@
      
         <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/10/')" data-pjax-state=""><span
             class="card-archive-list-date">2023/10</span>
-            <div class="card-archive-list-count-group"><span class="card-archive-list-count">8</span><span
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">9</span><span
                     class="card-archive-list-count-unit">篇</span></div>
             </a>
         </li>
@@ -356,7 +356,7 @@
                     </a>
                 
                     <a href="/tags/c-c/" style="font-size: 1em; color: #d3d3d3">c++&amp;c#
-                        <sup>3</sup>
+                        <sup>4</sup>
                     </a>
                 
                     <a href="/tags/fysszlr/" style="font-size: 1em; color: #d3d3d3">fysszlr
@@ -691,6 +691,12 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>&#123;</span><br><span class="line">	string name;</span><br><span class="line">	<span class="type">int</span> id;</span><br><span class="line">	<span class="type">int</span> *url;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Student</span>(string,<span class="type">int</span>,<span class="type">int</span>*);</span><br><span class="line">    <span class="built_in">Student</span>(Student &amp;s);</span><br><span class="line">&#125;;</span><br><span class="line">Student::<span class="built_in">Student</span>(string name,<span class="type">int</span> id,<span class="type">int</span> p)&#123;</span><br><span class="line">	name=name;</span><br><span class="line">	id=id;</span><br><span class="line">	url=*p;</span><br><span class="line">&#125;</span><br><span class="line">Student::<span class="built_in">Student</span>(Student &amp;s)&#123; <span class="comment">//这里一定是s的引用</span></span><br><span class="line">    name=s.name;</span><br><span class="line">    id=s.name;</span><br><span class="line">    url=<span class="keyword">new</span> <span class="built_in">int</span>(*s.url);</span><br><span class="line">    <span class="comment">//为s的url在堆区创建一个值相同的不同地址</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Student <span class="title">s1</span><span class="params">(<span class="string">&quot;abc&quot;</span>,<span class="number">100</span>,<span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="function">Student <span class="title">s2</span><span class="params">(s1)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在这里，我们创建了一个新的构造方式，并通过自己写的逻辑方式规避了指针冲突的情况，所以是深拷贝</p>
+<p>更进一步，如何保证自己使用的一定是深拷贝捏？或者怎么保证对象不被浅拷贝捏？</p>
+<p>答案是使用私有拷贝构造</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="built_in">Test</span>(Test &amp;t);</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Test</span>();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>此时，只能通过私有拷贝函数来深拷贝</p>
+<p>或者干脆拷贝函数留空，杜绝浅拷贝的可能性 </p>
 <hr>
 <h2 id="pass-by-value-vs-pass-by-address"><a href="#pass-by-value-vs-pass-by-address" class="headerlink" title="pass by value vs. pass by address"></a>pass by value vs. pass by address</h2><table>
 <thead>
@@ -724,10 +730,32 @@
 <p>与此相反，extern指外连接，即“我有一个东西，在外部去找”，可以用于全局变量</p>
 <h3 id="3-static-global-variable-静态全局变量"><a href="#3-static-global-variable-静态全局变量" class="headerlink" title="3. static global variable 静态全局变量"></a>3. static global variable 静态全局变量</h3><p>只在本文件中可以使用，没有意义</p>
 <h3 id="4-static-data-member-静态类对象"><a href="#4-static-data-member-静态类对象" class="headerlink" title="4. static data member 静态类对象"></a>4. static data member 静态类对象</h3><p>当一个类中的对象被修饰为static，则该对象被认为是属于所有对象</p>
-<p><strong>注意：静态类对象不能在任何对象中初始化（因为是共有的）</strong></p>
+<p><strong>注意：静态类对象不应该在任何对象中初始化（因为是共有的）</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>&#123;</span><br><span class="line">    <span class="type">int</span> id;</span><br><span class="line">    <span class="type">static</span> cnt;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Student</span>(<span class="type">int</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> Student::j=<span class="number">100</span>;</span><br><span class="line"><span class="comment">//......</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="5-static-function-member"><a href="#5-static-function-member" class="headerlink" title="5. static function member"></a>5. static function member</h3><p>下节课具体说www</p>
+<h3 id="5-static-function-member-静态函数"><a href="#5-static-function-member-静态函数" class="headerlink" title="5. static function member 静态函数"></a>5. static function member 静态函数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyTime</span> &#123;</span><br><span class="line"><span class="keyword">public</span> : </span><br><span class="line">    <span class="function"><span class="type">static</span> <span class="type">long</span> <span class="title">GetCurTime</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="title">MyTime::GetCurTime</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">    MyTime t1;</span><br><span class="line">    t1.<span class="built_in">GetCurTime</span>();</span><br><span class="line">    MyTime::<span class="built_in">GetCurTime</span>();<span class="comment">//注意这行</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为函数修饰static后，该函数可以在没有对象的情况下直接被调用（即 MyTime::GetCurTime();）</p>
+<p>同时，静态函数要求不能访问<strong>非静态属性</strong>，否则很明显会引发问题</p>
+<hr>
+<h2 id="design-pattern-中的单件（单例）模式"><a href="#design-pattern-中的单件（单例）模式" class="headerlink" title="design pattern 中的单件（单例）模式"></a>design pattern 中的单件（单例）模式</h2><p>design pattern指根据实际情况为代码确定的具体要求，共有二十多种场景</p>
+<p>其中一个场景为<strong>单件（单例）模式</strong>，即在程序中只能实例化一个对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Single</span>&#123;</span><br><span class="line">	<span class="built_in">Single</span>();</span><br><span class="line">	<span class="type">static</span> Single* self;</span><br><span class="line"><span class="keyword">public</span>: </span><br><span class="line">	<span class="function"><span class="type">static</span> Single* <span class="title">GetInstance</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line">Single* Single::self = <span class="literal">NULL</span>;</span><br><span class="line">Single::<span class="built_in">Single</span>()&#123;&#125;</span><br><span class="line"><span class="function">Single* <span class="title">Single::GetInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(self==<span class="literal">NULL</span>)self=<span class="keyword">new</span> <span class="built_in">Single</span>();</span><br><span class="line">	<span class="keyword">return</span> self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">	Single *s=Single::<span class="built_in">GetInstance</span>();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，Single类将构造函数设置为了private，所以在程序执行过程中无法实例化新对象</p>
+<p>同时，为了不让这个类与世隔绝，设置了一个静态方法GetInstance()，当主程序执行这个方法时，会实例一个静态对象self，并传回引用，保证了单例模式的实现</p>
+<hr>
+<h2 id="const"><a href="#const" class="headerlink" title="const"></a>const</h2><p><strong>最大作用</strong>：<strong>修饰函数参数</strong></p>
+<h3 id="1-const-parameter"><a href="#1-const-parameter" class="headerlink" title="1. const parameter"></a>1. const parameter</h3><p>防止传入的地址变量被修改</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun</span><span class="params">(<span class="type">const</span> <span class="type">int</span> *p)</span></span>&#123;</span><br><span class="line">    *p = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>凡是const修饰的一定是in，反之一定是out</p>
+<h3 id="2-const-data-member"><a href="#2-const-data-member" class="headerlink" title="2. const data member"></a>2. const data member</h3><p>没别的意思，就是不许变</p>
+<p>老师顺便扯到了<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35902025/article/details/127567837">enum</a>，狠狠学习了www~</p>
+<h3 id="3-const-function"><a href="#3-const-function" class="headerlink" title="3. const function"></a>3. const function</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">fun</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">const</span> Test t;</span><br><span class="line">    t.<span class="built_in">fun</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <hr>
 <p>收获满满的一节课喵~</p>
 
@@ -771,7 +799,7 @@
                             <a href="/tags/c-c/" class="post-meta__tags">
                                 <span class="tags-punctuation">#</span>
                                 c++&amp;c#
-                                <span class="tagsPageCount">3</span>
+                                <span class="tagsPageCount">4</span>
                             </a>
                         
                     </div>
@@ -865,7 +893,7 @@
         <span>文章目录</span>
     </div>
     <div class="toc-content" id="toc-content">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86"><span class="toc-text">第四讲：封装(第二部分)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#reference-%E5%BC%95%E7%94%A8"><span class="toc-text">reference 引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#copy-constructor-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">copy constructor 拷贝构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D-logical-copy-vs-%E6%B5%85%E6%8B%B7%E8%B4%9D-bitwise-copy"><span class="toc-text">深拷贝(logical copy) vs 浅拷贝(bitwise copy)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pass-by-value-vs-pass-by-address"><span class="toc-text">pass by value vs. pass by address</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#static"><span class="toc-text">static</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-static-local-variable-%E9%9D%99%E6%80%81%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="toc-text">1. static local variable 静态局部变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-static-global-function-%E9%9D%99%E6%80%81%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0"><span class="toc-text">2. static global function 静态全局函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-static-global-variable-%E9%9D%99%E6%80%81%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="toc-text">3. static global variable 静态全局变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-static-data-member-%E9%9D%99%E6%80%81%E7%B1%BB%E5%AF%B9%E8%B1%A1"><span class="toc-text">4. static data member 静态类对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-static-function-member"><span class="toc-text">5. static function member</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85-%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86"><span class="toc-text">第四讲：封装(第二部分)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#reference-%E5%BC%95%E7%94%A8"><span class="toc-text">reference 引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#copy-constructor-%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">copy constructor 拷贝构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D-logical-copy-vs-%E6%B5%85%E6%8B%B7%E8%B4%9D-bitwise-copy"><span class="toc-text">深拷贝(logical copy) vs 浅拷贝(bitwise copy)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pass-by-value-vs-pass-by-address"><span class="toc-text">pass by value vs. pass by address</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#static"><span class="toc-text">static</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-static-local-variable-%E9%9D%99%E6%80%81%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="toc-text">1. static local variable 静态局部变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-static-global-function-%E9%9D%99%E6%80%81%E5%85%A8%E5%B1%80%E5%87%BD%E6%95%B0"><span class="toc-text">2. static global function 静态全局函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-static-global-variable-%E9%9D%99%E6%80%81%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="toc-text">3. static global variable 静态全局变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-static-data-member-%E9%9D%99%E6%80%81%E7%B1%BB%E5%AF%B9%E8%B1%A1"><span class="toc-text">4. static data member 静态类对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-static-function-member-%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0"><span class="toc-text">5. static function member 静态函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#design-pattern-%E4%B8%AD%E7%9A%84%E5%8D%95%E4%BB%B6%EF%BC%88%E5%8D%95%E4%BE%8B%EF%BC%89%E6%A8%A1%E5%BC%8F"><span class="toc-text">design pattern 中的单件（单例）模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#const"><span class="toc-text">const</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-const-parameter"><span class="toc-text">1. const parameter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-const-data-member"><span class="toc-text">2. const data member</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-const-function"><span class="toc-text">3. const function</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
             
@@ -878,6 +906,25 @@
     </div>
     <div class="aside-list">
         
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/10/20/c-c-%E7%AC%AC%E4%BA%94%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85-(%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86)/" title="c++&amp;c# 第五讲：封装(第三部分)">
+                    <img
+                        alt="c++&amp;c# 第五讲：封装(第三部分)"
+                        src="https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/10/20/c-c-%E7%AC%AC%E4%BA%94%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85-(%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86)/">
+                            笔记
+                        </a>
+                    
+                    <a class="title" href="/2023/10/20/c-c-%E7%AC%AC%E4%BA%94%E8%AE%B2%EF%BC%9A%E5%B0%81%E8%A3%85-(%E7%AC%AC%E4%B8%89%E9%83%A8%E5%88%86)/" title="c++&amp;c# 第五讲：封装(第三部分)">
+                        c++&amp;c# 第五讲：封装(第三部分)
+                    </a>
+                </div>
+            </div>
+                
         
             <div class="aside-list-item">
                 <a class="thumbnail" href="/2023/10/20/OOpre-Lec6-%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8/" title="OOpre Lec6-继承与接口的使用">
@@ -950,25 +997,6 @@
                     
                     <a class="title" href="/2023/10/13/OOpre-Lec5-JAVA%E7%A8%8B%E5%BA%8F%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90/" title="OOpre Lec5-JAVA程序常见错误分析">
                         OOpre Lec5-JAVA程序常见错误分析
-                    </a>
-                </div>
-            </div>
-                
-        
-            <div class="aside-list-item">
-                <a class="thumbnail" href="/2023/10/10/CO-P0%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95(%E5%AE%8C%E6%95%B4%E7%89%88)/" title="CO P0上机记录(完整版)">
-                    <img
-                        alt="CO P0上机记录(完整版)"
-                        src="https://images.pexels.com/photos/463684/pexels-photo-463684.jpeg">
-                </a>
-                <div class="content">
-                    
-                        <a class="article-recent_post_categories" href="/2023/10/10/CO-P0%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95(%E5%AE%8C%E6%95%B4%E7%89%88)/">
-                            经验
-                        </a>
-                    
-                    <a class="title" href="/2023/10/10/CO-P0%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95(%E5%AE%8C%E6%95%B4%E7%89%88)/" title="CO P0上机记录(完整版)">
-                        CO P0上机记录(完整版)
                     </a>
                 </div>
             </div>
@@ -1146,4 +1174,4 @@ color="25,25,112" opacity='0.5' zIndex="-1" count="200" src="//cdn.bootcss.com/c
 </script>
 <!-- 数字雨 -->
 <canvas id="canvas" width="1440" height="900" ></canvas>
-<script type="text/javascript" src="/js/DigitalRain.js"></script><script>const posts=["2023/10/20/OOpre-Lec6-继承与接口的使用/","2023/10/16/CO-P1上机记录/","2023/10/13/c-c-第四讲：封装(第二部分)/","2023/10/13/OOpre-Lec5-JAVA程序常见错误分析/","2023/10/10/CO-P0上机记录(完整版)/","2023/10/09/CO-P0上机记录/","2023/10/09/西方音乐鉴赏10-9/","2023/10/08/OOpre-Lec4-输入解析的结构性设计/","2023/09/25/CO-pre上机记录/","2023/09/25/西方音乐鉴赏9-25/","2023/09/22/c-c-第三讲：封装/","2023/09/20/OOpre Lec3-如何管理对象/","2023/09/20/毛概-pzl老师展示点评合集（持续施工中）/","2023/09/18/c-c-第一讲-第二讲：A-Better-C/","2023/09/17/第一次の建站/"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>
+<script type="text/javascript" src="/js/DigitalRain.js"></script><script>const posts=["2023/10/20/c-c-第五讲：封装-(第三部分)/","2023/10/20/OOpre-Lec6-继承与接口的使用/","2023/10/16/CO-P1上机记录/","2023/10/13/c-c-第四讲：封装(第二部分)/","2023/10/13/OOpre-Lec5-JAVA程序常见错误分析/","2023/10/10/CO-P0上机记录(完整版)/","2023/10/09/CO-P0上机记录/","2023/10/09/西方音乐鉴赏10-9/","2023/10/08/OOpre-Lec4-输入解析的结构性设计/","2023/09/25/CO-pre上机记录/","2023/09/25/西方音乐鉴赏9-25/","2023/09/22/c-c-第三讲：封装/","2023/09/20/OOpre Lec3-如何管理对象/","2023/09/20/毛概-pzl老师展示点评合集（持续施工中）/","2023/09/18/c-c-第一讲-第二讲：A-Better-C/","2023/09/17/第一次の建站/"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>
