@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OOpre Lec4-输入解析的结构性设计 | fysszlr&#39;s blog</title>
+<title>462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台 | fysszlr&#39;s blog</title>
 <noscript>开启Javascript是必要的</noscript>
 <link rel="icon" type="image/x-icon" href="/img/yomiya.png">
 <link rel="apple-touch-icon" href="/img/yomiya.png">
@@ -453,7 +453,7 @@
         </div>
         <div id="page-name-mask">
             <div id="page-name">
-                <a id="page-name-text" onclick="acrylic.toTop()">OOpre Lec4-输入解析的结构性设计</a>
+                <a id="page-name-text" onclick="acrylic.toTop()">462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台</a>
             </div>
         </div>
         <div id="menus">
@@ -587,7 +587,7 @@
 </nav>
     
         <div class="coverdiv" id="coverdiv">
-    <img id="post-cover" class="nolazyload" src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg" alt="cover">
+    <img id="post-cover" class="nolazyload" src="https://images.pexels.com/photos/289927/pexels-photo-289927.jpeg" alt="cover">
 </div>
 <div id="post-info">
     <div id="post-firstinfo">
@@ -598,28 +598,28 @@
             
             <span class="post-meta-categories">
                 
-                    <a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+                    <a class="post-meta-categories" href="/categories/%E5%88%86%E4%BA%AB-%E5%B7%A5%E5%85%B7/">-[分享] -[工具]</a>
                 
             </span>
             
             <div class="tag_share">
                 <div class="post-meta__tag-list">
                     
-                        <a class="post-meta__tags" href="/tags/OOpre/">
+                        <a class="post-meta__tags" href="/tags/CO/">
                             <span class="tags-punctuation">#</span>
-                            <span class="tags-name">OOpre</span>
+                            <span class="tags-name">CO</span>
                         </a>
                     
                 </div>
             </div>
         </div>
     </div>
-    <h1 class="post-title">OOpre Lec4-输入解析的结构性设计</h1>
+    <h1 class="post-title">462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台</h1>
     <div id="post-meta">
         <div class="meta-secondline">
             <span class="post-meta-date" title="发布于">
                 <i class="post-meta-icon fa-fw fas fa-calendar"></i>
-                <time datetime="2023-10-08T09:51:53+08:00"></time>
+                <time datetime="2023-11-04T11:25:09+08:00"></time>
             </span>
             
             
@@ -654,141 +654,87 @@
                 <main class="layout" id="content-inner">
     <div id="post">
         <article class="post-content" id="article-container">
-            <p><del>明明应该是国庆假期的，🐭🐭却要来上op（哭）</del></p>
-<hr>
-<h1 id="Lec4-输入解析的结构性设计"><a href="#Lec4-输入解析的结构性设计" class="headerlink" title="Lec4-输入解析的结构性设计"></a>Lec4-输入解析的结构性设计</h1><h2 id="输入序列结构的特征分析"><a href="#输入序列结构的特征分析" class="headerlink" title="输入序列结构的特征分析"></a>输入序列结构的特征分析</h2><h4 id="为什么需要输入解析？"><a href="#为什么需要输入解析？" class="headerlink" title="为什么需要输入解析？"></a>为什么需要输入解析？</h4><ul>
-<li><p>如果用户输入的数据格式不正确获证解析出错，就会导致结果错</p>
-<p>garbage in$\rightarrow$garbage out </p>
+            <h1 id="462OJ-Ver1-0-基于云服务器的CO自动化评测OJ平台"><a href="#462OJ-Ver1-0-基于云服务器的CO自动化评测OJ平台" class="headerlink" title="462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台"></a>462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台</h1><blockquote>
+<p>花米租服务器不易，欢迎大家前来品尝 :)</p>
+</blockquote>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>使用c++，python等编程语言综合开发，能将verilog代码提交至远程服务器并自动评测输出结果</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li><p>使用学长<code>Toby Shi</code>的魔改Mars对拍验证输出正确性</p>
 </li>
-<li><p>方便用户交互与体验</p>
+<li><p>无需在本地配置iverilog，python等环境，主打”<strong>拿来就用</strong>“</p>
+<ul>
+<li>未来将部署ISE，争取实现行为与课程平台一致</li>
+</ul>
 </li>
-<li><p>便于维护</p>
+<li><p>提供更强的数据点以供评测</p>
+<ul>
+<li><p>保证每个数据点均能被正确执行，在此基础上增强数据强度</p>
+</li>
+<li><p>当前版本由线下准备数据点，未来将把数据点生成任务集成至云服务器</p>
 </li>
 </ul>
-<h4 id="输入解析的步骤"><a href="#输入解析的步骤" class="headerlink" title="输入解析的步骤"></a>输入解析的步骤</h4><ol>
-<li>获取输入</li>
-<li>提取数据</li>
-<li>验证数据</li>
-<li>转换为程序内部数据</li>
-</ol>
-<h2 id="输入序列结构到对象层次结构的映射"><a href="#输入序列结构到对象层次结构的映射" class="headerlink" title="输入序列结构到对象层次结构的映射"></a>输入序列结构到对象层次结构的映射</h2><ul>
-<li><p>输入解析</p>
-<p>将输入数据从原始格式转换为程序所能处理的<strong>数据（结构）</strong>的过程</p>
 </li>
-<li><p>对象构造</p>
-<p>将输入解析的<strong>数据（结构）</strong>映射到<strong>对象（层次结构）</strong>的过程</p>
-<p>需要设计合适的<strong>对象模型（数据结构设计）</strong></p>
+<li><p>结合课程进度推进更新数据点</p>
+</li>
+<li><p>每次测试后均删除上传代码，隐私得到保障</p>
 </li>
 </ul>
-<h2 id="正则表达式的模式结构介绍"><a href="#正则表达式的模式结构介绍" class="headerlink" title="正则表达式的模式结构介绍"></a>正则表达式的模式结构介绍</h2><p><del>啊啊啊都一节课过去了，这个最重要的部分他怎么还没开始讲（小声）</del></p>
-<h4 id="语法介绍"><a href="#语法介绍" class="headerlink" title="语法介绍"></a>语法介绍</h4><table>
-<thead>
-<tr>
-<th>符号</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>*</td>
-<td>匹配前面的模式零次或多次</td>
-</tr>
-<tr>
-<td>+</td>
-<td>匹配前面的模式一次或多次</td>
-</tr>
-<tr>
-<td>？</td>
-<td>匹配前面的模式零次或一次</td>
-</tr>
-<tr>
-<td>{n}</td>
-<td>匹配前面的模式恰好 n 次</td>
-</tr>
-<tr>
-<td>{n,}</td>
-<td>匹配前面的模式至少 n 次</td>
-</tr>
-<tr>
-<td>{n,m}</td>
-<td>匹配前面的模式至少 n 次且不超过 m 次</td>
-</tr>
-<tr>
-<td>[ ]</td>
-<td>匹配括号内的任意一个字符</td>
-</tr>
-<tr>
-<td>[^ ]</td>
-<td>匹配除了括号内的字符以外的任意一个字符</td>
-</tr>
-<tr>
-<td>^</td>
-<td>匹配字符串的开头</td>
-</tr>
-<tr>
-<td>$</td>
-<td>匹配字符串的结尾</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>匹配单词边界</td>
-</tr>
-<tr>
-<td>\B</td>
-<td>匹配非单词边界</td>
-</tr>
-<tr>
-<td>( )</td>
-<td>用于分组和捕获子表达式</td>
-</tr>
-<tr>
-<td>( ?)</td>
-<td>非贪婪匹配</td>
-</tr>
-<tr>
-<td>(?: )</td>
-<td>用于分组但不捕获子表达式</td>
-</tr>
-<tr>
-<td>\</td>
-<td>转义字符，用于匹配特殊字符本身</td>
-</tr>
-<tr>
-<td>.</td>
-<td>匹配任意字符（除了换行符）</td>
-</tr>
-<tr>
-<td>|</td>
-<td>用于指定多个模式的选择</td>
-</tr>
-<tr>
-<td>\d</td>
-<td>匹配任意数字字符</td>
-</tr>
-<tr>
-<td>\D</td>
-<td>匹配任意\d不能匹配的字符</td>
-</tr>
-<tr>
-<td>\w</td>
-<td>匹配任意字母数字或下划线字符</td>
-</tr>
-<tr>
-<td>\W</td>
-<td>匹配任意\w不能匹配的字符</td>
-</tr>
-<tr>
-<td>\s</td>
-<td>匹配任意空白字符</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>匹配任意非空白字符</td>
-</tr>
-</tbody></table>
-<h4 id="贪婪匹配"><a href="#贪婪匹配" class="headerlink" title="贪婪匹配"></a>贪婪匹配</h4><p>正则表达式默认采用<strong>贪婪匹配</strong>——任何一个模式，都会尽可能匹配多个字符</p>
-<p>在模式表达式后添加？，即代表<strong>非贪婪匹配</strong></p>
-<h4 id="层次正则"><a href="#层次正则" class="headerlink" title="层次正则"></a>层次正则</h4><p>如果查找元字符本身，比如查找.,或者*，就出现了问题：没法指定它们，因为被解释成其它的意思，这时必须使用\来取消这些字符的特殊意义</p>
-<h2 id="作业内容"><a href="#作业内容" class="headerlink" title="作业内容"></a>作业内容</h2><p>引入战斗模式和战斗日志（原神怎么你了）🤣👉🤡</p>
+<h2 id="使用指南"><a href="#使用指南" class="headerlink" title="使用指南"></a>使用指南</h2><h3 id="准备文件"><a href="#准备文件" class="headerlink" title="准备文件"></a>准备文件</h3><p>将全部.v文件（不包括testbench文件）打包至文件夹，文件夹名为<code>&#123;学号&#125;_P4</code>，注意将顶层文件模块名改为<code>mips.v</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">|-- 2237xxxx_P4</span><br><span class="line">|   |-- mips.v</span><br><span class="line">|   |-- alu.v</span><br><span class="line">|   |-- grf.v</span><br><span class="line">|   |-- ......</span><br></pre></td></tr></table></figure>
+
+<h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><p>在终端(如cmd中)运行</p>
+<p>其中“{}”不需要被打出，下同</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r &#123;包含.v文件的文件夹绝对路径&#125; stu&#123;学号&#125;@82.157.78.233:~</span><br></pre></td></tr></table></figure>
+
+<p>按照提示输入密码，等待文件上传成功</p>
+<h3 id="进行评测"><a href="#进行评测" class="headerlink" title="进行评测"></a>进行评测</h3><p>在终端运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh stu&#123;学号&#125;@82.157.78.233</span><br></pre></td></tr></table></figure>
+
+<p>按照提示输入密码，登录成功后运行指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash runP4.sh &#123;学号&#125;</span><br></pre></td></tr></table></figure>
+
+<p>即可进行评测并获得结果反馈</p>
+<blockquote>
+<p>如果你已经会使用linux指令，那么这些对你来说都不是什么难事</p>
+</blockquote>
+<h3 id="查看评测结果"><a href="#查看评测结果" class="headerlink" title="查看评测结果"></a>查看评测结果</h3><p>登录成功后运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash judgeP4.sh &#123;学号&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以查看最近一次的评测信息，默认<strong>不显示</strong>错误数据点的信息</p>
+<p>需要查看<strong>所有</strong>错误数据点的信息，可以运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash judgeP4.sh &#123;学号&#125; all</span><br></pre></td></tr></table></figure>
+
+<p>需要查看<strong>第一个</strong>错误数据点的信息，可以运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bash judgeP4.sh &#123;学号&#125; first</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="评测信息解读"><a href="#评测信息解读" class="headerlink" title="评测信息解读"></a>评测信息解读</h2><p>对每一个测试点，评测机会返回<code>Accepted</code>，<code>Wrong Answer</code>，<code>Output more than expected</code>，<code>Output more than expected</code>四种提示信息当中的一种，只有返回<code>Accepted</code>时才会评判为该数据点通过</p>
+<p><code>$ bash runP4.sh &#123;学号&#125;</code>的返回信息示例如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">User ID: /home/ubuntu/ans/P4/2237xxxx</span><br><span class="line">··············································</span><br><span class="line">Case 1: Output less than expected. Matching rate is 0.9838018990876932.</span><br><span class="line">Valid output(s): 94</span><br><span class="line">··············································</span><br><span class="line">Case 2: Output more than expected. Matching rate is 0.893569431500466.</span><br><span class="line">Valid output(s): 98</span><br><span class="line">··············································</span><br><span class="line">Case 3: Wrong Answer. Matching rate is 0.5222513089005235.</span><br><span class="line">Valid output(s): 107</span><br><span class="line">··············································</span><br><span class="line">Case 4: Accepted.</span><br><span class="line">Valid output(s): 133</span><br><span class="line">··············································</span><br><span class="line">Case 5: Accepted.</span><br><span class="line">Valid output(s): 57</span><br><span class="line">··············································</span><br><span class="line">Case 6: Accepted.</span><br><span class="line">Valid output(s): 88</span><br><span class="line">··············································</span><br><span class="line">Case 7: Accepted.</span><br><span class="line">Valid output(s): 46</span><br><span class="line">··············································</span><br><span class="line">Case 8: Accepted.</span><br><span class="line">Valid output(s): 117</span><br><span class="line">··············································</span><br><span class="line">Case 9: Accepted.</span><br><span class="line">Valid output(s): 51</span><br><span class="line">··············································</span><br><span class="line">Case 10: Accepted.</span><br><span class="line">Valid output(s): 77</span><br><span class="line">··············································</span><br><span class="line">Test Accuracy: 7 / 10.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>所有数据点通过，系统会额外返回<code>Congratulations!</code></p>
+</blockquote>
+<p>当出现错误数据点时，在<code>first</code>和<code>all</code>条件下，系统将打印你的输出与期望输出之间的差异文本，样例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  @00003004: $ 5 &lt;= 3f500000</span><br><span class="line">- @00003008: $ 3 &lt;= 00003f74</span><br><span class="line">- @00003038: $20 &lt;= 00000000</span><br><span class="line">- @0000303c: $ 8 &lt;= 00000000</span><br><span class="line">  @00003040: *00001924 &lt;= 00003f74</span><br></pre></td></tr></table></figure>
+
+<p>表示你的输出比期望输出<strong>缺失</strong>所列三行；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  @0000303c: $30 &lt;= 00000000</span><br><span class="line">+ @00003040: $ 3 &lt;= 00000000</span><br><span class="line">+ @00003044: $25 &lt;= 036c3744</span><br><span class="line">+ @00003048: $13 &lt;= 1f0c0000</span><br><span class="line">  @00003040: $ 3 &lt;= 00000000</span><br></pre></td></tr></table></figure>
+
+<p>表示你的输出比期望输出<strong>多出</strong>所列三行；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  @000030d8: $ 5 &lt;= 00000000</span><br><span class="line">- @000030dc: *000005d4 &lt;= 00000000</span><br><span class="line">?                              ^^^</span><br><span class="line"></span><br><span class="line">+ @000030dc: *000005d4 &lt;= 00000aaa</span><br><span class="line">?                              ^^^</span><br><span class="line"></span><br><span class="line">  @000030e0: $ 5 &lt;= 00000000</span><br><span class="line">- @000030e4: $19 &lt;= 01640000</span><br><span class="line">+ @000030e4: $19 &lt;= xxxxxxxx</span><br><span class="line">- @000030e8: $17 &lt;= 3b980000</span><br><span class="line">?                         ^^</span><br><span class="line"></span><br><span class="line">+ @000030e8: $17 &lt;= 3b9800cc</span><br><span class="line">?                         ^^</span><br></pre></td></tr></table></figure>
+
+<p>表示你的输出与答案存在差异。</p>
+<p>其中，<code>-</code>标记的为期望输出，<code>+</code>标记的为你的输出，<code>?</code>和<code>^</code>标记了你的输出与期望输出的不同。</p>
+<h2 id="获取账号"><a href="#获取账号" class="headerlink" title="获取账号"></a>获取账号</h2><p>获取账号方式，请通过邮件<a href="mailto:&#102;&#121;&#x73;&#x73;&#122;&#x6c;&#x72;&#64;&#x71;&#113;&#46;&#x63;&#111;&#109;">&#102;&#121;&#x73;&#x73;&#122;&#x6c;&#x72;&#64;&#x71;&#113;&#46;&#x63;&#111;&#109;</a>或添加我微信和我联系（保证免费）</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>请勿用本服务器进行任何与CO程序评测无关的事情！</p>
+<p>包括但不限于把服务器当云盘用，用服务器来挖矿等！</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>本项目灵感来自上学期myk学长写的简易数据结构oj</p>
+<p>感谢zlr同学进行服务器框架搭建、评测文件编程等工作</p>
+<p>感谢lpf同学进行测试数据点随机生成、验证正确性与强度等工作</p>
+<p>感谢zxw同学进行机器码、测试点导出，文本对拍评测等工作</p>
+<p>受开发者水平限制，本oj难免有许多问题，还请学长和同学不吝指教🙏</p>
+<p>如有问题，请截图发送到此帖下，或联系管理员<a href="mailto:&#x66;&#x79;&#115;&#x73;&#x7a;&#108;&#x72;&#x40;&#113;&#x71;&#46;&#99;&#x6f;&#109;">&#x66;&#x79;&#115;&#x73;&#x7a;&#108;&#x72;&#x40;&#113;&#x71;&#46;&#99;&#x6f;&#109;</a>（22373425张栗瑞）</p>
 
         </article>
         <div class="post-tools" id="post-tools">
@@ -801,18 +747,18 @@
         </div>
         <div class="share-main">
             <div class="share-main-all">
-                <div id="qrcode" title="https://github.com/2023/10/08/OOpre-Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1/">
+                <div id="qrcode" title="https://github.com/2023/11/04/462OJ-Ver1-0-%E5%9F%BA%E4%BA%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84CO%E8%87%AA%E5%8A%A8%E5%8C%96%E8%AF%84%E6%B5%8BOJ%E5%B9%B3%E5%8F%B0/">
                 </div>
                 <div class="reward-dec">使用手机访问这篇文章</div>
             </div>
         </div>
         <script type="text/javascript">
-            new QRCode(document.getElementById("qrcode"), "https://github.com/2023/10/08/OOpre-Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1/");
+            new QRCode(document.getElementById("qrcode"), "https://github.com/2023/11/04/462OJ-Ver1-0-%E5%9F%BA%E4%BA%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84CO%E8%87%AA%E5%8A%A8%E5%8C%96%E8%AF%84%E6%B5%8BOJ%E5%B9%B3%E5%8F%B0/");
         </script>
     </div>
 </div>
                 <div class="share-link weibo"><a class="share-button" target="_blank"
-    href="https://service.weibo.com/share/share.php?title=OOpre Lec4-输入解析的结构性设计&amp;url=https://github.com/2023/10/08/OOpre-Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1/&amp;pic=https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg"
+    href="https://service.weibo.com/share/share.php?title=462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台&amp;url=https://github.com/2023/11/04/462OJ-Ver1-0-%E5%9F%BA%E4%BA%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84CO%E8%87%AA%E5%8A%A8%E5%8C%96%E8%AF%84%E6%B5%8BOJ%E5%B9%B3%E5%8F%B0/&amp;pic=https://images.pexels.com/photos/289927/pexels-photo-289927.jpeg"
     title="分享到微博" rel="noopener external nofollow noreferrer noopener">
     <i class="fab fa-weibo" style="font-size:22px"></i>
 </a>
@@ -827,10 +773,10 @@
                 <div class="tag_share">
                     <div class="post-meta__tag-list">
                         
-                            <a href="/tags/OOpre/" class="post-meta__tags">
+                            <a href="/tags/CO/" class="post-meta__tags">
                                 <span class="tags-punctuation">#</span>
-                                OOpre
-                                <span class="tagsPageCount">4</span>
+                                CO
+                                <span class="tagsPageCount">6</span>
                             </a>
                         
                     </div>
@@ -841,12 +787,12 @@
     <div class="post-copyright__author">
         <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
         <a class="post-copyright-title" href="#">
-            <span>OOpre Lec4-输入解析的结构性设计</span>
+            <span>462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台</span>
         </a>
     </div>
     <div class="post-copyright__type">
         <span class="post-copyright-info" id="post-copyright-url">
-            <a href="/2023/10/08/OOpre-Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1/">https://github.com/2023/10/08/OOpre-Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1/</a>
+            <a href="/2023/11/04/462OJ-Ver1-0-%E5%9F%BA%E4%BA%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84CO%E8%87%AA%E5%8A%A8%E5%8C%96%E8%AF%84%E6%B5%8BOJ%E5%B9%B3%E5%8F%B0/">https://github.com/2023/11/04/462OJ-Ver1-0-%E5%9F%BA%E4%BA%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84CO%E8%87%AA%E5%8A%A8%E5%8C%96%E8%AF%84%E6%B5%8BOJ%E5%B9%B3%E5%8F%B0/</a>
         </span>
         <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
             <i class="fas fa-paste copy-btn"></i>
@@ -860,22 +806,17 @@
 </div>
         <nav class="pagination-post" id="pagination">
     
-        <div class="prev-post pull-left">
-            <a href="/2023/10/09/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F10-9/">
-                <div class="pagination-info">
-                    <div class="label">上一篇</div>
-                    <div class="prev_info">西方音乐鉴赏10.9</div>
-                </div>
-            </a>
-        </div>
-        <div class="next-post pull-right">
-            <a href="/2023/09/25/CO-pre%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/">
-                <div class="pagination-info">
-                    <div class="label">下一篇</div>
-                    <div class="next_info">CO pre上机记录</div>
-                </div>
-            </a>
-        </div>
+        
+            <div class="next-post pull-full">
+                <a href="/2023/10/30/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F10-30/">
+                    <div class="pagination-info">
+                        <div class="label">下一篇</div>
+                        <div class="next_info">西方音乐鉴赏10.30</div>
+                    </div>
+                </a>
+            </div>
+                
+        
     
 </nav>
             
@@ -924,7 +865,7 @@
         <span>文章目录</span>
     </div>
     <div class="toc-content" id="toc-content">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1"><span class="toc-text">Lec4-输入解析的结构性设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%BA%8F%E5%88%97%E7%BB%93%E6%9E%84%E7%9A%84%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90"><span class="toc-text">输入序列结构的特征分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%EF%BC%9F"><span class="toc-text">为什么需要输入解析？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-text">输入解析的步骤</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%BA%8F%E5%88%97%E7%BB%93%E6%9E%84%E5%88%B0%E5%AF%B9%E8%B1%A1%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E7%9A%84%E6%98%A0%E5%B0%84"><span class="toc-text">输入序列结构到对象层次结构的映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E6%A8%A1%E5%BC%8F%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D"><span class="toc-text">正则表达式的模式结构介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="toc-text">语法介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E5%8C%B9%E9%85%8D"><span class="toc-text">贪婪匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%82%E6%AC%A1%E6%AD%A3%E5%88%99"><span class="toc-text">层次正则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E5%86%85%E5%AE%B9"><span class="toc-text">作业内容</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#462OJ-Ver1-0-%E5%9F%BA%E4%BA%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84CO%E8%87%AA%E5%8A%A8%E5%8C%96%E8%AF%84%E6%B5%8BOJ%E5%B9%B3%E5%8F%B0"><span class="toc-text">462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97"><span class="toc-text">使用指南</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E6%96%87%E4%BB%B6"><span class="toc-text">准备文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6"><span class="toc-text">上传文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E8%AF%84%E6%B5%8B"><span class="toc-text">进行评测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%AF%84%E6%B5%8B%E7%BB%93%E6%9E%9C"><span class="toc-text">查看评测结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E6%B5%8B%E4%BF%A1%E6%81%AF%E8%A7%A3%E8%AF%BB"><span class="toc-text">评测信息解读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%B4%A6%E5%8F%B7"><span class="toc-text">获取账号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-text">最后</span></a></li></ol></li></ol>
     </div>
 </div>
             
