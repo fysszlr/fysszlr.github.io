@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>c++&amp;c# 第六讲：继承与多态 | fysszlr&#39;s blog</title>
+<title>OOpre 课程总结 | fysszlr&#39;s blog</title>
 <noscript>开启Javascript是必要的</noscript>
 <link rel="icon" type="image/x-icon" href="/img/yomiya.png">
 <link rel="apple-touch-icon" href="/img/yomiya.png">
@@ -453,7 +453,7 @@
         </div>
         <div id="page-name-mask">
             <div id="page-name">
-                <a id="page-name-text" onclick="acrylic.toTop()">c++&amp;c# 第六讲：继承与多态</a>
+                <a id="page-name-text" onclick="acrylic.toTop()">OOpre 课程总结</a>
             </div>
         </div>
         <div id="menus">
@@ -587,7 +587,7 @@
 </nav>
     
         <div class="coverdiv" id="coverdiv">
-    <img id="post-cover" class="nolazyload" src="https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg" alt="cover">
+    <img id="post-cover" class="nolazyload" src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg" alt="cover">
 </div>
 <div id="post-info">
     <div id="post-firstinfo">
@@ -605,21 +605,21 @@
             <div class="tag_share">
                 <div class="post-meta__tag-list">
                     
-                        <a class="post-meta__tags" href="/tags/c-c/">
+                        <a class="post-meta__tags" href="/tags/OOpre/">
                             <span class="tags-punctuation">#</span>
-                            <span class="tags-name">c++&amp;c#</span>
+                            <span class="tags-name">OOpre</span>
                         </a>
                     
                 </div>
             </div>
         </div>
     </div>
-    <h1 class="post-title">c++&amp;c# 第六讲：继承与多态</h1>
+    <h1 class="post-title">OOpre 课程总结</h1>
     <div id="post-meta">
         <div class="meta-secondline">
             <span class="post-meta-date" title="发布于">
                 <i class="post-meta-icon fa-fw fas fa-calendar"></i>
-                <time datetime="2023-10-27T16:15:14+08:00"></time>
+                <time datetime="2023-11-04T15:46:09+08:00"></time>
             </span>
             
             
@@ -654,54 +654,45 @@
                 <main class="layout" id="content-inner">
     <div id="post">
         <article class="post-content" id="article-container">
-            <h1 id="第六讲：继承-与-多态"><a href="#第六讲：继承-与-多态" class="headerlink" title="第六讲：继承 与 多态"></a>第六讲：继承 与 多态</h1><hr>
-<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">People</span>&#123;</span><br><span class="line">    <span class="type">int</span> id;</span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getId</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="keyword">this</span>-&gt;id;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> : People&#123;</span><br><span class="line">    <span class="type">int</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>继承是特性与个性的划分</strong></p>
-<p>很容易理解</p>
-<hr>
-<h2 id="子类构造"><a href="#子类构造" class="headerlink" title="子类构造"></a>子类构造</h2><p>构造子类构造，必调用父类构造</p>
-<p>先调父类构造，再调子类构造</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dervied::<span class="built_in">Dervied</span>(<span class="type">int</span> ai,<span class="type">int</span> aj) ： <span class="built_in">Base</span>(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<p>👆：在子类构造中调用父类构造</p>
-<hr>
-<h2 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">a</span> : <span class="keyword">public</span> b, <span class="keyword">public</span> c &#123;</span><br><span class="line"></span><br><span class="line">&#125;；</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Pet</span> &#123;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">speak</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Pet::speak</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;Pet::speak&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Cat</span> : <span class="keyword">public</span> Pet &#123;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="type">void</span> <span class="title">speak</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Cat::speak</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;miao~&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> : <span class="keyword">public</span> Pet &#123;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">speak</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Dog::speak</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;wang!&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>多态：在类型传递过程中，保证类型行为正确</p>
-<hr>
-<h2 id="upcasting-向上类型转换"><a href="#upcasting-向上类型转换" class="headerlink" title="upcasting 向上类型转换"></a>upcasting 向上类型转换</h2><p>子类可以当作父类处理或传递，父类不能被视为子类</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Pet</span> &#123;</span><br><span class="line"> 	<span class="type">int</span> age;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">speak</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">needle</span><span class="params">(Pet &amp;pet)</span></span>&#123;</span><br><span class="line">    pet.<span class="built_in">speak</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意点：</p>
+            <h1 id="OOpre-课程总结"><a href="#OOpre-课程总结" class="headerlink" title="OOpre 课程总结"></a>OOpre 课程总结</h1><p>大纲：</p>
 <ol>
-<li>Pet类中的speak函数前有virtual关键字(虚函数)</li>
-<li>传入函数的为引用，而非值</li>
+<li>作业最终的架构设计, 在迭代中的架构调整及考虑</li>
+<li>使用junit的心得体会</li>
+<li>学习oopre的心得体会（包括但不限于从面向过程编程过渡到面向对象编程的体会）</li>
+<li>对oopre课程的简单建议（不多于两条）</li>
 </ol>
-<p>原理为每个实例都有一个<strong>虚指针</strong>，表示该实例的类型</p>
-<p>父类有<strong>虚指针索引</strong>，记录所有的子类</p>
-<p>当传值时，子类会调用<strong>父类的拷贝构造</strong>，导致出错</p>
-<hr>
-<h2 id="局部析构"><a href="#局部析构" class="headerlink" title="局部析构"></a>局部析构</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span>&#123;  </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">base</span>();</span><br><span class="line">    <span class="comment">//若不加virtual，则认为析构函数非多态</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">derived</span> : <span class="keyword">public</span> base &#123;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">	base *p = <span class="keyword">new</span> derived;</span><br><span class="line">    <span class="comment">//正确析构</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="作业最终的架构设计-在迭代中的架构调整及考虑"><a href="#作业最终的架构设计-在迭代中的架构调整及考虑" class="headerlink" title="作业最终的架构设计, 在迭代中的架构调整及考虑"></a>作业最终的架构设计, 在迭代中的架构调整及考虑</h2><p>先附上一张图，展现各个类及其大致关系（其中commodity为接口）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">	A(Adventurer)</span><br><span class="line">	B(Bottle)</span><br><span class="line">	C1((Commodity))</span><br><span class="line">	C2[CritEquipment]</span><br><span class="line">	E1[EpicEquipment]</span><br><span class="line">	E2(Equipment)</span><br><span class="line">	F1(Fight)</span><br><span class="line">	F2(Food)</span><br><span class="line">	M&#123;main&#125;</span><br><span class="line">	R1[RecoverBottle]</span><br><span class="line">	R2[RegularBottle]</span><br><span class="line">	R3[RegularEquipment]</span><br><span class="line">	R4[ReinforcedBottle]</span><br><span class="line">	S(Shop)</span><br><span class="line">	M --&gt; A</span><br><span class="line">	M --&gt; F1</span><br><span class="line">	A --&gt; B</span><br><span class="line">	A --&gt; F2</span><br><span class="line">	A --&gt; E2</span><br><span class="line">	B --&gt; R2</span><br><span class="line">	B --&gt; R1</span><br><span class="line">	B --&gt; R4</span><br><span class="line">	E2 --&gt; R3</span><br><span class="line">	E2 --&gt; C2</span><br><span class="line">	E2 --&gt; E1</span><br><span class="line">	C1 -.-&gt; A</span><br><span class="line">	C1 -.-&gt; B</span><br><span class="line">	C1 -.-&gt; F2</span><br><span class="line">	C1 -.-&gt; E2</span><br><span class="line">	S --&gt; B</span><br><span class="line">	S --&gt; F2</span><br><span class="line">	S --&gt; E2</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="pure-virtual-纯虚函数"><a href="#pure-virtual-纯虚函数" class="headerlink" title="pure virtual 纯虚函数"></a>pure virtual 纯虚函数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">speak</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-
-<p>若一个类含有至少一个纯虚函数，则该类被称为<strong>抽象类</strong></p>
-<hr>
-<h2 id="abstract-class-抽象类"><a href="#abstract-class-抽象类" class="headerlink" title="abstract class 抽象类"></a>abstract class 抽象类</h2><ol>
-<li><p>提纲挈领</p>
-<p>规定一个类中的接口——抽象类确实和接口差不多，但是可以实例化</p>
+<p><strong>和其它同学相比，我的类较少</strong>，究其原因是往往用一个类做的其它同学多个类的事情。如：在我的<code>Fight</code>类中，既有<code>fightStart()</code>方法，控制战斗相关命令，也有<code>fightLog</code>数组，保存战斗记录。这样做的好处是实现简单，不需要额外写类和方法，缺点点是结构不够清晰，并造成调试方面的困难</p>
+<h4 id="在历次迭代中，调整比较大的有两次："><a href="#在历次迭代中，调整比较大的有两次：" class="headerlink" title="在历次迭代中，调整比较大的有两次："></a>在历次迭代中，调整比较大的有两次：</h4><ol>
+<li><p>增加<code>Fight</code>类</p>
+<p>由于战斗发生在多个冒险者之间，所以<code>Fight</code>类应当独立于<code>Adventurer</code>存在。但是由于我前期完成代码时没有对各类的<strong>各种属性</strong>提供足够多的<strong>访问方法</strong>，导致在实现过程中对多个类进行了比较大的更改</p>
 </li>
-<li><p>串联不同家族的共性行为</p>
-<p>更像接口了()但是可以总结不同家族的特点</p>
+<li><p>增加<code>Commodity</code>接口</p>
+<p>问题集中在添加<code>getClassName()</code>这个方法的过程中。我因为一开始对<strong>子类重写父类函数</strong>不够熟悉，所以不加思索地写出了几个非常丑的if判断，对后面的开发造成了许多困难</p>
 </li>
 </ol>
-<p>原来如此：C++抽象类&#x3D;Java接口</p>
-<hr>
+<h2 id="使用junit的心得体会"><a href="#使用junit的心得体会" class="headerlink" title="使用junit的心得体会"></a>使用junit的心得体会</h2><ol>
+<li><p>junit的重点是<strong>分支测试</strong></p>
+<p>在使用junit的过程中，往往会出现弱测和junit都能通过，但在和同学对拍的过程中发现问题的现象。一般来说这种情况都是<strong>junit分支测试不全面</strong>导致的。</p>
+</li>
+<li><p>同一个类的测试可以套模板</p>
+<p>在测试同一个类的不同方法时（尤其是<code>Bottle</code>这样的类），往往要先预创建其它实例对象，此时如果给每一个方法都写一个单独的实例化过程会非常耽误时间。可以先写一段比较万能的初始化语句，方便进行测试</p>
+</li>
+<li><p>不同类的测试有先后顺序</p>
+<p>应当按照如上面流程图的拓扑序进行测试，否则在测试子类时会出现”子类是对的，父类错了“的尴尬情况</p>
+</li>
+</ol>
+<h2 id="学习oopre的心得体会"><a href="#学习oopre的心得体会" class="headerlink" title="学习oopre的心得体会"></a>学习oopre的心得体会</h2><p>在编程的世界里，我经历了从面向过程编程（POP）到面向对象编程（OOP）的转变。这一转变让我对编程有了更深的理解，也让我对软件设计有了新的视角。</p>
+<p>在POP的世界里，我们关注的是<strong>单个过程</strong>，如何一步步解决问题。这种思维方式在处理一些简单的问题时非常有效，但对于复杂的问题，POP就显得力不从心。因为复杂的问题往往涉及多个过程，各个过程之间相互影响，难以用单一的过程来理解和解决。</p>
+<p>而OOP则为我们提供了一个新的视角。它把世界看作是由许多对象组成的，每个对象都有自己的属性和行为。这些对象通过消息传递<strong>相互协作，共同解决问题</strong>。这种思维方式更接近现实世界，也更适合解决复杂的问题。</p>
+<p>从POP到OOP的转变，对我来说是一个挑战，但也是一个成长的机会。我开始理解到，面向对象编程不仅仅是一种编程技术，更是一种思考问题的方式。它帮助我更好地理解和组织代码，使代码更易于维护和扩展。</p>
+<p>同时，OOP也让我理解到，编程不仅仅是写代码，更是设计和规划。在设计和规划的过程中，我们需要考虑代码的结构、模块的划分、对象的交互等问题。这些问题的解决，需要我们对问题有深入的理解，也需要我们有足够的创新思维。</p>
+<h2 id="对oopre课程的简单建议"><a href="#对oopre课程的简单建议" class="headerlink" title="对oopre课程的简单建议"></a>对oopre课程的简单建议</h2><ol>
+<li>当前OOpre中讨论区活跃度较低，希望在OO正课中能有所改善</li>
+<li>对git的介绍并不够清晰，建议将创建sshkey的过程写入教程</li>
+</ol>
 
         </article>
         <div class="post-tools" id="post-tools">
@@ -714,18 +705,18 @@
         </div>
         <div class="share-main">
             <div class="share-main-all">
-                <div id="qrcode" title="https://github.com/2023/10/27/c-c-%E7%AC%AC%E5%85%AD%E8%AE%B2%EF%BC%9A%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/">
+                <div id="qrcode" title="https://github.com/2023/11/04/OOpre-%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/">
                 </div>
                 <div class="reward-dec">使用手机访问这篇文章</div>
             </div>
         </div>
         <script type="text/javascript">
-            new QRCode(document.getElementById("qrcode"), "https://github.com/2023/10/27/c-c-%E7%AC%AC%E5%85%AD%E8%AE%B2%EF%BC%9A%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/");
+            new QRCode(document.getElementById("qrcode"), "https://github.com/2023/11/04/OOpre-%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/");
         </script>
     </div>
 </div>
                 <div class="share-link weibo"><a class="share-button" target="_blank"
-    href="https://service.weibo.com/share/share.php?title=c++&amp;c# 第六讲：继承与多态&amp;url=https://github.com/2023/10/27/c-c-%E7%AC%AC%E5%85%AD%E8%AE%B2%EF%BC%9A%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/&amp;pic=https://images.pexels.com/photos/1921326/pexels-photo-1921326.jpeg"
+    href="https://service.weibo.com/share/share.php?title=OOpre 课程总结&amp;url=https://github.com/2023/11/04/OOpre-%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/&amp;pic=https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg"
     title="分享到微博" rel="noopener external nofollow noreferrer noopener">
     <i class="fab fa-weibo" style="font-size:22px"></i>
 </a>
@@ -740,9 +731,9 @@
                 <div class="tag_share">
                     <div class="post-meta__tag-list">
                         
-                            <a href="/tags/c-c/" class="post-meta__tags">
+                            <a href="/tags/OOpre/" class="post-meta__tags">
                                 <span class="tags-punctuation">#</span>
-                                c++&amp;c#
+                                OOpre
                                 <span class="tagsPageCount">5</span>
                             </a>
                         
@@ -754,12 +745,12 @@
     <div class="post-copyright__author">
         <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
         <a class="post-copyright-title" href="#">
-            <span>c++&amp;c# 第六讲：继承与多态</span>
+            <span>OOpre 课程总结</span>
         </a>
     </div>
     <div class="post-copyright__type">
         <span class="post-copyright-info" id="post-copyright-url">
-            <a href="/2023/10/27/c-c-%E7%AC%AC%E5%85%AD%E8%AE%B2%EF%BC%9A%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/">https://github.com/2023/10/27/c-c-%E7%AC%AC%E5%85%AD%E8%AE%B2%EF%BC%9A%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/</a>
+            <a href="/2023/11/04/OOpre-%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/">https://github.com/2023/11/04/OOpre-%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/</a>
         </span>
         <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
             <i class="fas fa-paste copy-btn"></i>
@@ -773,22 +764,17 @@
 </div>
         <nav class="pagination-post" id="pagination">
     
-        <div class="prev-post pull-left">
-            <a href="/2023/10/30/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F10-30/">
-                <div class="pagination-info">
-                    <div class="label">上一篇</div>
-                    <div class="prev_info">西方音乐鉴赏10.30</div>
-                </div>
-            </a>
-        </div>
-        <div class="next-post pull-right">
-            <a href="/2023/10/23/CO-P2%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/">
-                <div class="pagination-info">
-                    <div class="label">下一篇</div>
-                    <div class="next_info">CO-P2上机记录</div>
-                </div>
-            </a>
-        </div>
+        
+            <div class="next-post pull-full">
+                <a href="/2023/11/04/462OJ-Ver1-0-%E5%9F%BA%E4%BA%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84CO%E8%87%AA%E5%8A%A8%E5%8C%96%E8%AF%84%E6%B5%8BOJ%E5%B9%B3%E5%8F%B0/">
+                    <div class="pagination-info">
+                        <div class="label">下一篇</div>
+                        <div class="next_info">462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台</div>
+                    </div>
+                </a>
+            </div>
+                
+        
     
 </nav>
             
@@ -837,7 +823,7 @@
         <span>文章目录</span>
     </div>
     <div class="toc-content" id="toc-content">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%AE%B2%EF%BC%9A%E7%BB%A7%E6%89%BF-%E4%B8%8E-%E5%A4%9A%E6%80%81"><span class="toc-text">第六讲：继承 与 多态</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%B1%BB%E6%9E%84%E9%80%A0"><span class="toc-text">子类构造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF"><span class="toc-text">多重继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-text">多态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#upcasting-%E5%90%91%E4%B8%8A%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">upcasting 向上类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E6%9E%90%E6%9E%84"><span class="toc-text">局部析构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pure-virtual-%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0"><span class="toc-text">pure virtual 纯虚函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#abstract-class-%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">abstract class 抽象类</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OOpre-%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93"><span class="toc-text">OOpre 课程总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A%E6%9C%80%E7%BB%88%E7%9A%84%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1-%E5%9C%A8%E8%BF%AD%E4%BB%A3%E4%B8%AD%E7%9A%84%E6%9E%B6%E6%9E%84%E8%B0%83%E6%95%B4%E5%8F%8A%E8%80%83%E8%99%91"><span class="toc-text">作业最终的架构设计, 在迭代中的架构调整及考虑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E5%8E%86%E6%AC%A1%E8%BF%AD%E4%BB%A3%E4%B8%AD%EF%BC%8C%E8%B0%83%E6%95%B4%E6%AF%94%E8%BE%83%E5%A4%A7%E7%9A%84%E6%9C%89%E4%B8%A4%E6%AC%A1%EF%BC%9A"><span class="toc-text">在历次迭代中，调整比较大的有两次：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8junit%E7%9A%84%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="toc-text">使用junit的心得体会</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0oopre%E7%9A%84%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="toc-text">学习oopre的心得体会</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9oopre%E8%AF%BE%E7%A8%8B%E7%9A%84%E7%AE%80%E5%8D%95%E5%BB%BA%E8%AE%AE"><span class="toc-text">对oopre课程的简单建议</span></a></li></ol></li></ol>
     </div>
 </div>
             
