@@ -654,7 +654,11 @@
                 <main class="layout" id="content-inner">
     <div id="post">
         <article class="post-content" id="article-container">
-            <h1 id="第六讲：继承-与-多态"><a href="#第六讲：继承-与-多态" class="headerlink" title="第六讲：继承 与 多态"></a>第六讲：继承 与 多态</h1><hr>
+            <h1 id="第六讲：继承-与-多态"><a href="#第六讲：继承-与-多态" class="headerlink" title="第六讲：继承 与 多态"></a>第六讲：继承 与 多态</h1><blockquote>
+<p>性能问题出现之前不考虑性能问题</p>
+<p>​																																——刘禹</p>
+</blockquote>
+<hr>
 <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">People</span>&#123;</span><br><span class="line">    <span class="type">int</span> id;</span><br><span class="line"><span class="keyword">public</span> :</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getId</span><span class="params">()</span></span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="keyword">this</span>-&gt;id;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> : People&#123;</span><br><span class="line">    <span class="type">int</span> score;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p><strong>继承是特性与个性的划分</strong></p>
@@ -702,6 +706,13 @@
 </ol>
 <p>原来如此：C++抽象类&#x3D;Java接口</p>
 <hr>
+<h2 id="补充：python——接口型的多态"><a href="#补充：python——接口型的多态" class="headerlink" title="补充：python——接口型的多态"></a>补充：python——接口型的多态</h2><p>鸭子类型</p>
+<p>不纠结是否确实是类型上的多态，只考虑行为一致</p>
+<hr>
+<h2 id="补充：C-vs-Java-C"><a href="#补充：C-vs-Java-C" class="headerlink" title="补充：C++ vs. Java&#x2F;C#"></a>补充：C++ vs. Java&#x2F;C#</h2><p>c++为了做类库，专门做了个stl</p>
+<p><strong>s</strong>tandard <strong>t</strong>emplate <strong>l</strong>ibrery</p>
+<p>动态增长的万能容器</p>
+<p><strong>性能问题出现之前不考虑性能问题</strong></p>
 
         </article>
         <div class="post-tools" id="post-tools">
@@ -837,7 +848,7 @@
         <span>文章目录</span>
     </div>
     <div class="toc-content" id="toc-content">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%AE%B2%EF%BC%9A%E7%BB%A7%E6%89%BF-%E4%B8%8E-%E5%A4%9A%E6%80%81"><span class="toc-text">第六讲：继承 与 多态</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%B1%BB%E6%9E%84%E9%80%A0"><span class="toc-text">子类构造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF"><span class="toc-text">多重继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-text">多态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#upcasting-%E5%90%91%E4%B8%8A%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">upcasting 向上类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E6%9E%90%E6%9E%84"><span class="toc-text">局部析构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pure-virtual-%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0"><span class="toc-text">pure virtual 纯虚函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#abstract-class-%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">abstract class 抽象类</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E8%AE%B2%EF%BC%9A%E7%BB%A7%E6%89%BF-%E4%B8%8E-%E5%A4%9A%E6%80%81"><span class="toc-text">第六讲：继承 与 多态</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-text">继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%B1%BB%E6%9E%84%E9%80%A0"><span class="toc-text">子类构造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF"><span class="toc-text">多重继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-text">多态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#upcasting-%E5%90%91%E4%B8%8A%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">upcasting 向上类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E6%9E%90%E6%9E%84"><span class="toc-text">局部析构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pure-virtual-%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0"><span class="toc-text">pure virtual 纯虚函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#abstract-class-%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">abstract class 抽象类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9Apython%E2%80%94%E2%80%94%E6%8E%A5%E5%8F%A3%E5%9E%8B%E7%9A%84%E5%A4%9A%E6%80%81"><span class="toc-text">补充：python——接口型的多态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%EF%BC%9AC-vs-Java-C"><span class="toc-text">补充：C++ vs. Java&#x2F;C#</span></a></li></ol></li></ol>
     </div>
 </div>
             
