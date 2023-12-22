@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CO-P4设计文档 | fysszlr&#39;s blog</title>
+<noscript>开启Javascript是必要的</noscript>
+<link rel="icon" type="image/x-icon" href="/img/yomiya.png">
+<link rel="apple-touch-icon" href="/img/yomiya.png">
+<meta name="apple-mobile-web-app-title" content="fysszlr&#39;s blog">
+<link rel="bookmark" href="/img/yomiya.png">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/yomiya.png">
+<meta name="description" content="宵宫屹立于大地之上（喵~">
+<meta name="theme-color" content="#1C1C1F">
+<link rel="stylesheet" href="/css/var.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+
+    <script data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}" src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/pace/1.2.4/pace.min.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+
+<link rel="stylesheet" href="/lib/snackbar.min.css">
+
+
+<script src="/lib/qrcode.min.js"></script>
+
+
+
+
+<script>var GLOBALCONFIG = {"root":"/","runtime":"2023-9-17 23:50:00","lazyload":{"enable":false,"error":"/img/temporary.jpeg"},"hightlight":{"enable":true,"limit":200},"lightbox":true,"randomlinks":false,"lang":{"theme":{"dark":"已切换至深色模式","light":"已切换至浅色模式"},"copy":{"success":"复制成功","error":"复制失败"},"backtop":"返回顶部","time":{"recent":"最近","yesterday":"昨天","berforeyesterday":"前天","daybefore":"天前","runtime":"天"},"sayhello":{"morning":"早上好","noon":"中午好","afternoon":"下午好","night":"晚上好","goodnight":"晚安","iam":"!  我是"},"search":{"empty":"搜索结果为空","hit":"已为您找到 ${query} 条结果","placeholder":"输入关键词快速查找"}},"covercolor":true,"comment":{"enable":false,"twikooUrl":null}};</script><script id="site-config">var PAGECONFIG = {"is_home":false,"is_post":true,"is_page":false,"page":false,"toc":true,"comment":false};</script>
+    <meta name="generator" content="Hexo 6.3.0"></head>
+    <body id="body">
+        
+            <div id="loading-box" onclick="preloader.endLoading();" class style="zoom: 1;">
+    <div class="loading-bg">
+        <img class="loading-img nolazyload" alt="loading image"
+            src="/img/yomiya.png">
+        </div>
+</div>
+<script>
+    const preloader = {
+        endLoading: () => {
+            document.getElementById('loading-box').classList.add("loaded")
+        },
+        initLoading: () => {
+            document.getElementById('loading-box').classList.remove("loaded")
+        },
+        removePaceDone: () => {
+            document.getElementById('body').classList = 'pace-done'
+        }
+    }
+    window.addEventListener('load',()=> { preloader.endLoading() })
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+</script>
+<style>
+    #loading-box {
+        -webkit-user-select: none;
+    }
+
+    #loading-box .loading-bg {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: var(--heo-background);
+        z-index: 1999;
+        opacity: 1;
+        transition: 0.2s;
+        pointer-events: all;
+        animation: showLoading 0.3s 0s backwards;
+    }
+
+    #loading-box.loaded .loading-bg {
+        pointer-events: none;
+        transition: 0.2s;
+        animation: hideLoading 0.3s 0s forwards;
+    }
+
+    #loading-box .loading-img {
+        width: 100px;
+        margin: auto;
+        animation-duration: 0.2s;
+        animation-name: loadingAction;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
+
+    @keyframes loadingAction {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0.6;
+        }
+    }
+
+    @keyframes hideLoading {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes showLoading {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+        
+        <div id="console" style="zoom: 1;" class="">
+    <div class="close-btn" onclick="acrylic.hideConsole()" href="javascript:void(0);">
+        <i class="fas fa-circle-xmark"></i>
+    </div>
+    
+        <div class="console-card-group">
+            <div class="console-card-group-left">
+                <div class="console-card" id="card-newest-comments" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">互动</div>
+                        <div class="author-content-item-title">最新评论</div>
+                    </div>
+                    <div class="aside-list"></div>
+                </div>
+    
+            </div>
+            <div class="console-card-group-right">
+                <div class="console-card tags" onclick="acrylic.hideConsole()">
+                    <div class="card-content">
+                        <div class="author-content-item-tips">标签</div>
+                        <div class="author-content-item-title">寻找感兴趣的领域</div>
+                    </div>
+                    <div class="card-tag-cloud">
+                        
+                            <a href="/tags/CO/" style="font-size: 0.8rem; color: #d3d3d3">CO<sup>11</sup></a>
+                        
+                            <a href="/tags/OOpre/" style="font-size: 0.8rem; color: #d3d3d3">OOpre<sup>5</sup></a>
+                        
+                            <a href="/tags/c-c/" style="font-size: 0.8rem; color: #d3d3d3">c++&amp;c#<sup>5</sup></a>
+                        
+                            <a href="/tags/fysszlr/" style="font-size: 0.8rem; color: #d3d3d3">fysszlr<sup>1</sup></a>
+                        
+                            <a href="/tags/%E6%AF%9B%E6%A6%82/" style="font-size: 0.8rem; color: #d3d3d3">毛概<sup>1</sup></a>
+                        
+                            <a href="/tags/%E8%80%81%E5%B8%88/" style="font-size: 0.8rem; color: #d3d3d3">老师<sup>1</sup></a>
+                        
+                            <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" style="font-size: 0.8rem; color: #d3d3d3">西方音乐鉴赏<sup>3</sup></a>
+                        
+                            <a href="/tags/%E8%AE%B0%E5%BD%95/" style="font-size: 0.8rem; color: #d3d3d3">记录<sup>1</sup></a>
+                        
+                    </div>
+                </div>
+                <div class="console-card history" onclick="acrylic.hideConsole()">
+                    <ul class="card-archive-list">
+    
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/12/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/12</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">5</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/11/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/11</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/10/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/10</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">12</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+     
+        <li class="card-archive-list-item"><a class="card-archive-list-link" onclick="pjax.loadUrl('/archives/2023/09/')" data-pjax-state=""><span
+            class="card-archive-list-date">2023/09</span>
+            <div class="card-archive-list-count-group"><span class="card-archive-list-count">7</span><span
+                    class="card-archive-list-count-unit">篇</span></div>
+            </a>
+        </li>
+        
+</ul>
+
+                </div>
+            </div>
+        </div>
+    
+    
+    <div class="button-group">
+        <div class="console-btn-item"> <a class="darkmode_switchbutton" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow" data-pjax-state=""><i class="fas fa-moon"
+                    style="font-size: 1rem;"></i></a></div>
+        
+    </div>
+    <div class="console-mask" onclick="acrylic.hideConsole()" href="javascript:void(0);" rel="external nofollow"></div>
+</div>
+        <div id="sidebar" style="zoom: 1;">
+    <div id="menu-mask" style="display: none;"></div>
+    <div id="sidebar-menus" class>
+        <span class="sidebar-menu-item-title">功能</span>
+        <div class="sidebar-menu-item">
+            <a class="darkmode_switchbutton menu-child" onclick="acrylic.switchDarkMode()" title="显示模式切换"
+                href="javascript:void(0);" rel="external nofollow">
+                <i class="fas fa-moon" style="font-size: 1rem;"></i>
+                <span>显示模式</span>
+            </a>
+        </div>
+        
+            <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          博客
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="主页">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                主页
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" href="/about" rel="external nofollow" title="关于">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                关于
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          笔记
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/tags/c-c/" rel="external nofollow" title="c++&amp;c#">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                c++&amp;c#
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+        
+        <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/fcircle/">
+                                <i class="fas fa-fish-fins"></i>
+                                <span> 友链鱼塘</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/links/">
+                                <i class="fas fa-user-group"></i>
+                                <span> 友情链接</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="javascript:travelling()">
+                                <i class="fas fa-bus"></i>
+                                <span> 宝藏博主</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/says" rel="external nofollow">
+                    <span> 即刻</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="https://github.com/fysszlr" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+             
+        </div>
+    
+</div>
+        <span class="sidebar-menu-item-title">标签</span>
+        <div class="card-widget card-tags card-archives card-webinfo card-allinfo">
+            <div class="item-headline">
+                <i class="fas fa-tags"></i>
+                <span>标签</span>
+            </div>
+            <div class="card-tag-cloud">
+                
+                    <a href="/tags/CO/" style="font-size: 1em; color: #d3d3d3">CO
+                        <sup>11</sup>
+                    </a>
+                
+                    <a href="/tags/OOpre/" style="font-size: 1em; color: #d3d3d3">OOpre
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/c-c/" style="font-size: 1em; color: #d3d3d3">c++&amp;c#
+                        <sup>5</sup>
+                    </a>
+                
+                    <a href="/tags/fysszlr/" style="font-size: 1em; color: #d3d3d3">fysszlr
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E6%AF%9B%E6%A6%82/" style="font-size: 1em; color: #d3d3d3">毛概
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%80%81%E5%B8%88/" style="font-size: 1em; color: #d3d3d3">老师
+                        <sup>1</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%A5%BF%E6%96%B9%E9%9F%B3%E4%B9%90%E9%89%B4%E8%B5%8F/" style="font-size: 1em; color: #d3d3d3">西方音乐鉴赏
+                        <sup>3</sup>
+                    </a>
+                
+                    <a href="/tags/%E8%AE%B0%E5%BD%95/" style="font-size: 1em; color: #d3d3d3">记录
+                        <sup>1</sup>
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+        
+            <div class="post" id="body-wrap">
+                <header class="post-bg" id="page-header">
+    <nav id="nav" class="show">
+    <div id="nav-group">
+        <div id="blog_name">
+            
+                <div class="back-home-button" tabindex="-1">
+                    <i class="back-home-button-icon fas fa-grip-vertical"></i>
+                    <div class="back-menu-list-groups">
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          博客
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/" rel="external nofollow" title="主页">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                主页
+              </span>
+            </a>
+          
+            
+            <a class="back-menu-item" href="/about" rel="external nofollow" title="关于">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                关于
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+      
+      <div class="back-menu-list-group">
+        <div class="back-menu-list-title">
+          笔记
+        </div>
+        <div class="back-menu-list">
+          
+            
+            <a class="back-menu-item" href="/tags/c-c/" rel="external nofollow" title="c++&amp;c#">
+              <img class="back-menu-item-icon" src="/img/yomiya.png" loading="lazy">
+              <span class="back-menu-item-text">
+                c++&amp;c#
+              </span>
+            </a>
+          
+        </div>
+      </div>
+    
+  </div>
+  
+                </div>
+            
+            <a id="site-name" href="/" title="返回博客主页">
+                    
+                        <span class="heoicon">fysszlr</span>
+                    
+            </a>
+        </div>
+        <div id="page-name-mask">
+            <div id="page-name">
+                <a id="page-name-text" onclick="acrylic.toTop()">CO-P4设计文档</a>
+            </div>
+        </div>
+        <div id="menus">
+            <div class="menus_items">
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 文库</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/archives/">
+                                <i class="fas fa-box-archive"></i>
+                                <span> 文章列表</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/categories/">
+                                <i class="fas fa-cube"></i>
+                                <span> 全部分类</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/tags/">
+                                <i class="fas fa-tags"></i>
+                                <span> 全部标签</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page" href="javascript:void(0);" rel="external nofollow">
+                    <span> 友链</span>
+                </a>
+                <ul class="menus_item_child">
+                    
+                        <li>
+                            <a class="site-page child" href="/fcircle/">
+                                <i class="fas fa-fish-fins"></i>
+                                <span> 友链鱼塘</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="/links/">
+                                <i class="fas fa-user-group"></i>
+                                <span> 友情链接</span>
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a class="site-page child" href="javascript:travelling()">
+                                <i class="fas fa-bus"></i>
+                                <span> 宝藏博主</span>
+                            </a>
+                        </li>
+                    
+                </ul>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="/says" rel="external nofollow">
+                    <span> 即刻</span>
+                </a>
+             
+        </div>
+    
+        <div class="menus_item">
+            
+                <a class="site-page not-child" href="https://github.com/fysszlr" rel="external nofollow">
+                    <span> 仓库</span>
+                </a>
+             
+        </div>
+    
+</div>
+        </div>
+        <!-- <div id="nav-left">
+            <div id="fps-group">
+                <div id="fps">145</div><span class="fpsText">FPS</span>
+            </div>
+        </div> -->
+        <div id="nav-right">
+            
+    <div class="nav-button only-home" id="travellings_button">
+        <a class="site-page"  target="_blank" rel="noopener external nofollow" href="https://www.travellings.cn/go.html" title="开往-友链接力"  width="120">
+            <i class="fa-solid fa-train-subway" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+    <div class="nav-button" id="randomPost_button">
+        <a class="site-page" onclick="toRandomPost()"
+            title="随机前往一个文章">
+            <i class="fas fa-shuffle" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+
+
+    <div class="nav-button" id="nav-console">
+        <a class="console_switchbutton" onclick="acrylic.showConsole()"
+        title="显示中控台" href="javascript:void(0);" rel="external nofollow">
+        <i class="fas fa-bars-progress" style="font-size: 1rem;"></i>
+        </a>
+    </div>
+
+<div class="nav-button" id="nav-totop" onclick="acrylic.toTop()">
+    <a class="totopbtn">
+        <i class="fas fa-arrow-up"></i>
+        <span id="percent">0</span>
+    </a>
+</div>
+<div id="toggle-menu">
+    <a class="site-page">
+        <i class="fas fa-bars fa-fw" style="font-size: 1rem;"></i>
+    </a>
+</div>
+        </div>
+    </div>
+</nav>
+    
+        <div class="coverdiv" id="coverdiv">
+    <img id="post-cover" class="nolazyload" src="https://images.pexels.com/photos/463684/pexels-photo-463684.jpeg" alt="cover">
+</div>
+<div id="post-info">
+    <div id="post-firstinfo">
+        <div class="meta-firstline">
+            <a class="post-meta-original" title="该文章为原创文章，注意版权协议">
+                原创
+            </a>
+            
+            <span class="post-meta-categories">
+                
+                    <a class="post-meta-categories" href="/categories/%E7%BB%8F%E9%AA%8C/">经验</a>
+                
+            </span>
+            
+            <div class="tag_share">
+                <div class="post-meta__tag-list">
+                    
+                        <a class="post-meta__tags" href="/tags/CO/">
+                            <span class="tags-punctuation">#</span>
+                            <span class="tags-name">CO</span>
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="post-title">CO-P4设计文档</h1>
+    <div id="post-meta">
+        <div class="meta-secondline">
+            <span class="post-meta-date" title="发布于">
+                <i class="post-meta-icon fa-fw fas fa-calendar"></i>
+                <time datetime="2023-12-22T16:01:00+08:00"></time>
+            </span>
+            
+            
+                <span class="post-meta-position" title="作者IP归属地为北京">
+                    <i class="fas fa-location-dot post-meta-icon"></i>
+                    <span>北京</span>
+                </span>
+            
+            
+            
+                
+        </div>
+    </div>
+</div>
+<section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg"
+    xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="gentle-wave"
+            d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path>
+    </defs>
+    <g class="parallax">
+        <use href="#gentle-wave" x="48" y="0"></use>
+        <use href="#gentle-wave" x="48" y="3"></use>
+        <use href="#gentle-wave" x="48" y="5"></use>
+        <use href="#gentle-wave" x="48" y="7"></use>
+    </g>
+</svg>
+</section>
+
+        
+</header>
+                <main class="layout" id="content-inner">
+    <div id="post">
+        <article class="post-content" id="article-container">
+            <p><a href="https://github.com/fysszlr/CO-buaa-2023">戳这里获取源代码</a></p>
+<h1 id="单周期cpu设计"><a href="#单周期cpu设计" class="headerlink" title="单周期cpu设计"></a>单周期cpu设计</h1><table>
+<thead>
+<tr>
+<th>PC</th>
+<th>IM</th>
+<th>Adder</th>
+<th>Nadder</th>
+<th>RF</th>
+<th>ALU</th>
+<th>Zeroext</th>
+<th>Signext</th>
+<th>DM</th>
+<th>Sll</th>
+<th>Comparator</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>B</td>
+<td>A</td>
+<td>B</td>
+<td>RA1</td>
+<td>RA2</td>
+<td>WA</td>
+<td>WD</td>
+<td>Op</td>
+<td>A</td>
+<td>B</td>
+<td>DA</td>
+<td>DD</td>
+<td>Num</td>
+<td>A</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>add</td>
+<td>Adder</td>
+<td>PC</td>
+<td>PC</td>
+<td>4</td>
+<td>\</td>
+<td>[6:10]</td>
+<td>[11:15]</td>
+<td>[16:20]</td>
+<td>ALU</td>
+<td>+</td>
+<td>RD1</td>
+<td>RD2</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sub</td>
+<td>Adder</td>
+<td>PC</td>
+<td>PC</td>
+<td>4</td>
+<td>\</td>
+<td>[6:10]</td>
+<td>[11:15]</td>
+<td>[16:20]</td>
+<td>ALU</td>
+<td>-</td>
+<td>RD1</td>
+<td>RD2</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ori</td>
+<td>Adder</td>
+<td>PC</td>
+<td>PC</td>
+<td>4</td>
+<td>\</td>
+<td>[6:10]</td>
+<td>\</td>
+<td>[11:15]</td>
+<td>ALU</td>
+<td>|</td>
+<td>RD1</td>
+<td>Zeronext</td>
+<td>[16:31]</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>lw</td>
+<td>Adder</td>
+<td>PC</td>
+<td>PC</td>
+<td>4</td>
+<td>\</td>
+<td>[6:10]</td>
+<td>\</td>
+<td>[11:15]</td>
+<td>DM</td>
+<td>+</td>
+<td>RD1</td>
+<td>Signext</td>
+<td>\</td>
+<td>[16:31]</td>
+<td>ALU</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td></td>
+</tr>
+<tr>
+<td>sw</td>
+<td>Adder</td>
+<td>PC</td>
+<td>PC</td>
+<td>4</td>
+<td>\</td>
+<td>[6:10]</td>
+<td>[11:15]</td>
+<td>\</td>
+<td>\</td>
+<td>+</td>
+<td>RD1</td>
+<td>Signext</td>
+<td>\</td>
+<td>[16:31]</td>
+<td>ALU</td>
+<td>RD2</td>
+<td>\</td>
+<td>\</td>
+<td></td>
+</tr>
+<tr>
+<td>beq</td>
+<td>Adder|Nadder</td>
+<td>PC</td>
+<td>PC</td>
+<td>4</td>
+<td>Adder</td>
+<td>Signext</td>
+<td>[6:10]</td>
+<td>[11:15]</td>
+<td>\</td>
+<td>\</td>
+<td>-</td>
+<td>RD1</td>
+<td>RD2</td>
+<td>\</td>
+<td>Sll</td>
+<td>\</td>
+<td>2</td>
+<td>[16:31]</td>
+<td>ALU</td>
+</tr>
+<tr>
+<td>lui</td>
+<td>Adder</td>
+<td>PC</td>
+<td>PC</td>
+<td>4</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>[11:15]</td>
+<td>Sll</td>
+<td>\</td>
+<td>[16:31]</td>
+<td>\</td>
+<td>\</td>
+<td>16</td>
+<td>Zeroext</td>
+<td>\</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nop</td>
+<td>Adder</td>
+<td>PC</td>
+<td>PC</td>
+<td>4</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="def-v"><a href="#def-v" class="headerlink" title="def.v"></a>def.v</h2><p>包含对所有参数的宏定义</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="keyword">define</span> branchSel_pc4 0</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> branchSel_pcOffset 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> jalSel_oldPc 0</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> jalSel_jalPc 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> jrSel_oldPc 0</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> jrSel_jrPc 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> counter_0 0</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> counter_1 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> op_aluOrNop 6&#x27;b000000</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> op_ori 6&#x27;b001101</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> op_lw 6&#x27;b100011</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> op_sw 6&#x27;b101011</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> op_beq 6&#x27;b000100</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> op_lui 6&#x27;b001111</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> op_lb 6&#x27;b100000</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> op_sb 6&#x27;b101000</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> op_jal 6&#x27;b000011</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> funct_add 6&#x27;b100000</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> funct_sub 6&#x27;b100010</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> funct_nop 6&#x27;b000000</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> funct_jr 6&#x27;b001000</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> aluOp_add 0</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> aluOp_sub 1</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> aluOp_or 2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> aluSrc_rd2 0</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> aluSrc_signImm 1</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> aluSrc_zeroImm 2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> regDst_16_20 0</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> regDst_11_15 1</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> regDst_31 2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> sllOp_sign2 0</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> sllOp_zero16 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> wdOp_w 0</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> wdOp_b 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> memtoReg_aluResult 0</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> memtoReg_rdw 1</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> memtoReg_sllImm 2</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> memtoReg_rdb 3</span></span><br><span class="line"><span class="meta">`<span class="keyword">define</span> memtoReg_pc4 </span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="mips-v"><a href="#mips-v" class="headerlink" title="mips.v"></a>mips.v</h2><p>包含对电路各模块（包括大模块和小模块）的定义和电线的排布</p>
+<p><img src="/2023/12/22/CO-P4%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/Users\fysszlr\AppData\Roaming\Typora\typora-user-images\image-20231101191850969.png" alt="image-20231101191850969"></p>
+<hr>
+<h2 id="counter-v"><a href="#counter-v" class="headerlink" title="counter.v"></a>counter.v</h2><p>counter控制初始时pc为0</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">counter _counter (</span><br><span class="line">	 <span class="variable">.clk</span>(clk), </span><br><span class="line">	 <span class="variable">.reset</span>(reset), </span><br><span class="line">	 <span class="variable">.counter</span>(counter)</span><br><span class="line">	 );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="controller-v"><a href="#controller-v" class="headerlink" title="controller.v"></a>controller.v</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>add</th>
+<th>sub</th>
+<th>nop</th>
+<th>ori</th>
+<th>lw</th>
+<th>sw</th>
+<th>beq</th>
+<th>lui</th>
+<th>lb</th>
+<th>sb</th>
+<th>jal</th>
+<th>jr</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MemtoReg</td>
+<td>0</td>
+<td>0</td>
+<td>\</td>
+<td>0</td>
+<td>1</td>
+<td>\</td>
+<td>\</td>
+<td>2</td>
+<td>3</td>
+<td>\</td>
+<td>4</td>
+<td>\</td>
+</tr>
+<tr>
+<td>MemWrite</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Branch</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ALUControl</td>
+<td>0</td>
+<td>1</td>
+<td>\</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>\</td>
+<td>0</td>
+<td>0</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>ALUSrc</td>
+<td>0</td>
+<td>0</td>
+<td>\</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>\</td>
+<td>1</td>
+<td>1</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>RegDst</td>
+<td>1</td>
+<td>1</td>
+<td>\</td>
+<td>0</td>
+<td>0</td>
+<td>\</td>
+<td>\</td>
+<td>0</td>
+<td>0</td>
+<td>\</td>
+<td>2</td>
+<td>\</td>
+</tr>
+<tr>
+<td>RegWrite</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>SllOp</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>0</td>
+<td>1</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>WDOp</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>0</td>
+<td>\</td>
+<td>\</td>
+<td>\</td>
+<td>1</td>
+<td>\</td>
+<td>\</td>
+</tr>
+<tr>
+<td>jrSel</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>jalSel</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">controller _controller (</span><br><span class="line">   <span class="variable">.op</span>(op), </span><br><span class="line">   <span class="variable">.funct</span>(funct), </span><br><span class="line">   <span class="variable">.memtoReg</span>(memtoReg), </span><br><span class="line">   <span class="variable">.memWrite</span>(memWrite), </span><br><span class="line">   <span class="variable">.branch</span>(branch), </span><br><span class="line">   <span class="variable">.aluControl</span>(aluControl), </span><br><span class="line">   <span class="variable">.aluSrc</span>(aluSrc), </span><br><span class="line">   <span class="variable">.regDst</span>(regDst), </span><br><span class="line">   <span class="variable">.regWrite</span>(regWrite), </span><br><span class="line">   <span class="variable">.sllOp</span>(sllOp), </span><br><span class="line">   <span class="variable">.wdOp</span>(wdOp), </span><br><span class="line">   <span class="variable">.jalSel</span>(jalSel),</span><br><span class="line"> <span class="variable">.jrSel</span>(jrSel)</span><br><span class="line">   );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="ifu-v"><a href="#ifu-v" class="headerlink" title="ifu.v"></a>ifu.v</h2><p>ifu是最先完成的模块，所以集成度较差</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ifu _ifu (</span><br><span class="line">   <span class="variable">.clk</span>(clk), </span><br><span class="line">   <span class="variable">.reset</span>(reset), </span><br><span class="line">   <span class="variable">.counter</span>(counter), </span><br><span class="line">   <span class="variable">.branch</span>(branch),</span><br><span class="line"> <span class="variable">.zero</span>(zero),</span><br><span class="line"> <span class="variable">.jalSel</span>(jalSel), </span><br><span class="line"> <span class="variable">.jrSel</span>(jrSel),</span><br><span class="line">   <span class="variable">.pc4</span>(pc4), </span><br><span class="line">   <span class="variable">.pcOffset</span>(pcOffset), </span><br><span class="line">   <span class="variable">.jalPc</span>(jalPc), </span><br><span class="line"> <span class="variable">.jrPc</span>(jrPc),</span><br><span class="line">   <span class="variable">.pc</span>(pc), </span><br><span class="line">   <span class="variable">.instr</span>(instr)  </span><br><span class="line">   );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="grf-v"><a href="#grf-v" class="headerlink" title="grf.v"></a>grf.v</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">grf _grf (</span><br><span class="line">   <span class="variable">.a1</span>(a1), </span><br><span class="line">   <span class="variable">.a2</span>(a2), </span><br><span class="line">   <span class="variable">.a3</span>(a3), </span><br><span class="line">   <span class="variable">.wd3</span>(wd3), </span><br><span class="line"> <span class="variable">.pc</span>(pc),</span><br><span class="line"> <span class="variable">.instr</span>(instr),</span><br><span class="line">   <span class="variable">.we</span>(regWrite), <span class="comment">//we = regWrite</span></span><br><span class="line">   <span class="variable">.clk</span>(clk), </span><br><span class="line">   <span class="variable">.reset</span>(reset), </span><br><span class="line">   <span class="variable">.rd1</span>(rd1), </span><br><span class="line">   <span class="variable">.rd2</span>(rd2)</span><br><span class="line">   );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="alu-v"><a href="#alu-v" class="headerlink" title="alu.v"></a>alu.v</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">alu _alu (</span><br><span class="line">   <span class="variable">.srcA</span>(rd1), </span><br><span class="line">   <span class="variable">.srcB</span>(srcB), </span><br><span class="line">   <span class="variable">.aluOp</span>(aluControl), </span><br><span class="line">   <span class="variable">.zero</span>(zero), </span><br><span class="line">   <span class="variable">.aluResult</span>(aluResult)</span><br><span class="line">   );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="dm-v"><a href="#dm-v" class="headerlink" title="dm.v"></a>dm.v</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dm _dm (</span><br><span class="line">   <span class="variable">.addr</span>(aluResult), </span><br><span class="line">   <span class="variable">.wdOp</span>(wdOp), </span><br><span class="line">   <span class="variable">.wd</span>(wd), </span><br><span class="line"> <span class="variable">.pc</span>(pc),</span><br><span class="line">   <span class="variable">.we</span>(memWrite),<span class="comment">//we = memWrite </span></span><br><span class="line">   <span class="variable">.clk</span>(clk), </span><br><span class="line">   <span class="variable">.reset</span>(reset), </span><br><span class="line">   <span class="variable">.rdw</span>(rdw), </span><br><span class="line">   <span class="variable">.rdb</span>(rdb)</span><br><span class="line">   );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="ext-v"><a href="#ext-v" class="headerlink" title="ext.v"></a>ext.v</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ext _ext (</span><br><span class="line">   <span class="variable">.imm</span>(imm), </span><br><span class="line">   <span class="variable">.signImm</span>(signImm), </span><br><span class="line">   <span class="variable">.zeroImm</span>(zeroImm)</span><br><span class="line">   );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="sll-v"><a href="#sll-v" class="headerlink" title="sll.v"></a>sll.v</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sll _sll (</span><br><span class="line">   <span class="variable">.imm</span>(imm), </span><br><span class="line">   <span class="variable">.sllOp</span>(sllOp), </span><br><span class="line">   <span class="variable">.sllImm</span>(sllImm)</span><br><span class="line">   );</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="其它主电路模块"><a href="#其它主电路模块" class="headerlink" title="其它主电路模块"></a>其它主电路模块</h2><h3 id="getPc4"><a href="#getPc4" class="headerlink" title="getPc4"></a>getPc4</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(*) <span class="keyword">begin</span> : getPc4</span><br><span class="line">	pc4 = pc + <span class="number">4</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="getJalPc"><a href="#getJalPc" class="headerlink" title="getJalPc"></a>getJalPc</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(*) <span class="keyword">begin</span> : getJalPc</span><br><span class="line">	jalPc = &#123;pc[<span class="number">31</span>:<span class="number">28</span>],instr[<span class="number">25</span>:<span class="number">0</span>],&#123;<span class="number">2</span>&#123;<span class="number">1&#x27;b0</span>&#125;&#125;&#125;; </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="muxSrcB"><a href="#muxSrcB" class="headerlink" title="muxSrcB"></a>muxSrcB</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(*) <span class="keyword">begin</span> : muxSrcB</span><br><span class="line">	<span class="keyword">case</span> (aluSrc)</span><br><span class="line">		`aluSrc_rd2 : srcB = rd2;</span><br><span class="line">		`aluSrc_signImm : srcB = signImm;</span><br><span class="line">		`aluSrc_zeroImm : srcB = zeroImm;</span><br><span class="line">		<span class="keyword">default</span> : srcB = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="muxA3"><a href="#muxA3" class="headerlink" title="muxA3"></a>muxA3</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(*) <span class="keyword">begin</span> : muxA3</span><br><span class="line">	<span class="keyword">case</span> (regDst)</span><br><span class="line">		`regDst_16_20 : a3 = instr[<span class="number">20</span>:<span class="number">16</span>];</span><br><span class="line">		`regDst_11_15 : a3 = instr[<span class="number">15</span>:<span class="number">11</span>];</span><br><span class="line">		`regDst_31 : a3 = <span class="number">31</span>;</span><br><span class="line">		<span class="keyword">default</span> : a3 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="getPcOffset"><a href="#getPcOffset" class="headerlink" title="getPcOffset"></a>getPcOffset</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(*) <span class="keyword">begin</span> : getPcOffset</span><br><span class="line">	pcOffset &lt;= sllImm + pc4;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="muxGetWd3"><a href="#muxGetWd3" class="headerlink" title="muxGetWd3"></a>muxGetWd3</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @(*) <span class="keyword">begin</span> : muxGetWd3</span><br><span class="line">	<span class="keyword">case</span> (memtoReg)</span><br><span class="line">		`memtoReg_aluResult : wd3 = aluResult;</span><br><span class="line">		`memtoReg_rdw : wd3 = rdw;</span><br><span class="line">		`memtoReg_sllImm : wd3 = sllImm;</span><br><span class="line">		`memtoReg_rdb : wd3 = rdb;</span><br><span class="line">		`memtoReg_pc4 : wd3 = pc4;</span><br><span class="line">		<span class="keyword">default</span> : wd3 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="其它主电路assign连接"><a href="#其它主电路assign连接" class="headerlink" title="其它主电路assign连接"></a>其它主电路assign连接</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assign</span> op = instr[<span class="number">31</span>:<span class="number">26</span>];</span><br><span class="line"><span class="keyword">assign</span> funct = instr [<span class="number">5</span>:<span class="number">0</span>];</span><br><span class="line"><span class="keyword">assign</span> imm = instr[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line"><span class="keyword">assign</span> wd = rd2;</span><br><span class="line"><span class="keyword">assign</span> jrPc = rd1;</span><br><span class="line"><span class="keyword">assign</span> a1 = instr[<span class="number">25</span>:<span class="number">21</span>];</span><br><span class="line"><span class="keyword">assign</span> a2 = instr[<span class="number">20</span>:<span class="number">16</span>];</span><br><span class="line"><span class="keyword">assign</span> wd = rd2;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="mips定义电线汇总"><a href="#mips定义电线汇总" class="headerlink" title="mips定义电线汇总"></a>mips定义电线汇总</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">wire</span> counter;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] instr;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">5</span>:<span class="number">0</span>] op;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">5</span>:<span class="number">0</span>] funct;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">2</span>:<span class="number">0</span>] memtoReg;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> memWrite;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> branch;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">1</span>:<span class="number">0</span>] aluControl;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">1</span>:<span class="number">0</span>] aluSrc;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">1</span>:<span class="number">0</span>] regDst;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> regWrite;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> sllOp;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> wdOp;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> jalSel;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> jrSel;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>] pc4;<span class="comment">//</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>] jalPc;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] jrPc;</span><br><span class="line"><span class="keyword">wire</span> zero;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] pc;<span class="comment">//</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>] pcOffset;<span class="comment">//</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>] srcB;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] rd1;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] rd2;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] signImm;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] zeroImm;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] aluResult;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">4</span>:<span class="number">0</span>] a1;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">4</span>:<span class="number">0</span>] a2;<span class="comment">//</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">4</span>:<span class="number">0</span>] a3;<span class="comment">//</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>] wd3;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">15</span>:<span class="number">0</span>] imm;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">13</span>:<span class="number">0</span>] a;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] sllImm;</span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] wd;</span><br><span class="line"><span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] rdw;<span class="comment">//</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">7</span>:<span class="number">0</span>] rdb;<span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ol>
+<li><p>阅读下面给出的 DM 的输入示例中（示例 DM 容量为 4KB，即 32bit × 1024字），根据你的理解回答，这个 addr 信号又是从哪里来的？地址信号 addr 位数为什么是 [11:2] 而不是 [9:0] ？</p>
+<p><img src="http://cscore.buaa.edu.cn/assets/cscore-image/refkxh/86953c72-c519-48b2-8cb8-7b2c90850e53/66.png" alt="66.png"></p>
+<p>答：addr是从alu中计算得来的；由于dm为按字编址，所以在访问时，要将addr的低两位舍去，以达到乘四的效果，使dm访问正确的地址（不考虑地址不匹配的情况）</p>
+</li>
+<li><p>思考上述两种控制器设计的译码方式，给出代码示例，并尝试对比各方式的优劣。</p>
+<p>答：这两种控制器设计的译码方式为“<strong>指令对应的控制信号如何取值</strong>“和”<strong>控制信号每种取值所对应的指令</strong>”；</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//指令对应的控制信号如何取值</span></span><br><span class="line"><span class="keyword">if</span> (add) <span class="keyword">begin</span></span><br><span class="line">    regDst = <span class="number">1</span>;</span><br><span class="line">    regWrite = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//控制信号每种取值所对应的指令</span></span><br><span class="line">memWrite = sw | sb | jal; </span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">译码方式</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">指令对应的控制信号如何取值</td>
+<td>新添指令比较形象</td>
+<td>编写比较困难，不容易调试</td>
+</tr>
+<tr>
+<td align="center">控制信号每种取值所对应的指令</td>
+<td>编写简单，调试方便</td>
+<td>新添指令不够形象</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>在相应的部件中，复位信号的设计都是<strong>同步复位</strong>，这与 P3 中的设计要求不同。请对比<strong>同步复位</strong>与<strong>异步复位</strong>这两种方式的 reset 信号与 clk 信号优先级的关系。</p>
+<p>答：同步复位中，clk信号优先级高于reset；异步复位中，reset信号优先级高于clk</p>
+</li>
+<li><p>C 语言是一种弱类型程序设计语言。C 语言中不对计算结果溢出进行处理，这意味着 C 语言要求程序员必须很清楚计算结果是否会导致溢出。因此，如果仅仅支持 C 语言，MIPS 指令的所有计算指令均可以忽略溢出。 请说明为什么在忽略溢出的前提下，addi 与 addiu 是等价的，add 与 addu 是等价的。提示：阅读《MIPS32® Architecture For Programmers Volume II: The MIPS32® Instruction Set》中相关指令的 Operation 部分。</p>
+<p>根据 RTL 语言描述： addi 与 addiu 的区别在于当出现溢出时， addiu 忽略溢出，并将溢出的最高位舍弃； addi 会报告 SignalException(IntegerOverflow) 故忽略溢出，二者等价。</p>
+</li>
+</ol>
+<hr>
+<h3 id="MemtoReg"><a href="#MemtoReg" class="headerlink" title="MemtoReg"></a>MemtoReg</h3><p>   控制向寄存器RA3中写入数据的来源</p>
+<table>
+<thead>
+<tr>
+<th>MemtoReg</th>
+<th>source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>ALU</td>
+</tr>
+<tr>
+<td>1</td>
+<td>DM(RDW)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SllImm</td>
+</tr>
+<tr>
+<td>3</td>
+<td>DM(RDB)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>PC+4</td>
+</tr>
+</tbody></table>
+<h3 id="MemWrite"><a href="#MemWrite" class="headerlink" title="MemWrite"></a>MemWrite</h3><p>   控制主存写使能信号</p>
+<table>
+<thead>
+<tr>
+<th>MemWrite</th>
+<th>write?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>No</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<h3 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h3><p>   控制新的PC生成</p>
+<table>
+<thead>
+<tr>
+<th>Branch</th>
+<th>newPC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>PC+4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>PC+4+offset</td>
+</tr>
+</tbody></table>
+<h3 id="ALUControl"><a href="#ALUControl" class="headerlink" title="ALUControl"></a>ALUControl</h3><p>   控制ALU内运算符号</p>
+<table>
+<thead>
+<tr>
+<th>SelOp</th>
+<th>ALUResult</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>SrcA + SrcB</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SrcA - SrcB</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SrcA | SrcB</td>
+</tr>
+<tr>
+<td>3</td>
+<td>SrcA^SrcB</td>
+</tr>
+</tbody></table>
+<h3 id="ALUSrc"><a href="#ALUSrc" class="headerlink" title="ALUSrc"></a>ALUSrc</h3><p>   控制ALU中的SrcB的来源</p>
+<table>
+<thead>
+<tr>
+<th>ALUSrc</th>
+<th>src</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>GRF(RD2)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>SignImm</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ZeroImm</td>
+</tr>
+<tr>
+<td>3</td>
+<td>instr[10:6]</td>
+</tr>
+</tbody></table>
+<h3 id="RegDst"><a href="#RegDst" class="headerlink" title="RegDst"></a>RegDst</h3><p>   控制寄存器RA3在代码中的位置</p>
+<table>
+<thead>
+<tr>
+<th>RegDst</th>
+<th>pos</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>[20:16]</td>
+</tr>
+<tr>
+<td>1</td>
+<td>[15:11]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>31</td>
+</tr>
+</tbody></table>
+<h3 id="RegWrite"><a href="#RegWrite" class="headerlink" title="RegWrite"></a>RegWrite</h3><p>   控制GRF写入信号</p>
+<table>
+<thead>
+<tr>
+<th>RegWrite</th>
+<th>write?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>No</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<h3 id="SllOp"><a href="#SllOp" class="headerlink" title="SllOp"></a>SllOp</h3><p>   控制Sll模块输出的数据</p>
+<p>   0为拼接两位，并进行符号拓展</p>
+<p>   1为零拓展，并左移16位</p>
+<table>
+<thead>
+<tr>
+<th>SllOp</th>
+<th>SllImm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Signext(Imm+2[0])</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Zeroext(Imm+16[0])</td>
+</tr>
+</tbody></table>
+<h3 id="WDOp"><a href="#WDOp" class="headerlink" title="WDOp"></a>WDOp</h3><p>   控制DM中写入的数据长度</p>
+<table>
+<thead>
+<tr>
+<th>WDOp</th>
+<th>length</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>32(sw)</td>
+</tr>
+<tr>
+<td>1</td>
+<td>8(sb)</td>
+</tr>
+</tbody></table>
+<h3 id="jalSel"><a href="#jalSel" class="headerlink" title="jalSel"></a>jalSel</h3><p>控制是否jal多路选择</p>
+<table>
+<thead>
+<tr>
+<th>jalSel</th>
+<th>nPc</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>oldPc</td>
+</tr>
+<tr>
+<td>1</td>
+<td>jalPc</td>
+</tr>
+</tbody></table>
+<h3 id="jrSel"><a href="#jrSel" class="headerlink" title="jrSel"></a>jrSel</h3><p>控制是否jr多路选择</p>
+<table>
+<thead>
+<tr>
+<th>jrSel</th>
+<th>nPc</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>oldPc</td>
+</tr>
+<tr>
+<td>1</td>
+<td>jrPc</td>
+</tr>
+</tbody></table>
+
+        </article>
+        <div class="post-tools" id="post-tools">
+            <div class="post-tools-left">
+                
+                <div class="share-link mobile">
+    <div class="share-qrcode">
+        <div class="share-button" title="使用手机访问这篇文章">
+            <i class="fas fa-qrcode"></i>
+        </div>
+        <div class="share-main">
+            <div class="share-main-all">
+                <div id="qrcode" title="https://github.com/2023/12/22/CO-P4%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">
+                </div>
+                <div class="reward-dec">使用手机访问这篇文章</div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            new QRCode(document.getElementById("qrcode"), "https://github.com/2023/12/22/CO-P4%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/");
+        </script>
+    </div>
+</div>
+                <div class="share-link weibo"><a class="share-button" target="_blank"
+    href="https://service.weibo.com/share/share.php?title=CO-P4设计文档&amp;url=https://github.com/2023/12/22/CO-P4%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/&amp;pic=https://images.pexels.com/photos/463684/pexels-photo-463684.jpeg"
+    title="分享到微博" rel="noopener external nofollow noreferrer noopener">
+    <i class="fab fa-weibo" style="font-size:22px"></i>
+</a>
+</div>
+<div class="share-link copyurl">
+<div class="share-button" id="post-share-url" title="复制链接" onclick="acrylic.copyPageUrl()">
+    <i class="fas fa-link"></i>
+</div>
+</div>
+            </div>
+            <div class="post-tools-right">
+                <div class="tag_share">
+                    <div class="post-meta__tag-list">
+                        
+                            <a href="/tags/CO/" class="post-meta__tags">
+                                <span class="tags-punctuation">#</span>
+                                CO
+                                <span class="tagsPageCount">11</span>
+                            </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post-copyright">
+    <div class="post-copyright__author">
+        <a class="post-copyright__original" title="该文章为原创文章，注意版权协议">原创</a>
+        <a class="post-copyright-title" href="#">
+            <span>CO-P4设计文档</span>
+        </a>
+    </div>
+    <div class="post-copyright__type">
+        <span class="post-copyright-info" id="post-copyright-url">
+            <a href="/2023/12/22/CO-P4%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">https://github.com/2023/12/22/CO-P4%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/</a>
+        </span>
+        <button class="post-copyright-copybtn" onclick="acrylic.copyPageUrl()">
+            <i class="fas fa-paste copy-btn"></i>
+        </button>
+    </div>
+    <div class="post-copyright__notice"><span class="post-copyright-info">本文是原创文章，采用 <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a> 协议，完整转载请注明来自 <a
+                href="/">fysszlr&#39;s blog</a>
+            </span>
+        </div>
+</div>
+        <nav class="pagination-post" id="pagination">
+    
+        <div class="prev-post pull-left">
+            <a href="/2023/12/22/CO-P5%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">
+                <div class="pagination-info">
+                    <div class="label">上一篇</div>
+                    <div class="prev_info">CO-P5设计文档</div>
+                </div>
+            </a>
+        </div>
+        <div class="next-post pull-right">
+            <a href="/2023/12/22/CO-P3%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">
+                <div class="pagination-info">
+                    <div class="label">下一篇</div>
+                    <div class="next_info">CO-P3设计文档</div>
+                </div>
+            </a>
+        </div>
+    
+</nav>
+            
+    </div>
+    <div class="aside-content" id="aside-content">
+    
+    
+        
+        <div class="card-widget card-info">
+    <div class="card-content">
+        <div class="card-info-avatar is-center">
+            <div class="author-info__sayhi" id="author-info__sayhi">
+            </div>
+            <img class="avatar-img entered loaded" data-lazy-src="/img/temporary.jpeg" onerror="this.onerror=null;this.src='/img/temporary.jpeg'" alt="avatar" data-ll-status="loaded" src="">
+            <div class="author-info__name">
+                fysszlr
+            </div>
+            <div class="author-info__description">站长正在熬夜学习<b>计算机组成原理</b>，blog有空就更新www<br>希望你可以在这里找到对你有用的知识和教程喵~</div>
+        </div>
+    </div>
+    <div class="banner-button-group">
+        <a class="banner-button" href="/about">
+            <i class="fas fa-circle-chevron-right"></i>
+            <span class="banner-button-text">关于</span>
+        </a>
+    </div>
+    <div class="card-info-social-icons is-center">
+        
+            <a class="social-icon" href="https://github.com/fysszlr" title="Github">
+                <i class="fa-brands fa-github"></i>
+            </a>
+        
+            <a class="social-icon" href="mailto:fysszlr@qq.com" title="Mail">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        
+    </div>
+</div>
+     
+    
+    <div class="sticky_layout">
+        
+            <div class="card-widget" id="card-toc">
+    <div class="item-headline">
+        <i class="fas fa-bars"></i>
+        <span>文章目录</span>
+    </div>
+    <div class="toc-content" id="toc-content">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%95%E5%91%A8%E6%9C%9Fcpu%E8%AE%BE%E8%AE%A1"><span class="toc-text">单周期cpu设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#def-v"><span class="toc-text">def.v</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mips-v"><span class="toc-text">mips.v</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#counter-v"><span class="toc-text">counter.v</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#controller-v"><span class="toc-text">controller.v</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ifu-v"><span class="toc-text">ifu.v</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grf-v"><span class="toc-text">grf.v</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#alu-v"><span class="toc-text">alu.v</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dm-v"><span class="toc-text">dm.v</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ext-v"><span class="toc-text">ext.v</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sll-v"><span class="toc-text">sll.v</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E4%B8%BB%E7%94%B5%E8%B7%AF%E6%A8%A1%E5%9D%97"><span class="toc-text">其它主电路模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#getPc4"><span class="toc-text">getPc4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getJalPc"><span class="toc-text">getJalPc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#muxSrcB"><span class="toc-text">muxSrcB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#muxA3"><span class="toc-text">muxA3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getPcOffset"><span class="toc-text">getPcOffset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#muxGetWd3"><span class="toc-text">muxGetWd3</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E4%B8%BB%E7%94%B5%E8%B7%AFassign%E8%BF%9E%E6%8E%A5"><span class="toc-text">其它主电路assign连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mips%E5%AE%9A%E4%B9%89%E7%94%B5%E7%BA%BF%E6%B1%87%E6%80%BB"><span class="toc-text">mips定义电线汇总</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MemtoReg"><span class="toc-text">MemtoReg</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MemWrite"><span class="toc-text">MemWrite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Branch"><span class="toc-text">Branch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ALUControl"><span class="toc-text">ALUControl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ALUSrc"><span class="toc-text">ALUSrc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RegDst"><span class="toc-text">RegDst</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RegWrite"><span class="toc-text">RegWrite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SllOp"><span class="toc-text">SllOp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WDOp"><span class="toc-text">WDOp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jalSel"><span class="toc-text">jalSel</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jrSel"><span class="toc-text">jrSel</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+            
+        
+            
+        <div class="card-widget card-recent-post">
+    <div class="item-headline">
+        <i class="fas fa-list-ol"></i>
+        <span>最近发布</span>
+    </div>
+    <div class="aside-list">
+        
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/12/22/CO-P7%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" title="CO-P7设计文档">
+                    <img
+                        alt="CO-P7设计文档"
+                        src="https://images.pexels.com/photos/463684/pexels-photo-463684.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/12/22/CO-P7%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">
+                            经验
+                        </a>
+                    
+                    <a class="title" href="/2023/12/22/CO-P7%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" title="CO-P7设计文档">
+                        CO-P7设计文档
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/12/22/CO-P6%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" title="CO-P6设计文档">
+                    <img
+                        alt="CO-P6设计文档"
+                        src="https://images.pexels.com/photos/463684/pexels-photo-463684.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/12/22/CO-P6%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">
+                            经验
+                        </a>
+                    
+                    <a class="title" href="/2023/12/22/CO-P6%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" title="CO-P6设计文档">
+                        CO-P6设计文档
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/12/22/CO-P5%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" title="CO-P5设计文档">
+                    <img
+                        alt="CO-P5设计文档"
+                        src="https://images.pexels.com/photos/463684/pexels-photo-463684.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/12/22/CO-P5%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">
+                            经验
+                        </a>
+                    
+                    <a class="title" href="/2023/12/22/CO-P5%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" title="CO-P5设计文档">
+                        CO-P5设计文档
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/12/22/CO-P4%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" title="CO-P4设计文档">
+                    <img
+                        alt="CO-P4设计文档"
+                        src="https://images.pexels.com/photos/463684/pexels-photo-463684.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/12/22/CO-P4%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">
+                            经验
+                        </a>
+                    
+                    <a class="title" href="/2023/12/22/CO-P4%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" title="CO-P4设计文档">
+                        CO-P4设计文档
+                    </a>
+                </div>
+            </div>
+                
+        
+            <div class="aside-list-item">
+                <a class="thumbnail" href="/2023/12/22/CO-P3%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" title="CO-P3设计文档">
+                    <img
+                        alt="CO-P3设计文档"
+                        src="https://images.pexels.com/photos/463684/pexels-photo-463684.jpeg">
+                </a>
+                <div class="content">
+                    
+                        <a class="article-recent_post_categories" href="/2023/12/22/CO-P3%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">
+                            经验
+                        </a>
+                    
+                    <a class="title" href="/2023/12/22/CO-P3%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/" title="CO-P3设计文档">
+                        CO-P3设计文档
+                    </a>
+                </div>
+            </div>
+            
+    </div>
+</div>
+     
+        
+    </div>
+</div> 
+</main>
+                <footer id="footer">
+                    <div id="footer_deal">
+    
+        <a class="deal_link" target="_blank" href="https://www.github.com/fysszlr" rel="external nofollow noopener" title="Github">
+            <i class="fa-brands fa-github"></i>
+        </a>
+    
+    <img class="footer_mini_logo" src="/img/yomiya.png"
+        title="返回顶部" onclick="acrylic.toTop()">
+    
+        <a class="deal_link" target="_blank" href="https://space.bilibili.com/274642803" rel="external nofollow noopener" title="bilibili">
+            <i class="fa-brands fa-bilibili"></i>
+        </a>
+    
+</div>    
+<div id="heo-footer">
+    
+        <div class="footer-group">
+            <h3 class="footer-title">导航</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" href="/archives/" title="文章归档" rel="noopener external nofollow noreferrer">文章归档</a>
+                
+                    <a class="footer-item" href="/categories/" title="文章分类" rel="noopener external nofollow noreferrer">文章分类</a>
+                
+                    <a class="footer-item" href="/tags/" title="文章标签" rel="noopener external nofollow noreferrer">文章标签</a>
+                
+                    <a class="footer-item" href="/link/" title="友链" rel="noopener external nofollow noreferrer">友链</a>
+                    
+            </div>
+        </div>
+    
+        <div class="footer-group">
+            <h3 class="footer-title">Acrylic</h3>
+            <div class="footer-links">
+                
+                    <a class="footer-item" target="_blank" href="https://acrylic.zhheo.com/" title="主题官网" rel="noopener external nofollow noreferrer noopener">主题官网</a>
+                
+                    <a class="footer-item" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic" title="Github" rel="noopener external nofollow noreferrer">Github</a>
+                
+                    <a class="footer-item" target="_blank" href="https://blog.zhheo.com/" title="Heo" rel="noopener external nofollow noreferrer noopener">Heo</a>
+                    
+            </div>
+        </div>
+    
+    
+</div>
+<div id="footer-section">
+    <div class="footer-section-links">
+        <div class="footer-section-left">
+            <div id="footer-section-tips">
+                <div class="copyright">©2023 - 2023 By 
+                    <a class="footer-section-link" href="/" rel="external nofollow">fysszlr</a>
+                    <a class="footer-section-link" href="https://github.com/hexo-theme-Acrylic/Hexo-Theme-Acrylic-Next" rel="external nofollow" target="_blank"> Theme By Acrylic-Next</a>
+                    <a class="footer-section-link" href="" rel="external nofollow" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-section-right">
+            <a class="footer-section-link" href="">订阅</a>
+            
+            <a class="footer-section-link cc" target="_blank" href="https://creativecommons.org/licenses/by/4.0/" title="cc协议">
+                <i class="fas fa-closed-captioning"></i>
+            </a>
+        </div>
+    </div>
+</div>
+                </footer>
+            </div>
+         
+        <div>
+    <script type="text/javascript" src="/js/utils.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    
+
+<script src="/lib/pjax.min.js"></script>
+
+
+
+<script src="/lib/snackbar.min.js"></script>
+
+
+    
+<script src="/lib/view-image.min.js"></script>
+
+
+
+    
+<link rel="stylesheet" href="/lib/swiper.min.css">
+
+    
+<script src="/lib/swiper.min.js"></script>
+
+
+<div id="js-pjax">
+    
+     
+</div>
+
+
+    
+<script src="/js/extend/covercolor/local.js"></script>
+
+        
+
+
+
+    <script>
+  let pjaxSelectors = [
+    'title',
+    '#body-wrap',
+    '#site-config',
+    'meta[name="description"]',
+    '#js-pjax'
+  ]
+  
+  const pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+  })
+
+  document.addEventListener('pjax:error', (e) => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+</script>
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+        <span id="busuanzi_container_site_pv">跟随命运的指引来到本站的人数:<span id="busuanzi_value_site_pv">
+    
+</div>
+        
+     
+        <div class="needEndHide" id="nav-music" onclick="acrylic.musicToggle()">
+    <div id="nav-music-hoverTips">音乐已暂停</div>
+    <meting-js id="1708664797" server="tencent" type="playlist" mutex="true"
+        preload="none" data-lrctype="0" order="random" theme="var(--heo-main)"></meting-js>
+</div>
+    
+    </body>
+</html>
+<!-- fireworks -->
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!-- FunnyTitle -->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+<!-- 动态线条背景
+<script type="text/javascript"
+color="25,25,112" opacity='0.5' zIndex="-1" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"> -->
+</script>
+<!-- 数字雨 -->
+<canvas id="canvas" width="1440" height="900" ></canvas>
+<script type="text/javascript" src="/js/DigitalRain.js"></script><script>const posts=["2023/12/22/CO-P7设计文档/","2023/12/22/CO-P6设计文档/","2023/12/22/CO-P5设计文档/","2023/12/22/CO-P4设计文档/","2023/12/22/CO-P3设计文档/","2023/11/24/陈震学长交流会记录/","2023/11/04/OOpre-课程总结/","2023/11/04/462OJ-Ver1-0-基于云服务器的CO自动化评测OJ平台/","2023/10/30/西方音乐鉴赏10-30/","2023/10/27/c-c-第六讲：继承与多态/","2023/10/23/CO-P2上机记录/","2023/10/20/c-c-第五讲：封装-(第三部分)/","2023/10/20/OOpre-Lec6-继承与接口的使用/","2023/10/16/CO-P1上机记录/","2023/10/13/c-c-第四讲：封装(第二部分)/","2023/10/13/OOpre-Lec5-JAVA程序常见错误分析/","2023/10/10/CO-P0上机记录(完整版)/","2023/10/09/CO-P0上机记录/","2023/10/09/西方音乐鉴赏10-9/","2023/10/08/OOpre-Lec4-输入解析的结构性设计/","2023/09/25/CO-pre上机记录/","2023/09/25/西方音乐鉴赏9-25/","2023/09/22/c-c-第三讲：封装/","2023/09/20/OOpre Lec3-如何管理对象/","2023/09/20/毛概-pzl老师展示点评合集（持续施工中）/","2023/09/18/c-c-第一讲-第二讲：A-Better-C/","2023/09/17/第一次の建站/"];function toRandomPost(){ window.pjax ? pjax.loadUrl('/'+posts[Math.floor(Math.random()*posts.length)]) : window.open('/'+posts[Math.floor(Math.random()*posts.length)], "_self"); };</script>
