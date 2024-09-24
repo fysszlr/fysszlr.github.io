@@ -1,105 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台</title>
-    <url>/2023/11/04/462OJ-Ver1-0-%E5%9F%BA%E4%BA%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84CO%E8%87%AA%E5%8A%A8%E5%8C%96%E8%AF%84%E6%B5%8BOJ%E5%B9%B3%E5%8F%B0/</url>
-    <content><![CDATA[<h1>462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台</h1>
-<blockquote>
-<p>花米租服务器不易，欢迎大家前来品尝 :)</p>
-</blockquote>
-<h2 id="简介">简介</h2>
-<p>使用c++，python等编程语言综合开发，能将verilog代码提交至远程服务器并自动评测输出结果</p>
-<h2 id="特点">特点</h2>
-<ul>
-<li>
-<p>使用学长<code>Toby Shi</code>的魔改Mars对拍验证输出正确性</p>
-</li>
-<li>
-<p>无需在本地配置iverilog，python等环境，主打&quot;<strong>拿来就用</strong>&quot;</p>
-<ul>
-<li>未来将部署ISE，争取实现行为与课程平台一致</li>
-</ul>
-</li>
-<li>
-<p>提供更强的数据点以供评测</p>
-<ul>
-<li>
-<p>保证每个数据点均能被正确执行，在此基础上增强数据强度</p>
-</li>
-<li>
-<p>当前版本由线下准备数据点，未来将把数据点生成任务集成至云服务器</p>
-</li>
-</ul>
-</li>
-<li>
-<p>结合课程进度推进更新数据点</p>
-</li>
-<li>
-<p>每次测试后均删除上传代码，隐私得到保障</p>
-</li>
-</ul>
-<h2 id="使用指南">使用指南</h2>
-<h3 id="准备文件">准备文件</h3>
-<p>将全部.v文件（不包括testbench文件）打包至文件夹，文件夹名为<code>&#123;学号&#125;_P4</code>，注意将顶层文件模块名改为<code>mips.v</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">|-- 2237xxxx_P4</span><br><span class="line">|   |-- mips.v</span><br><span class="line">|   |-- alu.v</span><br><span class="line">|   |-- grf.v</span><br><span class="line">|   |-- ......</span><br></pre></td></tr></table></figure>
-<h3 id="上传文件">上传文件</h3>
-<p>在终端(如cmd中)运行</p>
-<p>其中“{}”不需要被打出，下同</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp -r &#123;包含.v文件的文件夹绝对路径&#125; stu&#123;学号&#125;@82.157.78.233:~</span><br></pre></td></tr></table></figure>
-<p>按照提示输入密码，等待文件上传成功</p>
-<h3 id="进行评测">进行评测</h3>
-<p>在终端运行</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh stu&#123;学号&#125;@82.157.78.233</span><br></pre></td></tr></table></figure>
-<p>按照提示输入密码，登录成功后运行指令</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ bash runP4.sh &#123;学号&#125;</span><br></pre></td></tr></table></figure>
-<p>即可进行评测并获得结果反馈</p>
-<blockquote>
-<p>如果你已经会使用linux指令，那么这些对你来说都不是什么难事</p>
-</blockquote>
-<h3 id="查看评测结果">查看评测结果</h3>
-<p>登录成功后运行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ bash judgeP4.sh &#123;学号&#125;</span><br></pre></td></tr></table></figure>
-<p>可以查看最近一次的评测信息，默认<strong>不显示</strong>错误数据点的信息</p>
-<p>需要查看<strong>所有</strong>错误数据点的信息，可以运行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ bash judgeP4.sh &#123;学号&#125; all</span><br></pre></td></tr></table></figure>
-<p>需要查看<strong>第一个</strong>错误数据点的信息，可以运行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ bash judgeP4.sh &#123;学号&#125; first</span><br></pre></td></tr></table></figure>
-<h2 id="评测信息解读">评测信息解读</h2>
-<p>对每一个测试点，评测机会返回<code>Accepted</code>，<code>Wrong Answer</code>，<code>Output more than expected</code>，<code>Output more than expected</code>四种提示信息当中的一种，只有返回<code>Accepted</code>时才会评判为该数据点通过</p>
-<p><code>$ bash runP4.sh &#123;学号&#125;</code>的返回信息示例如下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">User ID: /home/ubuntu/ans/P4/2237xxxx</span><br><span class="line">··············································</span><br><span class="line">Case 1: Output less than expected. Matching rate is 0.9838018990876932.</span><br><span class="line">Valid output(s): 94</span><br><span class="line">··············································</span><br><span class="line">Case 2: Output more than expected. Matching rate is 0.893569431500466.</span><br><span class="line">Valid output(s): 98</span><br><span class="line">··············································</span><br><span class="line">Case 3: Wrong Answer. Matching rate is 0.5222513089005235.</span><br><span class="line">Valid output(s): 107</span><br><span class="line">··············································</span><br><span class="line">Case 4: Accepted.</span><br><span class="line">Valid output(s): 133</span><br><span class="line">··············································</span><br><span class="line">Case 5: Accepted.</span><br><span class="line">Valid output(s): 57</span><br><span class="line">··············································</span><br><span class="line">Case 6: Accepted.</span><br><span class="line">Valid output(s): 88</span><br><span class="line">··············································</span><br><span class="line">Case 7: Accepted.</span><br><span class="line">Valid output(s): 46</span><br><span class="line">··············································</span><br><span class="line">Case 8: Accepted.</span><br><span class="line">Valid output(s): 117</span><br><span class="line">··············································</span><br><span class="line">Case 9: Accepted.</span><br><span class="line">Valid output(s): 51</span><br><span class="line">··············································</span><br><span class="line">Case 10: Accepted.</span><br><span class="line">Valid output(s): 77</span><br><span class="line">··············································</span><br><span class="line">Test Accuracy: 7 / 10.</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>所有数据点通过，系统会额外返回<code>Congratulations!</code></p>
-</blockquote>
-<p>当出现错误数据点时，在<code>first</code>和<code>all</code>条件下，系统将打印你的输出与期望输出之间的差异文本，样例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  @00003004: $ 5 &lt;= 3f500000</span><br><span class="line">- @00003008: $ 3 &lt;= 00003f74</span><br><span class="line">- @00003038: $20 &lt;= 00000000</span><br><span class="line">- @0000303c: $ 8 &lt;= 00000000</span><br><span class="line">  @00003040: *00001924 &lt;= 00003f74</span><br></pre></td></tr></table></figure>
-<p>表示你的输出比期望输出<strong>缺失</strong>所列三行；</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  @0000303c: $30 &lt;= 00000000</span><br><span class="line">+ @00003040: $ 3 &lt;= 00000000</span><br><span class="line">+ @00003044: $25 &lt;= 036c3744</span><br><span class="line">+ @00003048: $13 &lt;= 1f0c0000</span><br><span class="line">  @00003040: $ 3 &lt;= 00000000</span><br></pre></td></tr></table></figure>
-<p>表示你的输出比期望输出<strong>多出</strong>所列三行；</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  @000030d8: $ 5 &lt;= 00000000</span><br><span class="line">- @000030dc: *000005d4 &lt;= 00000000</span><br><span class="line">?                              ^^^</span><br><span class="line"></span><br><span class="line">+ @000030dc: *000005d4 &lt;= 00000aaa</span><br><span class="line">?                              ^^^</span><br><span class="line"></span><br><span class="line">  @000030e0: $ 5 &lt;= 00000000</span><br><span class="line">- @000030e4: $19 &lt;= 01640000</span><br><span class="line">+ @000030e4: $19 &lt;= xxxxxxxx</span><br><span class="line">- @000030e8: $17 &lt;= 3b980000</span><br><span class="line">?                         ^^</span><br><span class="line"></span><br><span class="line">+ @000030e8: $17 &lt;= 3b9800cc</span><br><span class="line">?                         ^^</span><br></pre></td></tr></table></figure>
-<p>表示你的输出与答案存在差异。</p>
-<p>其中，<code>-</code>标记的为期望输出，<code>+</code>标记的为你的输出，<code>?</code>和<code>^</code>标记了你的输出与期望输出的不同。</p>
-<h2 id="获取账号">获取账号</h2>
-<p>获取账号方式，请通过邮件fysszlr@qq.com或添加我微信和我联系（保证免费）</p>
-<h2 id="注意事项">注意事项</h2>
-<p>请勿用本服务器进行任何与CO程序评测无关的事情！</p>
-<p>包括但不限于把服务器当云盘用，用服务器来挖矿等！</p>
-<h2 id="最后">最后</h2>
-<p>本项目灵感来自上学期myk学长写的简易数据结构oj</p>
-<p>感谢zlr同学进行服务器框架搭建、评测文件编程等工作</p>
-<p>感谢lpf同学进行测试数据点随机生成、验证正确性与强度等工作</p>
-<p>感谢zxw同学进行机器码、测试点导出，文本对拍评测等工作</p>
-<p>受开发者水平限制，本oj难免有许多问题，还请学长和同学不吝指教🙏</p>
-<p>如有问题，请截图发送到此帖下，或联系管理员fysszlr@qq.com（22373425张栗瑞）</p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>CO</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ascand C 学习笔记</title>
     <url>/2024/07/12/Ascand%20C%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1>fysszlr の Ascand C 学习笔记</h1>
@@ -552,140 +453,6 @@ $$<br>
       </tags>
   </entry>
   <entry>
-    <title>CO-P2上机记录</title>
-    <url>/2023/10/23/CO-P2%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/</url>
-    <content><![CDATA[<p>在十分紧张的情况下幸运完成了P2，于是结合考试中做的一些笔记与大家略微分享我的思路</p>
-<p>由于大家编写MIPS代码时主要以翻译为主，且选择工具链不一（指各种语言），所以本文将只展示思路，以伪代码形式呈现，并将我遇到的MIPS难点单独列出</p>
-<p><s>和《算法设计与分析》考试是笔试一个道理www</s></p>
-<hr>
-<h2 id="T1：P2-L2-merorder-2023"><a href="http://cscore.buaa.edu.cn/#/problem?ProblemId=1141&amp;PieId=1122">T1：P2_L2_merorder_2023</a></h2>
-<h3 id="Main-Idea">Main Idea</h3>
-<p>由于两个序列均为已经排好序的不下降数组，所以在编写程序时只需要遍历两个数组一遍，将较小者逐一合入新数组即可</p>
-<h3 id="Pseudo-Code">Pseudo Code</h3>
-<p>输入：两个长度分别为m，n的不下降数组a[] b[]</p>
-<p>输出：一个长度为(m+n)的数组ans[]，为所求合并后的数组<br>
-$$<br>
-\begin{aligned}<br>
-&amp;i\leftarrow 0;\<br>
-&amp;j\leftarrow 0;\<br>
-&amp;while\ (i&lt;n\ &amp;&amp;\ j&lt;m)\ do\<br>
-&amp;\quad while\ (A[i]&lt;=B[j])\ do\<br>
-&amp;\qquad print\ (A[i++]);\<br>
-&amp;\quad end\<br>
-&amp;\quad while\ (A[i]&gt;B[j])\ do\<br>
-&amp;\qquad print\ (B[j++]);\<br>
-&amp;\quad end\<br>
-&amp;end\<br>
-&amp;while\ (i&lt;n)\ do\<br>
-&amp;\quad print(A[i++]);\<br>
-&amp;end\<br>
-&amp;while\ (j&lt;m)\ do\<br>
-&amp;\quad print(B[j++]);\<br>
-&amp;end\<br>
-\end{aligned}<br>
-$$<br>
-复杂度分析：i和j需要遍历完两个数组一遍，所以复杂度为O(n+m)</p>
-<h3 id="注意点：">注意点：</h3>
-<ol>
-<li>
-<p>这种写法由于是while套while，会导致lable上增加难度，建议提前在代码中为不同的while注释不同的名字，方便程序写作，如：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>()&#123;</span><br><span class="line"><span class="comment">//while1</span></span><br><span class="line">    <span class="keyword">while</span>()<span class="comment">/*do something*/</span>;</span><br><span class="line">    <span class="comment">//while2</span></span><br><span class="line">    <span class="keyword">while</span>()<span class="comment">/*do something*/</span>;</span><br><span class="line">	<span class="comment">//while3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>()<span class="comment">/*do something*/</span>;</span><br><span class="line"><span class="comment">//while4</span></span><br><span class="line"><span class="keyword">while</span>()<span class="comment">/*do something*/</span>;</span><br><span class="line"><span class="comment">//while5</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>
-<p>在实际写作中，因为不考虑效率要求，也可以将内层循环中的while改为if，设置标签时会更简单一些</p>
-</li>
-<li>
-<p>本题数据范围较小，所以也可以使用类似计数排序的方法，期望复杂度和遍历两个数组一致</p>
-</li>
-<li>
-<p>说出来给大家乐呵一下，在下<code>.space</code>忘乘4了，de了好一会儿🙏</p>
-</li>
-</ol>
-<hr>
-<h2 id="T2：P2-L1-asteroids-2023"><a href="http://cscore.buaa.edu.cn/#/problem?ProblemId=1162&amp;PieId=1122">T2：P2_L1_asteroids_2023</a></h2>
-<p>题目编号 1122-1162</p>
-<p>本题的代码已经给出来啦~而且方法很巧妙，对着翻译就好！</p>
-<p><s>甚至可以不看题面</s></p>
-<p>没有想到可以补充的地方，过~</p>
-<hr>
-<h2 id="T3：LeetCode-390-消除游戏"><a href="https://leetcode.cn/problems/elimination-game">T3：LeetCode: 390. 消除游戏</a></h2>
-<p>为大家找到了代码的提交入口（误）</p>
-<p>除用标程的递归外（标程的参数可以减少至一个），本题也可以使用位运算完成</p>
-<h3 id="Main-Idea-2">Main Idea</h3>
-<p>将这n个数标记为0…n-1</p>
-<p>若当前为奇数轮，则删除操作为从0开始，隔一个删除一个，可以等效为“删除所有二进制末尾为0的数字“，答案当前位的二进制赋1</p>
-<p>若当前为偶数轮，则删除操作为从最后一个数开始，隔一个删除一个，可以等效为”删除所有二进制下末尾数与最大数末位数相同的数字“，答案当前位的二进制赋最大数末位数的反</p>
-<p>换种说法，就是：<br>
-$$<br>
-(ans)_2[i]=\left{<br>
-\begin{aligned}<br>
-&amp;1&amp;i\equiv 0(mod\ 2)\<br>
-&amp;(n)_2[i]&amp;i\equiv 1(mod\ 2)\<br>
-\end{aligned}<br>
-\right.<br>
-$$<br>
-注意，在上式中：</p>
-<ol>
-<li>
-<p>i代表的是二进制第i位，奇数轮的i为偶数，偶数轮的i为奇数</p>
-</li>
-<li>
-<p>编号从0开始，所以<br>
-$$<br>
-(n)_2[i]==\sim (n-1)_2[i]<br>
-$$</p>
-</li>
-</ol>
-<p>我们的编号是从0开始的，最后别忘了将答案加一</p>
-<h3 id="Pseudo-Code1">Pseudo Code1</h3>
-<p>$$<br>
-\begin{aligned}<br>
-&amp;ans\leftarrow 0;\<br>
-&amp;for\ i\ from\ 0\ to\ \log(n)-1\ do\<br>
-&amp;\quad if\ (i&amp;1)\ then\<br>
-&amp;\qquad ans\leftarrow ans\ |\ (2^i\ &amp;\ n);\<br>
-&amp;\quad else\<br>
-&amp;\qquad ans\leftarrow ans\ |\ 2^i;\<br>
-&amp;\quad endif\<br>
-&amp;end\<br>
-&amp;ans\leftarrow ans+1;\<br>
-&amp;print(ans);<br>
-\end{aligned}<br>
-$$</p>
-<p>复杂度分析：i从0循环到logn-1，整体复杂度为O(log)</p>
-<h3 id="Pseudo-Code2">Pseudo Code2</h3>
-<p>或者我们换一种实现方法，将for循环拆开<br>
-$$<br>
-\begin{aligned}<br>
-&amp;mod\leftarrow 2^{[\log(n)]};\<br>
-&amp;ans\leftarrow (n\ |\ 1431655765);\<br>
-&amp;ans\leftarrow ans\mod mod;\<br>
-&amp;ans\leftarrow ans+1;\<br>
-&amp;print(ans);\<br>
-\end{aligned}<br>
-$$<br>
-其中：</p>
-<ul>
-<li>
-<p>mod为n二进制下最高位1对应的数</p>
-</li>
-<li>
-<p>$$<br>
-1431655765=2^0+2^2+…2^{2k}<br>
-$$</p>
-</li>
-</ul>
-<p><strong>复杂度分析：O(1)</strong></p>
-<p>(家人们谁懂啊 把nlog的朴素方法优化到O(1)，真的是一件很酷的事~)</p>
-]]></content>
-      <categories>
-        <category>经验</category>
-      </categories>
-      <tags>
-        <tag>CO</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CO P1上机记录</title>
     <url>/2023/10/16/CO-P1%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<p>依旧是在遇到了大量突发情况下惊险完成了P1，于是想着将我的想法与遇到的问题写下，期望能够对大家有些许的启发www~</p>
@@ -837,6 +604,140 @@ $$</p>
 <h2 id="总结：">总结：</h2>
 <p>本次考试的三个题目，并没有简单地考查状态机或组合电路等基本知识，而是要求考生对Verilog编程语言具有较深刻的理解和熟练掌握，才能较为轻松地解决。</p>
 <p>同时，本次考试加大了对测试块（TB）编写的要求，对于P4及以后的练习，很可能会出现不编写测试块就无法解决的问题。愿我们都能在此之前武装到牙齿，能够从容面对即将到来的挑战~</p>
+]]></content>
+      <categories>
+        <category>经验</category>
+      </categories>
+      <tags>
+        <tag>CO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CO-P2上机记录</title>
+    <url>/2023/10/23/CO-P2%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<p>在十分紧张的情况下幸运完成了P2，于是结合考试中做的一些笔记与大家略微分享我的思路</p>
+<p>由于大家编写MIPS代码时主要以翻译为主，且选择工具链不一（指各种语言），所以本文将只展示思路，以伪代码形式呈现，并将我遇到的MIPS难点单独列出</p>
+<p><s>和《算法设计与分析》考试是笔试一个道理www</s></p>
+<hr>
+<h2 id="T1：P2-L2-merorder-2023"><a href="http://cscore.buaa.edu.cn/#/problem?ProblemId=1141&amp;PieId=1122">T1：P2_L2_merorder_2023</a></h2>
+<h3 id="Main-Idea">Main Idea</h3>
+<p>由于两个序列均为已经排好序的不下降数组，所以在编写程序时只需要遍历两个数组一遍，将较小者逐一合入新数组即可</p>
+<h3 id="Pseudo-Code">Pseudo Code</h3>
+<p>输入：两个长度分别为m，n的不下降数组a[] b[]</p>
+<p>输出：一个长度为(m+n)的数组ans[]，为所求合并后的数组<br>
+$$<br>
+\begin{aligned}<br>
+&amp;i\leftarrow 0;\<br>
+&amp;j\leftarrow 0;\<br>
+&amp;while\ (i&lt;n\ &amp;&amp;\ j&lt;m)\ do\<br>
+&amp;\quad while\ (A[i]&lt;=B[j])\ do\<br>
+&amp;\qquad print\ (A[i++]);\<br>
+&amp;\quad end\<br>
+&amp;\quad while\ (A[i]&gt;B[j])\ do\<br>
+&amp;\qquad print\ (B[j++]);\<br>
+&amp;\quad end\<br>
+&amp;end\<br>
+&amp;while\ (i&lt;n)\ do\<br>
+&amp;\quad print(A[i++]);\<br>
+&amp;end\<br>
+&amp;while\ (j&lt;m)\ do\<br>
+&amp;\quad print(B[j++]);\<br>
+&amp;end\<br>
+\end{aligned}<br>
+$$<br>
+复杂度分析：i和j需要遍历完两个数组一遍，所以复杂度为O(n+m)</p>
+<h3 id="注意点：">注意点：</h3>
+<ol>
+<li>
+<p>这种写法由于是while套while，会导致lable上增加难度，建议提前在代码中为不同的while注释不同的名字，方便程序写作，如：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span>()&#123;</span><br><span class="line"><span class="comment">//while1</span></span><br><span class="line">    <span class="keyword">while</span>()<span class="comment">/*do something*/</span>;</span><br><span class="line">    <span class="comment">//while2</span></span><br><span class="line">    <span class="keyword">while</span>()<span class="comment">/*do something*/</span>;</span><br><span class="line">	<span class="comment">//while3</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>()<span class="comment">/*do something*/</span>;</span><br><span class="line"><span class="comment">//while4</span></span><br><span class="line"><span class="keyword">while</span>()<span class="comment">/*do something*/</span>;</span><br><span class="line"><span class="comment">//while5</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在实际写作中，因为不考虑效率要求，也可以将内层循环中的while改为if，设置标签时会更简单一些</p>
+</li>
+<li>
+<p>本题数据范围较小，所以也可以使用类似计数排序的方法，期望复杂度和遍历两个数组一致</p>
+</li>
+<li>
+<p>说出来给大家乐呵一下，在下<code>.space</code>忘乘4了，de了好一会儿🙏</p>
+</li>
+</ol>
+<hr>
+<h2 id="T2：P2-L1-asteroids-2023"><a href="http://cscore.buaa.edu.cn/#/problem?ProblemId=1162&amp;PieId=1122">T2：P2_L1_asteroids_2023</a></h2>
+<p>题目编号 1122-1162</p>
+<p>本题的代码已经给出来啦~而且方法很巧妙，对着翻译就好！</p>
+<p><s>甚至可以不看题面</s></p>
+<p>没有想到可以补充的地方，过~</p>
+<hr>
+<h2 id="T3：LeetCode-390-消除游戏"><a href="https://leetcode.cn/problems/elimination-game">T3：LeetCode: 390. 消除游戏</a></h2>
+<p>为大家找到了代码的提交入口（误）</p>
+<p>除用标程的递归外（标程的参数可以减少至一个），本题也可以使用位运算完成</p>
+<h3 id="Main-Idea-2">Main Idea</h3>
+<p>将这n个数标记为0…n-1</p>
+<p>若当前为奇数轮，则删除操作为从0开始，隔一个删除一个，可以等效为“删除所有二进制末尾为0的数字“，答案当前位的二进制赋1</p>
+<p>若当前为偶数轮，则删除操作为从最后一个数开始，隔一个删除一个，可以等效为”删除所有二进制下末尾数与最大数末位数相同的数字“，答案当前位的二进制赋最大数末位数的反</p>
+<p>换种说法，就是：<br>
+$$<br>
+(ans)_2[i]=\left{<br>
+\begin{aligned}<br>
+&amp;1&amp;i\equiv 0(mod\ 2)\<br>
+&amp;(n)_2[i]&amp;i\equiv 1(mod\ 2)\<br>
+\end{aligned}<br>
+\right.<br>
+$$<br>
+注意，在上式中：</p>
+<ol>
+<li>
+<p>i代表的是二进制第i位，奇数轮的i为偶数，偶数轮的i为奇数</p>
+</li>
+<li>
+<p>编号从0开始，所以<br>
+$$<br>
+(n)_2[i]==\sim (n-1)_2[i]<br>
+$$</p>
+</li>
+</ol>
+<p>我们的编号是从0开始的，最后别忘了将答案加一</p>
+<h3 id="Pseudo-Code1">Pseudo Code1</h3>
+<p>$$<br>
+\begin{aligned}<br>
+&amp;ans\leftarrow 0;\<br>
+&amp;for\ i\ from\ 0\ to\ \log(n)-1\ do\<br>
+&amp;\quad if\ (i&amp;1)\ then\<br>
+&amp;\qquad ans\leftarrow ans\ |\ (2^i\ &amp;\ n);\<br>
+&amp;\quad else\<br>
+&amp;\qquad ans\leftarrow ans\ |\ 2^i;\<br>
+&amp;\quad endif\<br>
+&amp;end\<br>
+&amp;ans\leftarrow ans+1;\<br>
+&amp;print(ans);<br>
+\end{aligned}<br>
+$$</p>
+<p>复杂度分析：i从0循环到logn-1，整体复杂度为O(log)</p>
+<h3 id="Pseudo-Code2">Pseudo Code2</h3>
+<p>或者我们换一种实现方法，将for循环拆开<br>
+$$<br>
+\begin{aligned}<br>
+&amp;mod\leftarrow 2^{[\log(n)]};\<br>
+&amp;ans\leftarrow (n\ |\ 1431655765);\<br>
+&amp;ans\leftarrow ans\mod mod;\<br>
+&amp;ans\leftarrow ans+1;\<br>
+&amp;print(ans);\<br>
+\end{aligned}<br>
+$$<br>
+其中：</p>
+<ul>
+<li>
+<p>mod为n二进制下最高位1对应的数</p>
+</li>
+<li>
+<p>$$<br>
+1431655765=2^0+2^2+…2^{2k}<br>
+$$</p>
+</li>
+</ul>
+<p><strong>复杂度分析：O(1)</strong></p>
+<p>(家人们谁懂啊 把nlog的朴素方法优化到O(1)，真的是一件很酷的事~)</p>
 ]]></content>
       <categories>
         <category>经验</category>
@@ -1765,6 +1666,105 @@ $$</p>
       </tags>
   </entry>
   <entry>
+    <title>462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台</title>
+    <url>/2023/11/04/462OJ-Ver1-0-%E5%9F%BA%E4%BA%8E%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84CO%E8%87%AA%E5%8A%A8%E5%8C%96%E8%AF%84%E6%B5%8BOJ%E5%B9%B3%E5%8F%B0/</url>
+    <content><![CDATA[<h1>462OJ Ver1.0 - 基于云服务器的CO自动化评测OJ平台</h1>
+<blockquote>
+<p>花米租服务器不易，欢迎大家前来品尝 :)</p>
+</blockquote>
+<h2 id="简介">简介</h2>
+<p>使用c++，python等编程语言综合开发，能将verilog代码提交至远程服务器并自动评测输出结果</p>
+<h2 id="特点">特点</h2>
+<ul>
+<li>
+<p>使用学长<code>Toby Shi</code>的魔改Mars对拍验证输出正确性</p>
+</li>
+<li>
+<p>无需在本地配置iverilog，python等环境，主打&quot;<strong>拿来就用</strong>&quot;</p>
+<ul>
+<li>未来将部署ISE，争取实现行为与课程平台一致</li>
+</ul>
+</li>
+<li>
+<p>提供更强的数据点以供评测</p>
+<ul>
+<li>
+<p>保证每个数据点均能被正确执行，在此基础上增强数据强度</p>
+</li>
+<li>
+<p>当前版本由线下准备数据点，未来将把数据点生成任务集成至云服务器</p>
+</li>
+</ul>
+</li>
+<li>
+<p>结合课程进度推进更新数据点</p>
+</li>
+<li>
+<p>每次测试后均删除上传代码，隐私得到保障</p>
+</li>
+</ul>
+<h2 id="使用指南">使用指南</h2>
+<h3 id="准备文件">准备文件</h3>
+<p>将全部.v文件（不包括testbench文件）打包至文件夹，文件夹名为<code>&#123;学号&#125;_P4</code>，注意将顶层文件模块名改为<code>mips.v</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">|-- 2237xxxx_P4</span><br><span class="line">|   |-- mips.v</span><br><span class="line">|   |-- alu.v</span><br><span class="line">|   |-- grf.v</span><br><span class="line">|   |-- ......</span><br></pre></td></tr></table></figure>
+<h3 id="上传文件">上传文件</h3>
+<p>在终端(如cmd中)运行</p>
+<p>其中“{}”不需要被打出，下同</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp -r &#123;包含.v文件的文件夹绝对路径&#125; stu&#123;学号&#125;@82.157.78.233:~</span><br></pre></td></tr></table></figure>
+<p>按照提示输入密码，等待文件上传成功</p>
+<h3 id="进行评测">进行评测</h3>
+<p>在终端运行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh stu&#123;学号&#125;@82.157.78.233</span><br></pre></td></tr></table></figure>
+<p>按照提示输入密码，登录成功后运行指令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ bash runP4.sh &#123;学号&#125;</span><br></pre></td></tr></table></figure>
+<p>即可进行评测并获得结果反馈</p>
+<blockquote>
+<p>如果你已经会使用linux指令，那么这些对你来说都不是什么难事</p>
+</blockquote>
+<h3 id="查看评测结果">查看评测结果</h3>
+<p>登录成功后运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ bash judgeP4.sh &#123;学号&#125;</span><br></pre></td></tr></table></figure>
+<p>可以查看最近一次的评测信息，默认<strong>不显示</strong>错误数据点的信息</p>
+<p>需要查看<strong>所有</strong>错误数据点的信息，可以运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ bash judgeP4.sh &#123;学号&#125; all</span><br></pre></td></tr></table></figure>
+<p>需要查看<strong>第一个</strong>错误数据点的信息，可以运行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ bash judgeP4.sh &#123;学号&#125; first</span><br></pre></td></tr></table></figure>
+<h2 id="评测信息解读">评测信息解读</h2>
+<p>对每一个测试点，评测机会返回<code>Accepted</code>，<code>Wrong Answer</code>，<code>Output more than expected</code>，<code>Output more than expected</code>四种提示信息当中的一种，只有返回<code>Accepted</code>时才会评判为该数据点通过</p>
+<p><code>$ bash runP4.sh &#123;学号&#125;</code>的返回信息示例如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">User ID: /home/ubuntu/ans/P4/2237xxxx</span><br><span class="line">··············································</span><br><span class="line">Case 1: Output less than expected. Matching rate is 0.9838018990876932.</span><br><span class="line">Valid output(s): 94</span><br><span class="line">··············································</span><br><span class="line">Case 2: Output more than expected. Matching rate is 0.893569431500466.</span><br><span class="line">Valid output(s): 98</span><br><span class="line">··············································</span><br><span class="line">Case 3: Wrong Answer. Matching rate is 0.5222513089005235.</span><br><span class="line">Valid output(s): 107</span><br><span class="line">··············································</span><br><span class="line">Case 4: Accepted.</span><br><span class="line">Valid output(s): 133</span><br><span class="line">··············································</span><br><span class="line">Case 5: Accepted.</span><br><span class="line">Valid output(s): 57</span><br><span class="line">··············································</span><br><span class="line">Case 6: Accepted.</span><br><span class="line">Valid output(s): 88</span><br><span class="line">··············································</span><br><span class="line">Case 7: Accepted.</span><br><span class="line">Valid output(s): 46</span><br><span class="line">··············································</span><br><span class="line">Case 8: Accepted.</span><br><span class="line">Valid output(s): 117</span><br><span class="line">··············································</span><br><span class="line">Case 9: Accepted.</span><br><span class="line">Valid output(s): 51</span><br><span class="line">··············································</span><br><span class="line">Case 10: Accepted.</span><br><span class="line">Valid output(s): 77</span><br><span class="line">··············································</span><br><span class="line">Test Accuracy: 7 / 10.</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>所有数据点通过，系统会额外返回<code>Congratulations!</code></p>
+</blockquote>
+<p>当出现错误数据点时，在<code>first</code>和<code>all</code>条件下，系统将打印你的输出与期望输出之间的差异文本，样例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  @00003004: $ 5 &lt;= 3f500000</span><br><span class="line">- @00003008: $ 3 &lt;= 00003f74</span><br><span class="line">- @00003038: $20 &lt;= 00000000</span><br><span class="line">- @0000303c: $ 8 &lt;= 00000000</span><br><span class="line">  @00003040: *00001924 &lt;= 00003f74</span><br></pre></td></tr></table></figure>
+<p>表示你的输出比期望输出<strong>缺失</strong>所列三行；</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  @0000303c: $30 &lt;= 00000000</span><br><span class="line">+ @00003040: $ 3 &lt;= 00000000</span><br><span class="line">+ @00003044: $25 &lt;= 036c3744</span><br><span class="line">+ @00003048: $13 &lt;= 1f0c0000</span><br><span class="line">  @00003040: $ 3 &lt;= 00000000</span><br></pre></td></tr></table></figure>
+<p>表示你的输出比期望输出<strong>多出</strong>所列三行；</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">  @000030d8: $ 5 &lt;= 00000000</span><br><span class="line">- @000030dc: *000005d4 &lt;= 00000000</span><br><span class="line">?                              ^^^</span><br><span class="line"></span><br><span class="line">+ @000030dc: *000005d4 &lt;= 00000aaa</span><br><span class="line">?                              ^^^</span><br><span class="line"></span><br><span class="line">  @000030e0: $ 5 &lt;= 00000000</span><br><span class="line">- @000030e4: $19 &lt;= 01640000</span><br><span class="line">+ @000030e4: $19 &lt;= xxxxxxxx</span><br><span class="line">- @000030e8: $17 &lt;= 3b980000</span><br><span class="line">?                         ^^</span><br><span class="line"></span><br><span class="line">+ @000030e8: $17 &lt;= 3b9800cc</span><br><span class="line">?                         ^^</span><br></pre></td></tr></table></figure>
+<p>表示你的输出与答案存在差异。</p>
+<p>其中，<code>-</code>标记的为期望输出，<code>+</code>标记的为你的输出，<code>?</code>和<code>^</code>标记了你的输出与期望输出的不同。</p>
+<h2 id="获取账号">获取账号</h2>
+<p>获取账号方式，请通过邮件fysszlr@qq.com或添加我微信和我联系（保证免费）</p>
+<h2 id="注意事项">注意事项</h2>
+<p>请勿用本服务器进行任何与CO程序评测无关的事情！</p>
+<p>包括但不限于把服务器当云盘用，用服务器来挖矿等！</p>
+<h2 id="最后">最后</h2>
+<p>本项目灵感来自上学期myk学长写的简易数据结构oj</p>
+<p>感谢zlr同学进行服务器框架搭建、评测文件编程等工作</p>
+<p>感谢lpf同学进行测试数据点随机生成、验证正确性与强度等工作</p>
+<p>感谢zxw同学进行机器码、测试点导出，文本对拍评测等工作</p>
+<p>受开发者水平限制，本oj难免有许多问题，还请学长和同学不吝指教🙏</p>
+<p>如有问题，请截图发送到此帖下，或联系管理员fysszlr@qq.com（22373425张栗瑞）</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>CO</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CO pre上机记录</title>
     <url>/2023/09/25/CO-pre%E4%B8%8A%E6%9C%BA%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<p>之前打noip的时候经常看别人的心路历程，现在终于轮到我写了~~(bushi)~~</p>
@@ -1792,95 +1792,166 @@ $$</p>
       </tags>
   </entry>
   <entry>
-    <title>Hexo-Solitude(Acrylic)博客配置教程</title>
-    <url>/2024/08/15/Hexo-Solitude(Arclicy)%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="Hexo-Solitude-Acrylic-博客配置教程">Hexo-Solitude(Acrylic)博客配置教程</h2>
-<blockquote>
-<p>在嘈杂的互联网中寻求属于自己的一方净土，并非遥不可及…</p>
-<p>也许你才刚刚踏上旅程、也许你已经踩过坑坑洼洼，但是…让我们继续出发~</p>
-<p>注：Acrylic目前已经停止维护，项目文件已经不兼容许多库，建议使用Solitude</p>
-</blockquote>
-<h3 id="配置">配置</h3>
+    <title>OOpre Lec4-输入解析的结构性设计</title>
+    <url>/2023/10/08/OOpre-Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<p><s>明明应该是国庆假期的，🐭🐭却要来上op（哭）</s></p>
+<hr>
+<h1>Lec4-输入解析的结构性设计</h1>
+<h2 id="输入序列结构的特征分析">输入序列结构的特征分析</h2>
+<h4 id="为什么需要输入解析？">为什么需要输入解析？</h4>
 <ul>
-<li>Windows 11</li>
-<li>2024年7月</li>
-<li>已经提前安装并配置好git（这部分建议搜索相关git教程）</li>
+<li>
+<p>如果用户输入的数据格式不正确获证解析出错，就会导致结果错</p>
+<p>garbage in$\rightarrow$garbage out</p>
+</li>
+<li>
+<p>方便用户交互与体验</p>
+</li>
+<li>
+<p>便于维护</p>
+</li>
 </ul>
-<h4 id="技术路线">技术路线</h4>
-<p>node.js + hexo + github  + solitude</p>
-<h3 id="主要流程">主要流程</h3>
+<h4 id="输入解析的步骤">输入解析的步骤</h4>
 <ol>
-<li>安装node.js</li>
-<li>安装hexo</li>
+<li>获取输入</li>
+<li>提取数据</li>
+<li>验证数据</li>
+<li>转换为程序内部数据</li>
 </ol>
-<h3 id="1-安装node-js">1 安装node.js</h3>
-<h4 id="1-1-打开node-js官网，在上方选项栏选择“下载”栏目">1.1 打开<a href="https://nodejs.org/zh-cn">node.js官网</a>，在上方选项栏选择“下载”栏目</h4>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723150847771.png" alt="1"></p>
-<h4 id="1-2-选择自己需要的版本下载">1.2 选择自己需要的版本下载</h4>
-<p><s>我的建议是不要选择太新的node.js，与hexo很可能不匹配，这里我选择v14.21.3</s>（也不一定）</p>
-<p>不太会用命令行的同学可以点“预构建安装程序”傻瓜式下载（会用命令行的同学也推荐傻瓜式下载）</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723151249900.png" alt="2"></p>
-<h4 id="1-3-打开下载好的安装程序，一键安装">1.3 打开下载好的安装程序，一键安装</h4>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723151405702.png" alt="3"></p>
-<h4 id="1-4-测试node-js安装情况">1.4 测试node.js安装情况</h4>
-<p>打开命令行（win+R 输cmd），输入：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-<p>出现如下提示即为安装成功：</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723151723583.png" alt="4"></p>
-<h3 id="2-安装hexo">2 安装hexo</h3>
-<h4 id="2-1-通过镜像站安装hexo">2.1 通过镜像站安装hexo</h4>
-<p><s>吐槽一句，很多这里博客会推荐大家下载cnpm，然后用cnpm下载hexo，但实际上cnpm的下载过程中往往伴随着各种出错（楽）</s></p>
-<p>打开命令行（win+R 输cmd），输入：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli -registry=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
-<p>稍微解释一下，<code>-g</code>指定了安装包的名称，<code>-registry=</code>指定了远程仓库的位置（默认是海外的服务器，科学上网可以不加这个）</p>
-<p><code>registry.npmmirror.com</code>是淘宝的npm镜像站，原名称是<code>registry.npm.taobao.org</code>，现在使用老网址会提示证书过期</p>
-<p>如果出现以下提示即可能为安装成功：</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723153644542.png" alt="5"></p>
-<h4 id="2-2-验证hexo安装">2.2 验证hexo安装</h4>
-<p>打开命令行（win+R 输cmd），输入：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
-<p>出现以下提示即为安装成功：</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723153833477.png" alt="6"></p>
-<h4 id="2-3-初始化hexo">2.3 初始化hexo</h4>
-<p>在你喜欢的地方（建议全英文路径），创建一个名为<code>blog</code>的文件夹，它以后就是我们的博客的主文件夹了</p>
-<p>在blog文件夹中打开命令行（推荐blog文件夹地址栏输cmd，回车），输入：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>如果没有科学上网，很可能出现在以下地方卡住的情况：<br>
-<img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723160030095.png" alt="7"></p>
-<p>让我们来hexo的<a href="https://github.com/hexojs/hexo-cli/blob/master/lib/console/init.ts">源码</a>中来找找原因：</p>
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">BlueBirdPromise</span> <span class="keyword">from</span> <span class="string">&#x27;bluebird&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; join, resolve &#125; <span class="keyword">from</span> <span class="string">&#x27;path&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; magenta &#125; <span class="keyword">from</span> <span class="string">&#x27;picocolors&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; existsSync, readdirSync, rmdir, unlink, copyDir, readdir, stat &#125; <span class="keyword">from</span> <span class="string">&#x27;hexo-fs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> tildify <span class="keyword">from</span> <span class="string">&#x27;tildify&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> spawn <span class="keyword">from</span> <span class="string">&#x27;hexo-util/dist/spawn&#x27;</span>; <span class="comment">// for rewire</span></span><br><span class="line"><span class="keyword">import</span> &#123; sync <span class="keyword">as</span> commandExistsSync &#125; <span class="keyword">from</span> <span class="string">&#x27;command-exists&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> <span class="title class_">Context</span> <span class="keyword">from</span> <span class="string">&#x27;../context&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">ASSET_DIR</span> = <span class="title function_">join</span>(__dirname, <span class="string">&#x27;../../assets&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">GIT_REPO_URL</span> = <span class="string">&#x27;https://github.com/hexojs/hexo-starter.git&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">InitArgs</span> &#123;</span><br><span class="line">  <span class="attr">_</span>: <span class="built_in">string</span>[];</span><br><span class="line">  install?: <span class="built_in">boolean</span>;</span><br><span class="line">  clone?: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">initConsole</span>(<span class="params"><span class="attr">this</span>: <span class="title class_">Context</span>, <span class="attr">args</span>: <span class="title class_">InitArgs</span></span>) &#123;</span><br><span class="line">  args = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123; <span class="attr">install</span>: <span class="literal">true</span>, <span class="attr">clone</span>: <span class="literal">true</span> &#125;, args);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> baseDir = <span class="variable language_">this</span>.<span class="property">base_dir</span>;</span><br><span class="line">  <span class="keyword">const</span> target = args.<span class="property">_</span>[<span class="number">0</span>] ? <span class="title function_">resolve</span>(baseDir, args.<span class="property">_</span>[<span class="number">0</span>]) : baseDir;</span><br><span class="line">  <span class="keyword">const</span> &#123; log &#125; = <span class="variable language_">this</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">existsSync</span>(target) &amp;&amp; <span class="title function_">readdirSync</span>(target).<span class="property">length</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">    log.<span class="title function_">fatal</span>(<span class="string">`<span class="subst">$&#123;magenta(tildify(target))&#125;</span> not empty, please run \`hexo init\` on an empty folder and then copy your files into it`</span>);</span><br><span class="line">    <span class="keyword">await</span> <span class="title class_">BlueBirdPromise</span>.<span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;target not empty&#x27;</span>));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  log.<span class="title function_">info</span>(<span class="string">&#x27;Cloning hexo-starter&#x27;</span>, <span class="variable constant_">GIT_REPO_URL</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (args.<span class="property">clone</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">spawn</span>(<span class="string">&#x27;git&#x27;</span>, [<span class="string">&#x27;clone&#x27;</span>, <span class="string">&#x27;--recurse-submodules&#x27;</span>, <span class="string">&#x27;--depth=1&#x27;</span>, <span class="string">&#x27;--quiet&#x27;</span>, <span class="variable constant_">GIT_REPO_URL</span>, target], &#123;</span><br><span class="line">        <span class="attr">stdio</span>: <span class="string">&#x27;inherit&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      log.<span class="title function_">warn</span>(<span class="string">&#x27;git clone failed. Copying data instead&#x27;</span>);</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">copyAsset</span>(target);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">copyAsset</span>(target);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> <span class="title class_">BlueBirdPromise</span>.<span class="title function_">all</span>([</span><br><span class="line">    <span class="title function_">removeGitDir</span>(target),</span><br><span class="line">    <span class="title function_">removeGitModules</span>(target)</span><br><span class="line">  ]);</span><br><span class="line">  <span class="keyword">if</span> (!args.<span class="property">install</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  log.<span class="title function_">info</span>(<span class="string">&#x27;Install dependencies&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> npmCommand = <span class="string">&#x27;npm&#x27;</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">commandExistsSync</span>(<span class="string">&#x27;pnpm&#x27;</span>)) &#123;</span><br><span class="line">    npmCommand = <span class="string">&#x27;pnpm&#x27;</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="title function_">commandExistsSync</span>(<span class="string">&#x27;yarn&#x27;</span>)) &#123;</span><br><span class="line">    npmCommand = <span class="string">&#x27;yarn&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (npmCommand === <span class="string">&#x27;yarn&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> yarnVer = <span class="keyword">await</span> <span class="title function_">spawn</span>(npmCommand, [<span class="string">&#x27;--version&#x27;</span>], &#123;</span><br><span class="line">        <span class="attr">cwd</span>: target</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> yarnVer === <span class="string">&#x27;string&#x27;</span> &amp;&amp; yarnVer.<span class="title function_">startsWith</span>(<span class="string">&#x27;1&#x27;</span>)) &#123;</span><br><span class="line">        <span class="keyword">await</span> <span class="title function_">spawn</span>(npmCommand, [<span class="string">&#x27;install&#x27;</span>, <span class="string">&#x27;--production&#x27;</span>, <span class="string">&#x27;--ignore-optional&#x27;</span>, <span class="string">&#x27;--silent&#x27;</span>], &#123;</span><br><span class="line">          <span class="attr">cwd</span>: target,</span><br><span class="line">          <span class="attr">stdio</span>: <span class="string">&#x27;inherit&#x27;</span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        npmCommand = <span class="string">&#x27;npm&#x27;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (npmCommand === <span class="string">&#x27;pnpm&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">spawn</span>(npmCommand, [<span class="string">&#x27;install&#x27;</span>, <span class="string">&#x27;--prod&#x27;</span>, <span class="string">&#x27;--no-optional&#x27;</span>, <span class="string">&#x27;--silent&#x27;</span>], &#123;</span><br><span class="line">        <span class="attr">cwd</span>: target,</span><br><span class="line">        <span class="attr">stdio</span>: <span class="string">&#x27;inherit&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (npmCommand === <span class="string">&#x27;npm&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">spawn</span>(npmCommand, [<span class="string">&#x27;install&#x27;</span>, <span class="string">&#x27;--only=production&#x27;</span>, <span class="string">&#x27;--optional=false&#x27;</span>, <span class="string">&#x27;--silent&#x27;</span>], &#123;</span><br><span class="line">        <span class="attr">cwd</span>: target,</span><br><span class="line">        <span class="attr">stdio</span>: <span class="string">&#x27;inherit&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    log.<span class="title function_">info</span>(<span class="string">&#x27;Start blogging with Hexo!&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    log.<span class="title function_">warn</span>(<span class="string">`Failed to install dependencies. Please run &#x27;npm install&#x27; in &quot;<span class="subst">$&#123;target&#125;</span>&quot; folder.`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">copyAsset</span>(<span class="params"><span class="attr">target</span>: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">copyDir</span>(<span class="variable constant_">ASSET_DIR</span>, target, &#123; <span class="attr">ignoreHidden</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">removeGitDir</span>(<span class="params"><span class="attr">target</span>: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> gitDir = <span class="title function_">join</span>(target, <span class="string">&#x27;.git&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">stat</span>(gitDir).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err &amp;&amp; err.<span class="property">code</span> === <span class="string">&#x27;ENOENT&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line">  &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">stats</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (stats) &#123;</span><br><span class="line">      <span class="keyword">return</span> stats.<span class="title function_">isDirectory</span>() ? <span class="title function_">rmdir</span>(gitDir) : <span class="title function_">unlink</span>(gitDir);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> <span class="title function_">readdir</span>(target)).<span class="title function_">map</span>(<span class="function"><span class="params">path</span> =&gt;</span> <span class="title function_">join</span>(target, path)).<span class="title function_">filter</span>(<span class="function"><span class="params">path</span> =&gt;</span> <span class="title function_">stat</span>(path).<span class="title function_">then</span>(<span class="function"><span class="params">stats</span> =&gt;</span> stats.<span class="title function_">isDirectory</span>())).<span class="title function_">each</span>(removeGitDir);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">removeGitModules</span>(<span class="params"><span class="attr">target</span>: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">unlink</span>(<span class="title function_">join</span>(target, <span class="string">&#x27;.gitmodules&#x27;</span>));</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="keyword">if</span> (err &amp;&amp; err.<span class="property">code</span> === <span class="string">&#x27;ENOENT&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> = initConsole;</span><br></pre></td></tr></table></figure>
-<p>虽然洋洋洒洒一百来行，但翻译下来只有两行对我们来说是有用的</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">git clone --recurse-submodules --depth=<span class="number">1</span> --quiet https://github.com/hexojs/hexo-starter.git .</span><br><span class="line">npm install --only=prodection --optional=false --silent</span><br></pre></td></tr></table></figure>
-<p>可以发现，正是<code>npm install --only=prodection --optional=false --silent</code>导致了卡死</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723160839120.png" alt="8"></p>
-<p>还记得我们安装hexo的操作嘛？没错~<br>
-加入<code>--registry=https://registry.npmmirror.com</code><br>
-在blog文件夹里打开cmd，输入：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">git clone --recurse-submodules --depth=<span class="number">1</span> --quiet https://github.com/hexojs/hexo-starter.git .</span><br><span class="line">npm install --only=prodection --optional=false --registry=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
-<p>观察到：</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723161219071.png" alt="9"></p>
-<p>无视warning，安装成功！（如果加入了–silent，则观察不到这么多额外输出）</p>
-<h4 id="2-4-启动hexo（搭建第一个本地网站）">2.4 启动hexo（搭建第一个本地网站）</h4>
-<p>在blog文件夹打开cmd，输入：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<p>这个命令会启动hexo服务器，观察到以下输出即为启动成功：</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723161901953.png" alt="10"></p>
-<p>打开任意浏览器，输入<code>http://localhost:4000/</code>，成功Hello World~</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723162007530.png" alt="11"></p>
-<h3 id="3-Solitude下载安装运行">3 Solitude下载安装运行</h3>
-<p>这部分请参考<a href="https://solitude.js.org/zh/guide/quick-start">官方文档</a>~</p>
-<h3 id="4-魔改">4 魔改</h3>
-<p>会把自己研究的小玩意儿以及遇到的bug放在这里，施工中ing</p>
-<h4 id="4-1-hexo-g后不自动产生-archives页面">4.1 hexo g后不自动产生/archives页面</h4>
-<p>archives生成需要hexo-generator-archive</p>
-<p>解决方案：</p>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
+<h2 id="输入序列结构到对象层次结构的映射">输入序列结构到对象层次结构的映射</h2>
+<ul>
+<li>
+<p>输入解析</p>
+<p>将输入数据从原始格式转换为程序所能处理的**数据（结构）**的过程</p>
+</li>
+<li>
+<p>对象构造</p>
+<p>将输入解析的**数据（结构）<strong>映射到</strong>对象（层次结构）**的过程</p>
+<p>需要设计合适的<strong>对象模型（数据结构设计）</strong></p>
+</li>
+</ul>
+<h2 id="正则表达式的模式结构介绍">正则表达式的模式结构介绍</h2>
+<p><s>啊啊啊都一节课过去了，这个最重要的部分他怎么还没开始讲（小声）</s></p>
+<h4 id="语法介绍">语法介绍</h4>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td>匹配前面的模式零次或多次</td>
+</tr>
+<tr>
+<td>+</td>
+<td>匹配前面的模式一次或多次</td>
+</tr>
+<tr>
+<td>？</td>
+<td>匹配前面的模式零次或一次</td>
+</tr>
+<tr>
+<td>{n}</td>
+<td>匹配前面的模式恰好 n 次</td>
+</tr>
+<tr>
+<td>{n,}</td>
+<td>匹配前面的模式至少 n 次</td>
+</tr>
+<tr>
+<td>{n,m}</td>
+<td>匹配前面的模式至少 n 次且不超过 m 次</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>匹配括号内的任意一个字符</td>
+</tr>
+<tr>
+<td>[^ ]</td>
+<td>匹配除了括号内的字符以外的任意一个字符</td>
+</tr>
+<tr>
+<td>^</td>
+<td>匹配字符串的开头</td>
+</tr>
+<tr>
+<td>$</td>
+<td>匹配字符串的结尾</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>匹配单词边界</td>
+</tr>
+<tr>
+<td>\B</td>
+<td>匹配非单词边界</td>
+</tr>
+<tr>
+<td>( )</td>
+<td>用于分组和捕获子表达式</td>
+</tr>
+<tr>
+<td>( ?)</td>
+<td>非贪婪匹配</td>
+</tr>
+<tr>
+<td>(?: )</td>
+<td>用于分组但不捕获子表达式</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义字符，用于匹配特殊字符本身</td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配任意字符（除了换行符）</td>
+</tr>
+<tr>
+<td>|</td>
+<td>用于指定多个模式的选择</td>
+</tr>
+<tr>
+<td>\d</td>
+<td>匹配任意数字字符</td>
+</tr>
+<tr>
+<td>\D</td>
+<td>匹配任意\d不能匹配的字符</td>
+</tr>
+<tr>
+<td>\w</td>
+<td>匹配任意字母数字或下划线字符</td>
+</tr>
+<tr>
+<td>\W</td>
+<td>匹配任意\w不能匹配的字符</td>
+</tr>
+<tr>
+<td>\s</td>
+<td>匹配任意空白字符</td>
+</tr>
+<tr>
+<td>\S</td>
+<td>匹配任意非空白字符</td>
+</tr>
+</tbody>
+</table>
+<h4 id="贪婪匹配">贪婪匹配</h4>
+<p>正则表达式默认采用<strong>贪婪匹配</strong>——任何一个模式，都会尽可能匹配多个字符</p>
+<p>在模式表达式后添加？，即代表<strong>非贪婪匹配</strong></p>
+<h4 id="层次正则">层次正则</h4>
+<p>如果查找元字符本身，比如查找.,或者*，就出现了问题：没法指定它们，因为被解释成其它的意思，这时必须使用\来取消这些字符的特殊意义</p>
+<h2 id="作业内容">作业内容</h2>
+<p>引入战斗模式和战斗日志（原神怎么你了）🤣👉🤡</p>
 ]]></content>
       <categories>
-        <category>经验</category>
+        <category>笔记</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>OOpre</tag>
       </tags>
   </entry>
   <entry>
@@ -2196,6 +2267,16 @@ sizeof(T)</li>
 <p>String Literal vs. String</p>
 <p>双引号内不包含&quot;\0&quot;的String Literal叫做String，String Literal包含String</p>
 <h4 id="Compound-Literal">Compound Literal</h4>
+<h4 id="内存管理函数">内存管理函数</h4>
+<p>malloc</p>
+<ol>
+<li>分配一个匿名对象，该对象<strong>无对象类型</strong></li>
+<li>大小为size</li>
+<li>对象表示为indeterminate</li>
+<li>返回值为空指针（未成功）或者这个对象的首地址</li>
+<li>该对象的Storage Duration是allocated</li>
+<li>对齐要求为Fundamental Alignment，保证了返回的void*指针可以强转成任意类型</li>
+</ol>
 <h4 id="initalizier">initalizier</h4>
 <p>初始化对象的<strong>对象表示</strong></p>
 <p>标量类型initiallizer形式：</p>
@@ -2223,6 +2304,190 @@ sizeof(T)</li>
 <p>当对<strong>变长数组</strong>初始化时，只能使用{}进行初始化</p>
 <p>没有initializer时，对象值初始化为indeterminate representation（不确定值）</p>
 <p>对象值、对象表示一一对应</p>
+<h2 id="表达式">表达式</h2>
+<blockquote>
+<p>C语言中，定位一个对象，只能通过lvalue（locate value）</p>
+</blockquote>
+<ul>
+<li>表达式（Exp）由一些列符号和操作数组成</li>
+<li>共有17种表达式</li>
+</ul>
+<h3 id="Evaluation-of-Expression">Evaluation of Expression</h3>
+<ul>
+<li>Evaluate的过程包括
+<ol>
+<li>Value Computation（计算值）</li>
+<li>Initiation of Side Effect（确定副作用）</li>
+</ol>
+</li>
+<li>Value Computation得到表达式的rvalue，包含值和类型</li>
+</ul>
+<h3 id="基础表达式（Primary-Expression）">基础表达式（Primary Expression）</h3>
+<h4 id="标识符：包括对象标识符和函数标识符">标识符：包括对象标识符和函数标识符</h4>
+<ul>
+<li>对象声明 T O = Initializer，其中O就是对象标识符</li>
+<li>对象标识符是合法的lvalue</li>
+<li>Value Computation：非数组——对象值，数组——第一个元素首地址</li>
+<li>Side Effect：无</li>
+</ul>
+<h4 id="常量">常量</h4>
+<ul>
+<li>
+<p>非左值，无法定位对象</p>
+</li>
+<li>
+<p>整数常量、浮点数常量、枚举常量、字符常量、预定义常量</p>
+</li>
+<li>
+<p>整数常量：进制前缀+数字序列+类型后缀</p>
+<ul>
+<li>
+<p>前缀</p>
+<table>
+<thead>
+<tr>
+<th>前缀</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0b/0B</td>
+<td>二进制</td>
+</tr>
+<tr>
+<td>无</td>
+<td>十进制</td>
+</tr>
+<tr>
+<td>0</td>
+<td>八进制</td>
+</tr>
+<tr>
+<td>0x/0X</td>
+<td>十六进制</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><strong>后缀（重点）</strong></p>
+<blockquote>
+<p>敲不动了，放个图</p>
+</blockquote>
+<p>从上至下为类型匹配顺序<br>
+不考虑BitInt系列，整数常量的类型，最小是int（涉及到整型提升的概念）</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240924163425852.png" alt=""></p>
+</li>
+<li>
+<p>数字分隔符不能出现在第一个数字前，不能出现在最后一个数字后</p>
+</li>
+</ul>
+</li>
+<li>
+<p>浮点数常量：进制前缀+符号序列+后缀</p>
+<ul>
+<li>十进制符号序列形式：1.1e-3
+<ul>
+<li>科学计数部分不一定有</li>
+</ul>
+</li>
+<li>十六进制符号序列形式：0x100.5p2
+<ul>
+<li>幂的底数为2，指数部分为十进制</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>枚举常量，比较简单</p>
+</li>
+<li>
+<p>字符常量：编码前缀+单引号引导的有效字符</p>
+<ul>
+<li>
+<p>前缀<br>
+当没有给定前缀时，系统会默认类型，所以中文字符在一些系统会变成乱码</p>
+<table>
+<thead>
+<tr>
+<th>字符常量</th>
+<th>rvalue类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>‘a’</td>
+<td><strong>int</strong></td>
+</tr>
+<tr>
+<td>u8’a’</td>
+<td>char8_t</td>
+</tr>
+<tr>
+<td>u’a’</td>
+<td>char16_t</td>
+</tr>
+<tr>
+<td>U’a’</td>
+<td>char32_t</td>
+</tr>
+<tr>
+<td>L’a’</td>
+<td>wchar_t</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>有效字符</p>
+<ul>
+<li>基本源代码字符集</li>
+<li>基本执行字符集</li>
+<li>扩展源代码字符集、扩展执行字符集</li>
+</ul>
+</li>
+<li>
+<p>‘\x31’ ：以十六进制整数表示的字符，十进制值是49，依然是字符’1’</p>
+</li>
+</ul>
+</li>
+<li>
+<p>预定义常量：false、true、nullptr</p>
+<ul>
+<li>false和true分别为0和1，rvalue类型为bool</li>
+<li>nullptr是一个空指针类型，rvalue类型为在&lt;stddef.h&gt;中定义的nullptr_t类型</li>
+</ul>
+</li>
+</ul>
+<h4 id="字符串">字符串</h4>
+<p>字符串不是常量</p>
+<ul>
+<li>字符串可以用来分配（或重用）一个对象</li>
+<li>同时，字符串是一个lvalue，能够定位分配出来（或重用）的那个对象</li>
+</ul>
+<p>字符串分配（或重用）的对象类型是字符数组类型</p>
+<p>如果lvalue定位的对象是一个数组类型对象，则lvalue表达式Evaluate之后的rvalue就是该对象第一个元素的首地址，rvalue类型是元素对象类型对应的指针类型</p>
+<h4 id="括号表达式">括号表达式</h4>
+<p>evaluate的优先级最高，rvalue和类型等于括号内表达式的值</p>
+<h3 id="后缀表达式">后缀表达式</h3>
+<p>给定一个表达式exp，与后缀操作符结合构成的仍然是一个表达式</p>
+<p>后缀操作符：[]、.、-&gt;、++/–、(type-name){Initializer-list}、()</p>
+<h3 id="一元表达式">一元表达式</h3>
+<p>给定一个表达式exp，与一元操作符结构构成的仍然是一个表达式</p>
+<p>一元操作符：++/–、&amp;、*、+/-、~/!、sizeof、_Alignof</p>
+<h2 id="evaluate">evaluate</h2>
+<h3 id="定位非数组对象lvalue的evaluate">定位非数组对象lvalue的evaluate</h3>
+<p>对形如如下形式的lvalue不做evaluate，表达式整体evaluate由特殊规则确定</p>
+<ul>
+<li>sizeof(a)，编译时确定</li>
+<li>typeof(a)，编译时确定</li>
+<li>&amp;a，在main外时称为<strong>地址常量表达式</strong></li>
+<li>a++/a–，rvalue为a的rvalue加1或减1，同时将a的value改变（有副作用，可能两个不同时发生）</li>
+<li>++a/–a，rvalue为a的rvalue加1或减1，同时将a的value改变（有副作用，可能两个不同时发生）</li>
+<li>a=2，rvalue为等号右边表达式的rvalue，同时将左值的value改变（有副作用，可能两个不同时发生）</li>
+</ul>
+<p>常量不可修改的原因是左值为<strong>不可修改左值</strong></p>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -2354,79 +2619,25 @@ sizeof(T)</li>
       </tags>
   </entry>
   <entry>
-    <title>OOpre Lec6-继承与接口的使用</title>
-    <url>/2023/10/20/OOpre-Lec6-%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1>Lec6-继承与接口的使用</h1>
+    <title>OOpre Lec5-JAVA程序常见错误分析</title>
+    <url>/2023/10/13/OOpre-Lec5-JAVA%E7%A8%8B%E5%BA%8F%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<p>难道这周是习题课？ ——wxm</p>
 <hr>
-<h2 id="继承及其应用">继承及其应用</h2>
-<h3 id="extends">extends</h3>
-<ul>
-<li>子类可以访问父类的公共（public）和受保护 （protected）成员</li>
-<li>私有（private）成员无法被直接被访问，但可以通过调用父类的方法来访问</li>
-</ul>
-<p>可以使用obj instanceof MyCLass 表达式来判断对象 obj是否为MyClass的实例化对象</p>
-<h3 id="super">super</h3>
-<ul>
-<li>
-<p>使用 super.attribute 可以 引用父类中定义的非私有属性</p>
-</li>
-<li>
-<p>如果子类重写了父类的某个方法，那么子类通过super.methodName() 可以 调用父类所实现的那个方法</p>
-<p>(this.methodName()是子类自己重写的方法)</p>
-</li>
-<li>
-<p>一般<strong>使用 super(arguments) 来调用父类的构造方法</strong>，从而完成对父类所定义属性的初始化</p>
-</li>
-</ul>
-<h3 id="Override">@Override</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">getClassName</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> “XBottle<span class="string">&quot;; </span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>可在子类重写父类方法时标注，非强制要求，可选</p>
-<p>子类方法的<strong>方法名</strong>和<strong>参数列表</strong>必须与父类方法<strong>完全相同</strong></p>
+<h1>Lec5-JAVA程序常见错误分析</h1>
+<h2 id="推荐的层次化架构">推荐的层次化架构</h2>
+<ol>
+<li>Main：负责代码顶层逻辑</li>
+<li>MyScanner：输入处理</li>
+<li>Manager：进行指令的具体分类处理</li>
+<li>FightLogEntry：战斗日志项，存战斗日志</li>
+<li>Adventurer：实现冒险家的操作</li>
+</ol>
+<p>要追求高内聚，低耦合！各部分逻辑<strong>不胡乱参杂</strong></p>
+<h2 id="各种类型错误">各种类型错误</h2>
+<p>这个老师给了十几种不同的错误类型及常见的错误代码</p>
+<p>不想记录了…</p>
 <hr>
-<h2 id="接口及其应用">接口及其应用</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Myinterface</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">myMethod1</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">myMethod2</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">myMethod3</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Myclass</span> <span class="keyword">implements</span> <span class="title class_">Myinterface</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myMethod1</span><span class="params">()</span> &#123;</span><br><span class="line">    	System.out.println(<span class="string">&quot;Implementation of myMethod1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myMethod2</span><span class="params">()</span> &#123;</span><br><span class="line">    	System.out.println(<span class="string">&quot;Implementation of myMethod2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myMethod3</span><span class="params">()</span> &#123;</span><br><span class="line">    	System.out.println(<span class="string">&quot;Implementation of myMethod3&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>要求接口中的所有方法都被实现（覆写）</li>
-<li>可以用a instanceof B判断对象a是否实现了接口B，即是否类型B的实例</li>
-<li>若父类实现了某个接口，则子类也可以使用父类的接口方法</li>
-</ul>
-<hr>
-<h2 id="接口和继承的区别">接口和继承的区别</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>数量</th>
-<th>关系</th>
-<th>概念本质</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>继承</td>
-<td>一个类只能有一个父类</td>
-<td>子类继承了父类的所有属性和方法</td>
-<td>建立了数据抽象层次</td>
-</tr>
-<tr>
-<td>接口</td>
-<td>一个类可以实现多个接口</td>
-<td>实现接口中所定义的全部方法</td>
-<td>建立了行为抽象层次</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="作业内容与建议">作业内容与建议</h2>
-<ul>
-<li>仍为冒险者游戏，在第四次作业的基础上迭代开发</li>
-<li>允许冒险者雇佣另一个冒险者，且赋予装备、药水瓶、食物、冒 险者价值的概念</li>
-<li>细化装备和药水瓶的类型，具有不同的功效</li>
-<li>建议把装备、药水瓶、食物和冒险者都看作是价值体 （commodity）</li>
-<li>建议引入Commodity接口来建立行为层次关系</li>
-<li>冒险者 Adventurer 类、装备 Equipment 类、药水瓶 Bottle 类、食物 Food  类实现该接口</li>
-<li>装备和药水瓶的细分，建议通过继承实现</li>
-</ul>
+<p>真被wxm说中了</p>
 ]]></content>
       <categories>
         <category>笔记</category>
@@ -2436,166 +2647,95 @@ sizeof(T)</li>
       </tags>
   </entry>
   <entry>
-    <title>OOpre Lec4-输入解析的结构性设计</title>
-    <url>/2023/10/08/OOpre-Lec4-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<p><s>明明应该是国庆假期的，🐭🐭却要来上op（哭）</s></p>
-<hr>
-<h1>Lec4-输入解析的结构性设计</h1>
-<h2 id="输入序列结构的特征分析">输入序列结构的特征分析</h2>
-<h4 id="为什么需要输入解析？">为什么需要输入解析？</h4>
+    <title>Hexo-Solitude(Acrylic)博客配置教程</title>
+    <url>/2024/08/15/Hexo-Solitude(Arclicy)%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="Hexo-Solitude-Acrylic-博客配置教程">Hexo-Solitude(Acrylic)博客配置教程</h2>
+<blockquote>
+<p>在嘈杂的互联网中寻求属于自己的一方净土，并非遥不可及…</p>
+<p>也许你才刚刚踏上旅程、也许你已经踩过坑坑洼洼，但是…让我们继续出发~</p>
+<p>注：Acrylic目前已经停止维护，项目文件已经不兼容许多库，建议使用Solitude</p>
+</blockquote>
+<h3 id="配置">配置</h3>
 <ul>
-<li>
-<p>如果用户输入的数据格式不正确获证解析出错，就会导致结果错</p>
-<p>garbage in$\rightarrow$garbage out</p>
-</li>
-<li>
-<p>方便用户交互与体验</p>
-</li>
-<li>
-<p>便于维护</p>
-</li>
+<li>Windows 11</li>
+<li>2024年7月</li>
+<li>已经提前安装并配置好git（这部分建议搜索相关git教程）</li>
 </ul>
-<h4 id="输入解析的步骤">输入解析的步骤</h4>
+<h4 id="技术路线">技术路线</h4>
+<p>node.js + hexo + github  + solitude</p>
+<h3 id="主要流程">主要流程</h3>
 <ol>
-<li>获取输入</li>
-<li>提取数据</li>
-<li>验证数据</li>
-<li>转换为程序内部数据</li>
+<li>安装node.js</li>
+<li>安装hexo</li>
 </ol>
-<h2 id="输入序列结构到对象层次结构的映射">输入序列结构到对象层次结构的映射</h2>
-<ul>
-<li>
-<p>输入解析</p>
-<p>将输入数据从原始格式转换为程序所能处理的**数据（结构）**的过程</p>
-</li>
-<li>
-<p>对象构造</p>
-<p>将输入解析的**数据（结构）<strong>映射到</strong>对象（层次结构）**的过程</p>
-<p>需要设计合适的<strong>对象模型（数据结构设计）</strong></p>
-</li>
-</ul>
-<h2 id="正则表达式的模式结构介绍">正则表达式的模式结构介绍</h2>
-<p><s>啊啊啊都一节课过去了，这个最重要的部分他怎么还没开始讲（小声）</s></p>
-<h4 id="语法介绍">语法介绍</h4>
-<table>
-<thead>
-<tr>
-<th>符号</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>*</td>
-<td>匹配前面的模式零次或多次</td>
-</tr>
-<tr>
-<td>+</td>
-<td>匹配前面的模式一次或多次</td>
-</tr>
-<tr>
-<td>？</td>
-<td>匹配前面的模式零次或一次</td>
-</tr>
-<tr>
-<td>{n}</td>
-<td>匹配前面的模式恰好 n 次</td>
-</tr>
-<tr>
-<td>{n,}</td>
-<td>匹配前面的模式至少 n 次</td>
-</tr>
-<tr>
-<td>{n,m}</td>
-<td>匹配前面的模式至少 n 次且不超过 m 次</td>
-</tr>
-<tr>
-<td>[ ]</td>
-<td>匹配括号内的任意一个字符</td>
-</tr>
-<tr>
-<td>[^ ]</td>
-<td>匹配除了括号内的字符以外的任意一个字符</td>
-</tr>
-<tr>
-<td>^</td>
-<td>匹配字符串的开头</td>
-</tr>
-<tr>
-<td>$</td>
-<td>匹配字符串的结尾</td>
-</tr>
-<tr>
-<td>\b</td>
-<td>匹配单词边界</td>
-</tr>
-<tr>
-<td>\B</td>
-<td>匹配非单词边界</td>
-</tr>
-<tr>
-<td>( )</td>
-<td>用于分组和捕获子表达式</td>
-</tr>
-<tr>
-<td>( ?)</td>
-<td>非贪婪匹配</td>
-</tr>
-<tr>
-<td>(?: )</td>
-<td>用于分组但不捕获子表达式</td>
-</tr>
-<tr>
-<td>\</td>
-<td>转义字符，用于匹配特殊字符本身</td>
-</tr>
-<tr>
-<td>.</td>
-<td>匹配任意字符（除了换行符）</td>
-</tr>
-<tr>
-<td>|</td>
-<td>用于指定多个模式的选择</td>
-</tr>
-<tr>
-<td>\d</td>
-<td>匹配任意数字字符</td>
-</tr>
-<tr>
-<td>\D</td>
-<td>匹配任意\d不能匹配的字符</td>
-</tr>
-<tr>
-<td>\w</td>
-<td>匹配任意字母数字或下划线字符</td>
-</tr>
-<tr>
-<td>\W</td>
-<td>匹配任意\w不能匹配的字符</td>
-</tr>
-<tr>
-<td>\s</td>
-<td>匹配任意空白字符</td>
-</tr>
-<tr>
-<td>\S</td>
-<td>匹配任意非空白字符</td>
-</tr>
-</tbody>
-</table>
-<h4 id="贪婪匹配">贪婪匹配</h4>
-<p>正则表达式默认采用<strong>贪婪匹配</strong>——任何一个模式，都会尽可能匹配多个字符</p>
-<p>在模式表达式后添加？，即代表<strong>非贪婪匹配</strong></p>
-<h4 id="层次正则">层次正则</h4>
-<p>如果查找元字符本身，比如查找.,或者*，就出现了问题：没法指定它们，因为被解释成其它的意思，这时必须使用\来取消这些字符的特殊意义</p>
-<h2 id="作业内容">作业内容</h2>
-<p>引入战斗模式和战斗日志（原神怎么你了）🤣👉🤡</p>
+<h3 id="1-安装node-js">1 安装node.js</h3>
+<h4 id="1-1-打开node-js官网，在上方选项栏选择“下载”栏目">1.1 打开<a href="https://nodejs.org/zh-cn">node.js官网</a>，在上方选项栏选择“下载”栏目</h4>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723150847771.png" alt="1"></p>
+<h4 id="1-2-选择自己需要的版本下载">1.2 选择自己需要的版本下载</h4>
+<p><s>我的建议是不要选择太新的node.js，与hexo很可能不匹配，这里我选择v14.21.3</s>（也不一定）</p>
+<p>不太会用命令行的同学可以点“预构建安装程序”傻瓜式下载（会用命令行的同学也推荐傻瓜式下载）</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723151249900.png" alt="2"></p>
+<h4 id="1-3-打开下载好的安装程序，一键安装">1.3 打开下载好的安装程序，一键安装</h4>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723151405702.png" alt="3"></p>
+<h4 id="1-4-测试node-js安装情况">1.4 测试node.js安装情况</h4>
+<p>打开命令行（win+R 输cmd），输入：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<p>出现如下提示即为安装成功：</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723151723583.png" alt="4"></p>
+<h3 id="2-安装hexo">2 安装hexo</h3>
+<h4 id="2-1-通过镜像站安装hexo">2.1 通过镜像站安装hexo</h4>
+<p><s>吐槽一句，很多这里博客会推荐大家下载cnpm，然后用cnpm下载hexo，但实际上cnpm的下载过程中往往伴随着各种出错（楽）</s></p>
+<p>打开命令行（win+R 输cmd），输入：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli -registry=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+<p>稍微解释一下，<code>-g</code>指定了安装包的名称，<code>-registry=</code>指定了远程仓库的位置（默认是海外的服务器，科学上网可以不加这个）</p>
+<p><code>registry.npmmirror.com</code>是淘宝的npm镜像站，原名称是<code>registry.npm.taobao.org</code>，现在使用老网址会提示证书过期</p>
+<p>如果出现以下提示即可能为安装成功：</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723153644542.png" alt="5"></p>
+<h4 id="2-2-验证hexo安装">2.2 验证hexo安装</h4>
+<p>打开命令行（win+R 输cmd），输入：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+<p>出现以下提示即为安装成功：</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723153833477.png" alt="6"></p>
+<h4 id="2-3-初始化hexo">2.3 初始化hexo</h4>
+<p>在你喜欢的地方（建议全英文路径），创建一个名为<code>blog</code>的文件夹，它以后就是我们的博客的主文件夹了</p>
+<p>在blog文件夹中打开命令行（推荐blog文件夹地址栏输cmd，回车），输入：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<p>如果没有科学上网，很可能出现在以下地方卡住的情况：<br>
+<img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723160030095.png" alt="7"></p>
+<p>让我们来hexo的<a href="https://github.com/hexojs/hexo-cli/blob/master/lib/console/init.ts">源码</a>中来找找原因：</p>
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">BlueBirdPromise</span> <span class="keyword">from</span> <span class="string">&#x27;bluebird&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; join, resolve &#125; <span class="keyword">from</span> <span class="string">&#x27;path&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; magenta &#125; <span class="keyword">from</span> <span class="string">&#x27;picocolors&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; existsSync, readdirSync, rmdir, unlink, copyDir, readdir, stat &#125; <span class="keyword">from</span> <span class="string">&#x27;hexo-fs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> tildify <span class="keyword">from</span> <span class="string">&#x27;tildify&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> spawn <span class="keyword">from</span> <span class="string">&#x27;hexo-util/dist/spawn&#x27;</span>; <span class="comment">// for rewire</span></span><br><span class="line"><span class="keyword">import</span> &#123; sync <span class="keyword">as</span> commandExistsSync &#125; <span class="keyword">from</span> <span class="string">&#x27;command-exists&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">type</span> <span class="title class_">Context</span> <span class="keyword">from</span> <span class="string">&#x27;../context&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">ASSET_DIR</span> = <span class="title function_">join</span>(__dirname, <span class="string">&#x27;../../assets&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">GIT_REPO_URL</span> = <span class="string">&#x27;https://github.com/hexojs/hexo-starter.git&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">InitArgs</span> &#123;</span><br><span class="line">  <span class="attr">_</span>: <span class="built_in">string</span>[];</span><br><span class="line">  install?: <span class="built_in">boolean</span>;</span><br><span class="line">  clone?: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">initConsole</span>(<span class="params"><span class="attr">this</span>: <span class="title class_">Context</span>, <span class="attr">args</span>: <span class="title class_">InitArgs</span></span>) &#123;</span><br><span class="line">  args = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123; <span class="attr">install</span>: <span class="literal">true</span>, <span class="attr">clone</span>: <span class="literal">true</span> &#125;, args);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> baseDir = <span class="variable language_">this</span>.<span class="property">base_dir</span>;</span><br><span class="line">  <span class="keyword">const</span> target = args.<span class="property">_</span>[<span class="number">0</span>] ? <span class="title function_">resolve</span>(baseDir, args.<span class="property">_</span>[<span class="number">0</span>]) : baseDir;</span><br><span class="line">  <span class="keyword">const</span> &#123; log &#125; = <span class="variable language_">this</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">existsSync</span>(target) &amp;&amp; <span class="title function_">readdirSync</span>(target).<span class="property">length</span> !== <span class="number">0</span>) &#123;</span><br><span class="line">    log.<span class="title function_">fatal</span>(<span class="string">`<span class="subst">$&#123;magenta(tildify(target))&#125;</span> not empty, please run \`hexo init\` on an empty folder and then copy your files into it`</span>);</span><br><span class="line">    <span class="keyword">await</span> <span class="title class_">BlueBirdPromise</span>.<span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;target not empty&#x27;</span>));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  log.<span class="title function_">info</span>(<span class="string">&#x27;Cloning hexo-starter&#x27;</span>, <span class="variable constant_">GIT_REPO_URL</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (args.<span class="property">clone</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">spawn</span>(<span class="string">&#x27;git&#x27;</span>, [<span class="string">&#x27;clone&#x27;</span>, <span class="string">&#x27;--recurse-submodules&#x27;</span>, <span class="string">&#x27;--depth=1&#x27;</span>, <span class="string">&#x27;--quiet&#x27;</span>, <span class="variable constant_">GIT_REPO_URL</span>, target], &#123;</span><br><span class="line">        <span class="attr">stdio</span>: <span class="string">&#x27;inherit&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      log.<span class="title function_">warn</span>(<span class="string">&#x27;git clone failed. Copying data instead&#x27;</span>);</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">copyAsset</span>(target);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">copyAsset</span>(target);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">await</span> <span class="title class_">BlueBirdPromise</span>.<span class="title function_">all</span>([</span><br><span class="line">    <span class="title function_">removeGitDir</span>(target),</span><br><span class="line">    <span class="title function_">removeGitModules</span>(target)</span><br><span class="line">  ]);</span><br><span class="line">  <span class="keyword">if</span> (!args.<span class="property">install</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">  log.<span class="title function_">info</span>(<span class="string">&#x27;Install dependencies&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> npmCommand = <span class="string">&#x27;npm&#x27;</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">commandExistsSync</span>(<span class="string">&#x27;pnpm&#x27;</span>)) &#123;</span><br><span class="line">    npmCommand = <span class="string">&#x27;pnpm&#x27;</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="title function_">commandExistsSync</span>(<span class="string">&#x27;yarn&#x27;</span>)) &#123;</span><br><span class="line">    npmCommand = <span class="string">&#x27;yarn&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (npmCommand === <span class="string">&#x27;yarn&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> yarnVer = <span class="keyword">await</span> <span class="title function_">spawn</span>(npmCommand, [<span class="string">&#x27;--version&#x27;</span>], &#123;</span><br><span class="line">        <span class="attr">cwd</span>: target</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">typeof</span> yarnVer === <span class="string">&#x27;string&#x27;</span> &amp;&amp; yarnVer.<span class="title function_">startsWith</span>(<span class="string">&#x27;1&#x27;</span>)) &#123;</span><br><span class="line">        <span class="keyword">await</span> <span class="title function_">spawn</span>(npmCommand, [<span class="string">&#x27;install&#x27;</span>, <span class="string">&#x27;--production&#x27;</span>, <span class="string">&#x27;--ignore-optional&#x27;</span>, <span class="string">&#x27;--silent&#x27;</span>], &#123;</span><br><span class="line">          <span class="attr">cwd</span>: target,</span><br><span class="line">          <span class="attr">stdio</span>: <span class="string">&#x27;inherit&#x27;</span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        npmCommand = <span class="string">&#x27;npm&#x27;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (npmCommand === <span class="string">&#x27;pnpm&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">spawn</span>(npmCommand, [<span class="string">&#x27;install&#x27;</span>, <span class="string">&#x27;--prod&#x27;</span>, <span class="string">&#x27;--no-optional&#x27;</span>, <span class="string">&#x27;--silent&#x27;</span>], &#123;</span><br><span class="line">        <span class="attr">cwd</span>: target,</span><br><span class="line">        <span class="attr">stdio</span>: <span class="string">&#x27;inherit&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (npmCommand === <span class="string">&#x27;npm&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">await</span> <span class="title function_">spawn</span>(npmCommand, [<span class="string">&#x27;install&#x27;</span>, <span class="string">&#x27;--only=production&#x27;</span>, <span class="string">&#x27;--optional=false&#x27;</span>, <span class="string">&#x27;--silent&#x27;</span>], &#123;</span><br><span class="line">        <span class="attr">cwd</span>: target,</span><br><span class="line">        <span class="attr">stdio</span>: <span class="string">&#x27;inherit&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    log.<span class="title function_">info</span>(<span class="string">&#x27;Start blogging with Hexo!&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    log.<span class="title function_">warn</span>(<span class="string">`Failed to install dependencies. Please run &#x27;npm install&#x27; in &quot;<span class="subst">$&#123;target&#125;</span>&quot; folder.`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">copyAsset</span>(<span class="params"><span class="attr">target</span>: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">copyDir</span>(<span class="variable constant_">ASSET_DIR</span>, target, &#123; <span class="attr">ignoreHidden</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">removeGitDir</span>(<span class="params"><span class="attr">target</span>: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> gitDir = <span class="title function_">join</span>(target, <span class="string">&#x27;.git&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">stat</span>(gitDir).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (err &amp;&amp; err.<span class="property">code</span> === <span class="string">&#x27;ENOENT&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line">  &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">stats</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (stats) &#123;</span><br><span class="line">      <span class="keyword">return</span> stats.<span class="title function_">isDirectory</span>() ? <span class="title function_">rmdir</span>(gitDir) : <span class="title function_">unlink</span>(gitDir);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> <span class="title function_">readdir</span>(target)).<span class="title function_">map</span>(<span class="function"><span class="params">path</span> =&gt;</span> <span class="title function_">join</span>(target, path)).<span class="title function_">filter</span>(<span class="function"><span class="params">path</span> =&gt;</span> <span class="title function_">stat</span>(path).<span class="title function_">then</span>(<span class="function"><span class="params">stats</span> =&gt;</span> stats.<span class="title function_">isDirectory</span>())).<span class="title function_">each</span>(removeGitDir);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">removeGitModules</span>(<span class="params"><span class="attr">target</span>: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">unlink</span>(<span class="title function_">join</span>(target, <span class="string">&#x27;.gitmodules&#x27;</span>));</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="keyword">if</span> (err &amp;&amp; err.<span class="property">code</span> === <span class="string">&#x27;ENOENT&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">throw</span> err;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> = initConsole;</span><br></pre></td></tr></table></figure>
+<p>虽然洋洋洒洒一百来行，但翻译下来只有两行对我们来说是有用的</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">git clone --recurse-submodules --depth=<span class="number">1</span> --quiet https://github.com/hexojs/hexo-starter.git .</span><br><span class="line">npm install --only=prodection --optional=false --silent</span><br></pre></td></tr></table></figure>
+<p>可以发现，正是<code>npm install --only=prodection --optional=false --silent</code>导致了卡死</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723160839120.png" alt="8"></p>
+<p>还记得我们安装hexo的操作嘛？没错~<br>
+加入<code>--registry=https://registry.npmmirror.com</code><br>
+在blog文件夹里打开cmd，输入：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">git clone --recurse-submodules --depth=<span class="number">1</span> --quiet https://github.com/hexojs/hexo-starter.git .</span><br><span class="line">npm install --only=prodection --optional=false --registry=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+<p>观察到：</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723161219071.png" alt="9"></p>
+<p>无视warning，安装成功！（如果加入了–silent，则观察不到这么多额外输出）</p>
+<h4 id="2-4-启动hexo（搭建第一个本地网站）">2.4 启动hexo（搭建第一个本地网站）</h4>
+<p>在blog文件夹打开cmd，输入：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>这个命令会启动hexo服务器，观察到以下输出即为启动成功：</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723161901953.png" alt="10"></p>
+<p>打开任意浏览器，输入<code>http://localhost:4000/</code>，成功Hello World~</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240723162007530.png" alt="11"></p>
+<h3 id="3-Solitude下载安装运行">3 Solitude下载安装运行</h3>
+<p>这部分请参考<a href="https://solitude.js.org/zh/guide/quick-start">官方文档</a>~</p>
+<h3 id="4-魔改">4 魔改</h3>
+<p>会把自己研究的小玩意儿以及遇到的bug放在这里，施工中ing</p>
+<h4 id="4-1-hexo-g后不自动产生-archives页面">4.1 hexo g后不自动产生/archives页面</h4>
+<p>archives生成需要hexo-generator-archive</p>
+<p>解决方案：</p>
+<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>笔记</category>
+        <category>经验</category>
       </categories>
       <tags>
-        <tag>OOpre</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2912,6 +3052,119 @@ delete = deconstructor + free</p>
       </tags>
   </entry>
   <entry>
+    <title>论文笔记：从时序到时空再到城市大模型的演进</title>
+    <url>/2024/09/23/%E4%BB%8E%E6%97%B6%E5%BA%8F%E5%88%B0%E6%97%B6%E7%A9%BA%E5%86%8D%E5%88%B0%E5%9F%8E%E5%B8%82%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%BC%94%E8%BF%9B/</url>
+    <content><![CDATA[<h2 id="论文笔记：从时序到时空再到城市大模型的演进">论文笔记：从时序到时空再到城市大模型的演进</h2>
+<h3 id="引言">引言</h3>
+<p>在大语言模型（large language model，LLM）快速发展的当下，研究人员对聊天、代码生成等各种LLM显然擅长的领域中进行了充分而广泛的探索，已经产生了一批诸如GPT、BERT、Llama、Qwen等快速迭代的模型。同时，为了最大化利用大语言模型强大的泛化和推理能力，许多研究开始尝试让大语言模型解决其它领域的问题。一方面，LLM可以嵌入原始模型内部，为模型提供外部信息或加快收敛速度（如RAG）；另一方面，LLM也可以将原始问题进行拓宽，从而产生新赛道新问题。近年来，在金融、医疗、时序等诸多领域，都产生了重量级的成果。</p>
+<p>本文总结了近两年来时间序列领域（尤其是与轨迹、大模型相结合）的重要文章，并对他们进行梳理，以期找到时序、时空、城市大模型等方向的发展线索与未来启示。</p>
+<h3 id="时序">时序</h3>
+<h4 id="1-TimeGPT-1">1. TimeGPT-1</h4>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240922011624061.png" alt=""></p>
+<p>论文：<a href="https://arxiv.org/pdf/2310.03589">https://arxiv.org/pdf/2310.03589</a></p>
+<p>在这篇文章中，作者构建了第一个时间序列领域的基座模型TimeGPT-1，并开辟了使用预训练大模型用于时间序列的新赛道。由于不同数据集的时间尺度、波动范围以及样本量差异很大，因此使用大模型捕捉时间序列内的深层次规律是合理的想法，特别是训练样本很少时（zero-shot）。作者还使用了conformal prediction来量化大模型的波动性，进行了简单的异常检测。论文的实验部分较为完整，可惜缺失zero-shot下与相似基座模型的比较；模型代码没有公开；文章的行文也有几处较为发散。</p>
+<h4 id="2-Timer-Generative-Pre-trained-Transformers-Are-Large-Time-Series-Models">2. Timer: Generative Pre-trained Transformers Are Large Time Series Models</h4>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240922115008555.png" alt=""></p>
+<p>论文：<a href="https://aacrjournals.org/cancerres/article/77/21/e108/662567/TIMER-A-Web-Server-for-Comprehensive-Analysis-of">https://aacrjournals.org/cancerres/article/77/21/e108/662567/TIMER-A-Web-Server-for-Comprehensive-Analysis-of</a></p>
+<p>作者首先通过数据证明深度学习模型在样本量较少时效果会指数级变差，所以使用大模型技术构建一个大时间序列模型（large time series models，LTSM）是必要的。由于现有数据集无法满足作者要求，作者构建了一个约12G的复杂时间序列数据集，涵盖了7个主要时间序列领域。模型方面，作者将所有不同的序列统一化首尾拼接，并利用类似滑动窗口的技术构建输入单一序列（single-series sequence，S3）作为输入，最后用标准的transformer架构模型解决问题。这篇文章的模型架构较为简单，但复杂数据集的构建弥补了这一点。</p>
+<h4 id="3-Time-llm-Time-series-forecasting-by-reprogramming-large-language-models">3. Time-llm: Time series forecasting by reprogramming large language models</h4>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240922202341563.png" alt=""></p>
+<p>论文：<a href="https://arxiv.org/pdf/2310.01728">https://arxiv.org/pdf/2310.01728</a></p>
+<p>Time-llm同样想用LLM强大的推理能力强化时间序列预测的性能，但与先前工作不同的是，Time-llm想要使用NLP相关的大模型进行推理。为了解决从时间序列数据到自然语言的转化，作者将原始数据分patch进行了从数据到语义的对应。同时，作者将其它信息整合为辅助信息同时输入也是一个亮点。这种包括先验prompt和数据reprogramming的prompt驱动的LLM-时间序列分析方法在2024年的论文中成为了一股潮流。Time-llm在零样本和少样本时的实验效果提升较大。</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240922203816370.png" alt="Time-llm模型架构"></p>
+<h3 id="时空">时空</h3>
+<h4 id="4-TrajGDM-A-New-Trajectory-Foundation-Model-for-Simulating-Human-Mobility">4. TrajGDM: A New Trajectory Foundation Model for Simulating Human Mobility</h4>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923082844394.png" alt=""></p>
+<p>论文：<a href="https://dl.acm.org/doi/pdf/10.1145/3589132.3628362">https://dl.acm.org/doi/pdf/10.1145/3589132.3628362</a></p>
+<p>TrajGDM尝试用扩散模型的方法构建轨迹基座模型，以此统一地指导各种下游任务。具体到方法层面，作者将轨迹映射到了轨迹图中；然后使用轨迹扩散器往轨迹图中不断加噪声直到达到正态分布；最后使用轨迹生成器找到原始轨迹。作者采用了Generative Adversarial Network (GAN)和马尔科夫链相结合的方式计算轨迹的位置。美中不足的是，TrajGDM似乎没有考虑轨迹的时序，仅仅将轨迹的地理位置嵌入模型；对于轨迹领域除轨迹生成外其它下游任务也有些言之不详。</p>
+<h4 id="5-Towards-A-Foundation-Model-For-Trajectory-Intelligence">5. Towards A Foundation Model For Trajectory Intelligence</h4>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923084830968.png" alt=""></p>
+<p>论文：<a href="https://arxiv.org/pdf/2312.00076">https://arxiv.org/pdf/2312.00076</a></p>
+<p>作者在这篇文章中想要构建一个预训练大轨迹模型（large trajectory model，LTM），并通过fine-tune解决轨迹下游任务，当某地区轨迹数量少时，这种思路尤其有效。数据处理方面，作者为了合并相似轨迹点以减少收敛时间和vocabulary大小，提出了使用&lt;地点，时序&gt;输入+编码+聚类+hash的轨迹tokenizer方法。训练中，作者将轨迹随机遮盖（Masked Trajectory modeling，MTM）来构建子监督学习模型。模型在子轨迹预测、终点预测和轨迹-用户对应三个不同的下游任务中都展现出了较好的效果。但这篇文章的时序可能没有考虑具体的时间戳信息，这限制了模型质量。</p>
+<h4 id="6-TrajFM-A-Vehicle-Trajectory-Foundation-Model-for-Region-and-Task-Transferability">6. TrajFM: A Vehicle Trajectory Foundation Model for Region and Task Transferability</h4>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923091336570.png" alt=""></p>
+<p>论文：<a href="https://arxiv.org/pdf/2408.15251">https://arxiv.org/pdf/2408.15251</a></p>
+<p>万怀宇老师近期在时空大模型方面成果频出，TrajFM是较新的一篇。TrajFM认为区域的轨迹和周围的POI密不可分，所以可以使用POI中蕴含的信息增强大轨迹模型效果。TrajFM将每个轨迹点表示为（位置、时间戳、POI信息）三部分，其中POI部分是使用openAI的text2embedding增强POI语义理解实现的，让人眼前一亮。作者还设计了Learnable Spatio-Temporal Rotary Position Embedding (STRPE)来计算轨迹点之间的相关性。实验部分，作者比较了TrajFM与多种方法在时间预测方面的效果，TrajFM在跨区域的实验中也展现出了不俗的结果，这展现了模型的通用性。</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923091920661.png" alt="TrajFM模型架构"></p>
+<h3 id="城市大模型">城市大模型</h3>
+<h4 id="7-Urbangpt-Spatio-temporal-large-language-models">7. Urbangpt: Spatio-temporal large language models</h4>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923145451570.png" alt=""></p>
+<p>论文：<a href="https://arxiv.org/pdf/2403.00813">https://arxiv.org/pdf/2403.00813</a></p>
+<p>时间序列预测致力于从过往数据中得到未来数据的信息，这与城市治理这一领域不谋而合，因此最近出现了多篇以城市治理为故事、主要进行时间或时空序列任务的论文。UrbanGPT使用编码器和额外的回归层将时空依赖信息编码到向量空间，然后进行数据到文字的对齐。为了向大模型中输入复杂的城市相关信息，所有的prompt都被分为了时间信息、空间信息、任务描述三部分，便于多模态模型理解语言和时序信息。最终大模型预测出的数据也会使用卷积层与输入一起解码成答案。UrbanGPT与Time-llm有相似之处，但UrbanGPT通过城市信息的注入增强了模型对空间信息的泛化能力。</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923152858339.png" alt="UrbanGPt模型架构"></p>
+<h4 id="8-UniST-a-prompt-empowered-universal-model-for-urban-spatio-temporal-prediction">8. UniST: a prompt-empowered universal model for urban spatio-temporal prediction</h4>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923154447141.png" alt=""></p>
+<p>论文：<a href="https://dl.acm.org/doi/pdf/10.1145/3637528.3671662">https://dl.acm.org/doi/pdf/10.1145/3637528.3671662</a></p>
+<p>UniST采用了大规模预训练和提示学习，通过捕捉复杂的时空动态，提高了在少样本和零样本场景中的泛化能力。与UrbanGPT不同的是，UniST将时空数据编码后，使用多种不同的切片方式获取轨迹片段，再进行注入，从而捕获时空数据内部的特征。除此之外，作者在生成prompt时将时空信息分别投入记忆池，方便使用时空数据的编码从中获取额外信息。UniST在20多个时空场景中表现优异，尤其在少样本和零样本预测任务中，实现了比当前最先进模型更好的性能.</p>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923154604353.png" alt="UniST模型架构"></p>
+<h4 id="9-CityGPT-Empowering-Urban-Spatial-Cognition-of-Large-Language-Models">9. CityGPT: Empowering Urban Spatial Cognition of Large Language Models</h4>
+<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923161104862.png" alt=""></p>
+<p>论文：<a href="https://arxiv.org/pdf/2406.13948">https://arxiv.org/pdf/2406.13948</a></p>
+<p>CityGPT的框架包括两个核心组件：CityInstruction是一个多样化的数据集，通过构建包含地理信息的自然语言示例，使模型能够理解不同地点的地理位置及其相互关系；CityEval是一个评估基准，分为四个任务组：城市图像、城市语义、空间推理和综合任务，用于评估LLMs在不同城市场景下的能力。CityGPT使用原创数据集训练小型LLM，这些模型在城市任务（如出行预测、空间导航和城市语义理解）中表现出色，甚至在某些城市场景中超越了商业LLMs。</p>
+<h3 id="总结">总结</h3>
+<p>本文总结了近几年在时序、时空以及城市大模型领域的代表性研究，展示了大语言模型在时间序列和时空数据中的应用潜力，并探讨了从时序模型到城市大模型的演进路径。</p>
+<p>总体而言，从时间序列到时空模型再到城市大模型的演进，展现了大语言模型在这些新兴领域的巨大潜力。未来，如何更好地将时空信息与城市数据整合，并进一步提升模型的泛化和推理能力，将是这一领域的主要挑战和发展方向。</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>LLM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>昇思MindSpore介绍</title>
+    <url>/2024/07/10/%E6%98%87%E6%80%9DMindSpore%E4%BB%8B%E7%BB%8D/</url>
+    <content><![CDATA[<h2 id="昇思MindSpore介绍">昇思MindSpore介绍</h2>
+<blockquote>
+<p>第一次浪潮：符号主义+逻辑推理</p>
+<p>第二次浪潮：专家系统+机器学习</p>
+<p>第三次浪潮：深度学习</p>
+<p><strong>第四次浪潮：智能内容生成（chatGPT）</strong></p>
+</blockquote>
+<p>（重点：分布式并行，transformer配置文件、高性能推理）</p>
+<p>一些吹捧昇思的内容…</p>
+<h3 id="MindSpore-vs-PyTorch">MindSpore vs PyTorch</h3>
+<p>MindSpore模型开发风格和PyTorch保持一致，部分API接口名称不同</p>
+<ul>
+<li>MindSpore继承Cell类，Pytorch继承Module类</li>
+<li>MindSpore应用construct接口，pytorch应用forward接口</li>
+<li>数据预处理方面，MS采用流水线形式，定义一系列数据操作，作用到数据集上<br>
+PT采用多进程形式，目前也在推出流水线形式（TorchData)</li>
+</ul>
+<h3 id="acllite">acllite</h3>
+<p>在华为Ascend AI处理器的开发环境中，<code>device</code>、<code>context</code>、<code>stream</code>和<code>resource</code>这几个概念是用于管理和组织计算资源的基本元素。</p>
+<h4 id="1-Device（设备）">1. Device（设备）</h4>
+<p><code>Device</code> 是计算的基本单元。每个 <code>device</code> 代表一个物理的Ascend AI处理器。初始化设备是执行计算任务的第一步。</p>
+<h4 id="2-Context（上下文）">2. Context（上下文）</h4>
+<p><code>Context</code> 是对设备上的计算环境的抽象。一个 <code>device</code> 可以包含一个或多个 <code>context</code>。<code>context</code> 提供了一个独立的执行环境，管理其内存和其他资源。多个 <code>context</code> 可以在同一个 <code>device</code> 上并行运行，彼此独立。</p>
+<h4 id="3-Stream（流）">3. Stream（流）</h4>
+<p><code>Stream</code> 是一种用于控制计算和内存操作的顺序的机制。一个 <code>context</code> 中可以包含一个或多个 <code>stream</code>。每个 <code>stream</code> 内的操作按顺序执行，但不同 <code>stream</code> 之间可以并行执行。<code>stream</code> 使得程序能够在同一个 <code>context</code> 中实现并行计算。</p>
+<h4 id="4-Resource（资源）">4. Resource（资源）</h4>
+<p><code>Resource</code> 包括内存、事件和其他硬件资源。这些资源在 <code>context</code> 和 <code>stream</code> 中被分配和管理，用于支持计算任务的执行。</p>
+<h4 id="关系图">关系图</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Device</span><br><span class="line">  └── Context</span><br><span class="line">        ├── Stream</span><br><span class="line">        │     ├── Resource</span><br><span class="line">        │     └── Resource</span><br><span class="line">        └── Stream</span><br><span class="line">              ├── Resource</span><br><span class="line">              └── Resource</span><br></pre></td></tr></table></figure>
+<h4 id="示例代码">示例代码</h4>
+<p>以下示例代码展示了如何在华为Ascend AI处理器环境中初始化设备、创建上下文和流，并分配资源：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> acl</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># 初始化ACL</span></span><br><span class="line">    acl.init()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置设备ID</span></span><br><span class="line">    device_id = <span class="number">0</span></span><br><span class="line">    acl.rt.set_device(device_id)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建上下文</span></span><br><span class="line">    context, ret = acl.rt.create_context(device_id)</span><br><span class="line">    <span class="keyword">if</span> ret != <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">f&quot;acl.rt.create_context failed with error code <span class="subst">&#123;ret&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建流</span></span><br><span class="line">    stream, ret = acl.rt.create_stream(context)</span><br><span class="line">    <span class="keyword">if</span> ret != <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">f&quot;acl.rt.create_stream failed with error code <span class="subst">&#123;ret&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 分配内存资源（示例）</span></span><br><span class="line">    input_size = <span class="number">1024</span></span><br><span class="line">    input_ptr, ret = acl.rt.malloc(input_size, acl.const.ACL_MEM_MALLOC_HUGE_FIRST)</span><br><span class="line">    <span class="keyword">if</span> ret != <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">f&quot;acl.rt.malloc failed with error code <span class="subst">&#123;ret&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 释放资源</span></span><br><span class="line">    acl.rt.free(input_ptr)</span><br><span class="line">    acl.rt.destroy_stream(stream)</span><br><span class="line">    acl.rt.destroy_context(context)</span><br><span class="line">    acl.rt.reset_device(device_id)</span><br><span class="line">    acl.finalize()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>导入模型</p>
+<ol>
+<li>
+<p>通过ms.export将已有权重导入成onnx形式的模型</p>
+</li>
+<li>
+<p>使用atc工具将原始模型转化为om模型</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>华为</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OOpre 课程总结</title>
     <url>/2023/11/04/OOpre-%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h1>OOpre 课程总结</h1>
@@ -2969,58 +3222,6 @@ delete = deconstructor + free</p>
       </categories>
       <tags>
         <tag>OOpre</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>昇思MindSpore介绍</title>
-    <url>/2024/07/10/%E6%98%87%E6%80%9DMindSpore%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<h2 id="昇思MindSpore介绍">昇思MindSpore介绍</h2>
-<blockquote>
-<p>第一次浪潮：符号主义+逻辑推理</p>
-<p>第二次浪潮：专家系统+机器学习</p>
-<p>第三次浪潮：深度学习</p>
-<p><strong>第四次浪潮：智能内容生成（chatGPT）</strong></p>
-</blockquote>
-<p>（重点：分布式并行，transformer配置文件、高性能推理）</p>
-<p>一些吹捧昇思的内容…</p>
-<h3 id="MindSpore-vs-PyTorch">MindSpore vs PyTorch</h3>
-<p>MindSpore模型开发风格和PyTorch保持一致，部分API接口名称不同</p>
-<ul>
-<li>MindSpore继承Cell类，Pytorch继承Module类</li>
-<li>MindSpore应用construct接口，pytorch应用forward接口</li>
-<li>数据预处理方面，MS采用流水线形式，定义一系列数据操作，作用到数据集上<br>
-PT采用多进程形式，目前也在推出流水线形式（TorchData)</li>
-</ul>
-<h3 id="acllite">acllite</h3>
-<p>在华为Ascend AI处理器的开发环境中，<code>device</code>、<code>context</code>、<code>stream</code>和<code>resource</code>这几个概念是用于管理和组织计算资源的基本元素。</p>
-<h4 id="1-Device（设备）">1. Device（设备）</h4>
-<p><code>Device</code> 是计算的基本单元。每个 <code>device</code> 代表一个物理的Ascend AI处理器。初始化设备是执行计算任务的第一步。</p>
-<h4 id="2-Context（上下文）">2. Context（上下文）</h4>
-<p><code>Context</code> 是对设备上的计算环境的抽象。一个 <code>device</code> 可以包含一个或多个 <code>context</code>。<code>context</code> 提供了一个独立的执行环境，管理其内存和其他资源。多个 <code>context</code> 可以在同一个 <code>device</code> 上并行运行，彼此独立。</p>
-<h4 id="3-Stream（流）">3. Stream（流）</h4>
-<p><code>Stream</code> 是一种用于控制计算和内存操作的顺序的机制。一个 <code>context</code> 中可以包含一个或多个 <code>stream</code>。每个 <code>stream</code> 内的操作按顺序执行，但不同 <code>stream</code> 之间可以并行执行。<code>stream</code> 使得程序能够在同一个 <code>context</code> 中实现并行计算。</p>
-<h4 id="4-Resource（资源）">4. Resource（资源）</h4>
-<p><code>Resource</code> 包括内存、事件和其他硬件资源。这些资源在 <code>context</code> 和 <code>stream</code> 中被分配和管理，用于支持计算任务的执行。</p>
-<h4 id="关系图">关系图</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Device</span><br><span class="line">  └── Context</span><br><span class="line">        ├── Stream</span><br><span class="line">        │     ├── Resource</span><br><span class="line">        │     └── Resource</span><br><span class="line">        └── Stream</span><br><span class="line">              ├── Resource</span><br><span class="line">              └── Resource</span><br></pre></td></tr></table></figure>
-<h4 id="示例代码">示例代码</h4>
-<p>以下示例代码展示了如何在华为Ascend AI处理器环境中初始化设备、创建上下文和流，并分配资源：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> acl</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="comment"># 初始化ACL</span></span><br><span class="line">    acl.init()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置设备ID</span></span><br><span class="line">    device_id = <span class="number">0</span></span><br><span class="line">    acl.rt.set_device(device_id)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建上下文</span></span><br><span class="line">    context, ret = acl.rt.create_context(device_id)</span><br><span class="line">    <span class="keyword">if</span> ret != <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">f&quot;acl.rt.create_context failed with error code <span class="subst">&#123;ret&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建流</span></span><br><span class="line">    stream, ret = acl.rt.create_stream(context)</span><br><span class="line">    <span class="keyword">if</span> ret != <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">f&quot;acl.rt.create_stream failed with error code <span class="subst">&#123;ret&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 分配内存资源（示例）</span></span><br><span class="line">    input_size = <span class="number">1024</span></span><br><span class="line">    input_ptr, ret = acl.rt.malloc(input_size, acl.const.ACL_MEM_MALLOC_HUGE_FIRST)</span><br><span class="line">    <span class="keyword">if</span> ret != <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">f&quot;acl.rt.malloc failed with error code <span class="subst">&#123;ret&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 释放资源</span></span><br><span class="line">    acl.rt.free(input_ptr)</span><br><span class="line">    acl.rt.destroy_stream(stream)</span><br><span class="line">    acl.rt.destroy_context(context)</span><br><span class="line">    acl.rt.reset_device(device_id)</span><br><span class="line">    acl.finalize()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-<p>导入模型</p>
-<ol>
-<li>
-<p>通过ms.export将已有权重导入成onnx形式的模型</p>
-</li>
-<li>
-<p>使用atc工具将原始模型转化为om模型</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>华为</tag>
       </tags>
   </entry>
   <entry>
@@ -3466,92 +3667,128 @@ PT采用多进程形式，目前也在推出流水线形式（TorchData)</li>
       </tags>
   </entry>
   <entry>
-    <title>论文笔记：从时序到时空再到城市大模型的演进</title>
-    <url>/2024/09/23/%E4%BB%8E%E6%97%B6%E5%BA%8F%E5%88%B0%E6%97%B6%E7%A9%BA%E5%86%8D%E5%88%B0%E5%9F%8E%E5%B8%82%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%BC%94%E8%BF%9B/</url>
-    <content><![CDATA[<h2 id="论文笔记：从时序到时空再到城市大模型的演进">论文笔记：从时序到时空再到城市大模型的演进</h2>
-<h3 id="引言">引言</h3>
-<p>在大语言模型（large language model，LLM）快速发展的当下，研究人员对聊天、代码生成等各种LLM显然擅长的领域中进行了充分而广泛的探索，已经产生了一批诸如GPT、BERT、Llama、Qwen等快速迭代的模型。同时，为了最大化利用大语言模型强大的泛化和推理能力，许多研究开始尝试让大语言模型解决其它领域的问题。一方面，LLM可以嵌入原始模型内部，为模型提供外部信息或加快收敛速度（如RAG）；另一方面，LLM也可以将原始问题进行拓宽，从而产生新赛道新问题。近年来，在金融、医疗、时序等诸多领域，都产生了重量级的成果。</p>
-<p>本文总结了近两年来时间序列领域（尤其是与轨迹、大模型相结合）的重要文章，并对他们进行梳理，以期找到时序、时空、城市大模型等方向的发展线索与未来启示。</p>
-<h3 id="时序">时序</h3>
-<h4 id="1-TimeGPT-1">1. TimeGPT-1</h4>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240922011624061.png" alt=""></p>
-<p>论文：<a href="https://arxiv.org/pdf/2310.03589">https://arxiv.org/pdf/2310.03589</a></p>
-<p>在这篇文章中，作者构建了第一个时间序列领域的基座模型TimeGPT-1，并开辟了使用预训练大模型用于时间序列的新赛道。由于不同数据集的时间尺度、波动范围以及样本量差异很大，因此使用大模型捕捉时间序列内的深层次规律是合理的想法，特别是训练样本很少时（zero-shot）。作者还使用了conformal prediction来量化大模型的波动性，进行了简单的异常检测。论文的实验部分较为完整，可惜缺失zero-shot下与相似基座模型的比较；模型代码没有公开；文章的行文也有几处较为发散。</p>
-<h4 id="2-Timer-Generative-Pre-trained-Transformers-Are-Large-Time-Series-Models">2. Timer: Generative Pre-trained Transformers Are Large Time Series Models</h4>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240922115008555.png" alt=""></p>
-<p>论文：<a href="https://aacrjournals.org/cancerres/article/77/21/e108/662567/TIMER-A-Web-Server-for-Comprehensive-Analysis-of">https://aacrjournals.org/cancerres/article/77/21/e108/662567/TIMER-A-Web-Server-for-Comprehensive-Analysis-of</a></p>
-<p>作者首先通过数据证明深度学习模型在样本量较少时效果会指数级变差，所以使用大模型技术构建一个大时间序列模型（large time series models，LTSM）是必要的。由于现有数据集无法满足作者要求，作者构建了一个约12G的复杂时间序列数据集，涵盖了7个主要时间序列领域。模型方面，作者将所有不同的序列统一化首尾拼接，并利用类似滑动窗口的技术构建输入单一序列（single-series sequence，S3）作为输入，最后用标准的transformer架构模型解决问题。这篇文章的模型架构较为简单，但复杂数据集的构建弥补了这一点。</p>
-<h4 id="3-Time-llm-Time-series-forecasting-by-reprogramming-large-language-models">3. Time-llm: Time series forecasting by reprogramming large language models</h4>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240922202341563.png" alt=""></p>
-<p>论文：<a href="https://arxiv.org/pdf/2310.01728">https://arxiv.org/pdf/2310.01728</a></p>
-<p>Time-llm同样想用LLM强大的推理能力强化时间序列预测的性能，但与先前工作不同的是，Time-llm想要使用NLP相关的大模型进行推理。为了解决从时间序列数据到自然语言的转化，作者将原始数据分patch进行了从数据到语义的对应。同时，作者将其它信息整合为辅助信息同时输入也是一个亮点。这种包括先验prompt和数据reprogramming的prompt驱动的LLM-时间序列分析方法在2024年的论文中成为了一股潮流。Time-llm在零样本和少样本时的实验效果提升较大。</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240922203816370.png" alt="Time-llm模型架构"></p>
-<h3 id="时空">时空</h3>
-<h4 id="4-TrajGDM-A-New-Trajectory-Foundation-Model-for-Simulating-Human-Mobility">4. TrajGDM: A New Trajectory Foundation Model for Simulating Human Mobility</h4>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923082844394.png" alt=""></p>
-<p>论文：<a href="https://dl.acm.org/doi/pdf/10.1145/3589132.3628362">https://dl.acm.org/doi/pdf/10.1145/3589132.3628362</a></p>
-<p>TrajGDM尝试用扩散模型的方法构建轨迹基座模型，以此统一地指导各种下游任务。具体到方法层面，作者将轨迹映射到了轨迹图中；然后使用轨迹扩散器往轨迹图中不断加噪声直到达到正态分布；最后使用轨迹生成器找到原始轨迹。作者采用了Generative Adversarial Network (GAN)和马尔科夫链相结合的方式计算轨迹的位置。美中不足的是，TrajGDM似乎没有考虑轨迹的时序，仅仅将轨迹的地理位置嵌入模型；对于轨迹领域除轨迹生成外其它下游任务也有些言之不详。</p>
-<h4 id="5-Towards-A-Foundation-Model-For-Trajectory-Intelligence">5. Towards A Foundation Model For Trajectory Intelligence</h4>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923084830968.png" alt=""></p>
-<p>论文：<a href="https://arxiv.org/pdf/2312.00076">https://arxiv.org/pdf/2312.00076</a></p>
-<p>作者在这篇文章中想要构建一个预训练大轨迹模型（large trajectory model，LTM），并通过fine-tune解决轨迹下游任务，当某地区轨迹数量少时，这种思路尤其有效。数据处理方面，作者为了合并相似轨迹点以减少收敛时间和vocabulary大小，提出了使用&lt;地点，时序&gt;输入+编码+聚类+hash的轨迹tokenizer方法。训练中，作者将轨迹随机遮盖（Masked Trajectory modeling，MTM）来构建子监督学习模型。模型在子轨迹预测、终点预测和轨迹-用户对应三个不同的下游任务中都展现出了较好的效果。但这篇文章的时序可能没有考虑具体的时间戳信息，这限制了模型质量。</p>
-<h4 id="6-TrajFM-A-Vehicle-Trajectory-Foundation-Model-for-Region-and-Task-Transferability">6. TrajFM: A Vehicle Trajectory Foundation Model for Region and Task Transferability</h4>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923091336570.png" alt=""></p>
-<p>论文：<a href="https://arxiv.org/pdf/2408.15251">https://arxiv.org/pdf/2408.15251</a></p>
-<p>万怀宇老师近期在时空大模型方面成果频出，TrajFM是较新的一篇。TrajFM认为区域的轨迹和周围的POI密不可分，所以可以使用POI中蕴含的信息增强大轨迹模型效果。TrajFM将每个轨迹点表示为（位置、时间戳、POI信息）三部分，其中POI部分是使用openAI的text2embedding增强POI语义理解实现的，让人眼前一亮。作者还设计了Learnable Spatio-Temporal Rotary Position Embedding (STRPE)来计算轨迹点之间的相关性。实验部分，作者比较了TrajFM与多种方法在时间预测方面的效果，TrajFM在跨区域的实验中也展现出了不俗的结果，这展现了模型的通用性。</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923091920661.png" alt="TrajFM模型架构"></p>
-<h3 id="城市大模型">城市大模型</h3>
-<h4 id="7-Urbangpt-Spatio-temporal-large-language-models">7. Urbangpt: Spatio-temporal large language models</h4>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923145451570.png" alt=""></p>
-<p>论文：<a href="https://arxiv.org/pdf/2403.00813">https://arxiv.org/pdf/2403.00813</a></p>
-<p>时间序列预测致力于从过往数据中得到未来数据的信息，这与城市治理这一领域不谋而合，因此最近出现了多篇以城市治理为故事、主要进行时间或时空序列任务的论文。UrbanGPT使用编码器和额外的回归层将时空依赖信息编码到向量空间，然后进行数据到文字的对齐。为了向大模型中输入复杂的城市相关信息，所有的prompt都被分为了时间信息、空间信息、任务描述三部分，便于多模态模型理解语言和时序信息。最终大模型预测出的数据也会使用卷积层与输入一起解码成答案。UrbanGPT与Time-llm有相似之处，但UrbanGPT通过城市信息的注入增强了模型对空间信息的泛化能力。</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923152858339.png" alt="UrbanGPt模型架构"></p>
-<h4 id="8-UniST-a-prompt-empowered-universal-model-for-urban-spatio-temporal-prediction">8. UniST: a prompt-empowered universal model for urban spatio-temporal prediction</h4>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923154447141.png" alt=""></p>
-<p>论文：<a href="https://dl.acm.org/doi/pdf/10.1145/3637528.3671662">https://dl.acm.org/doi/pdf/10.1145/3637528.3671662</a></p>
-<p>UniST采用了大规模预训练和提示学习，通过捕捉复杂的时空动态，提高了在少样本和零样本场景中的泛化能力。与UrbanGPT不同的是，UniST将时空数据编码后，使用多种不同的切片方式获取轨迹片段，再进行注入，从而捕获时空数据内部的特征。除此之外，作者在生成prompt时将时空信息分别投入记忆池，方便使用时空数据的编码从中获取额外信息。UniST在20多个时空场景中表现优异，尤其在少样本和零样本预测任务中，实现了比当前最先进模型更好的性能.</p>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923154604353.png" alt="UniST模型架构"></p>
-<h4 id="9-CityGPT-Empowering-Urban-Spatial-Cognition-of-Large-Language-Models">9. CityGPT: Empowering Urban Spatial Cognition of Large Language Models</h4>
-<p><img src="https://raw.githubusercontent.com/fysszlr/blog-image/main/image-20240923161104862.png" alt=""></p>
-<p>论文：<a href="https://arxiv.org/pdf/2406.13948">https://arxiv.org/pdf/2406.13948</a></p>
-<p>CityGPT的框架包括两个核心组件：CityInstruction是一个多样化的数据集，通过构建包含地理信息的自然语言示例，使模型能够理解不同地点的地理位置及其相互关系；CityEval是一个评估基准，分为四个任务组：城市图像、城市语义、空间推理和综合任务，用于评估LLMs在不同城市场景下的能力。CityGPT使用原创数据集训练小型LLM，这些模型在城市任务（如出行预测、空间导航和城市语义理解）中表现出色，甚至在某些城市场景中超越了商业LLMs。</p>
-<h3 id="总结">总结</h3>
-<p>本文总结了近几年在时序、时空以及城市大模型领域的代表性研究，展示了大语言模型在时间序列和时空数据中的应用潜力，并探讨了从时序模型到城市大模型的演进路径。</p>
-<p>总体而言，从时间序列到时空模型再到城市大模型的演进，展现了大语言模型在这些新兴领域的巨大潜力。未来，如何更好地将时空信息与城市数据整合，并进一步提升模型的泛化和推理能力，将是这一领域的主要挑战和发展方向。</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>LLM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OOpre Lec5-JAVA程序常见错误分析</title>
-    <url>/2023/10/13/OOpre-Lec5-JAVA%E7%A8%8B%E5%BA%8F%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<p>难道这周是习题课？ ——wxm</p>
-<hr>
-<h1>Lec5-JAVA程序常见错误分析</h1>
-<h2 id="推荐的层次化架构">推荐的层次化架构</h2>
+    <title>陈震：创业及并购经验分享</title>
+    <url>/2023/11/24/%E9%99%88%E9%9C%87%EF%BC%9A%E5%88%9B%E4%B8%9A%E5%8F%8A%E5%B9%B6%E8%B4%AD%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</url>
+    <content><![CDATA[<h1>陈震：创业及并购经验分享</h1>
+<h2 id="个人经历">个人经历</h2>
+<h3 id="学习方面">学习方面</h3>
+<ul>
+<li>2013年担任北航微软技术俱乐部主席，进入微软亚洲研究院实习（世界top公司CEO孵化基地，学长大力推荐）</li>
+<li>2013年了解机器人定位导航系统，2015年产业大爆发抓住风口</li>
+<li>2015保送”清华大学计算机系“硕士、研究生，机器人/人机交互方向</li>
+<li>2021攻读”清华大学未来实验室“博士研究生，机器人/人机交互方向</li>
+<li>本科进入”北航软件开发环境国家重点实验室“进行机器人定位导航技术及系统设计、开发等研究工作</li>
+</ul>
+<h3 id="创业方面">创业方面</h3>
+<ul>
+<li>2014年创立“速感科技”任CEO</li>
+<li>2017年全国互联网+创业大赛金奖（第二名）</li>
+<li>2018年福布斯亚洲30Under30，北京市中关村“高举工程”高端领军人才</li>
+<li>2019年北京市优秀人才（青年骨干个人）</li>
+<li>2020年1月“速感科技”被JS全资收购</li>
+<li>2021年10月任九阳（北京）产品负责人</li>
+<li>2023年1月，二次创业，创办“享刻智能”，专注人工智能在厨房场景的落地及应用</li>
+</ul>
+<h2 id="速感科技：2014-2020">速感科技：2014~2020</h2>
+<h3 id="时间线">时间线</h3>
+<p>大二下加入软国重，获得冯如杯一等奖</p>
+<p>开始在中国技术创业社区、媒体演讲“vSLAM”技术及其重要作用</p>
+<p>2014年，获得超过百万的投资，租小办公室</p>
+<p>2014~2015，密集的路演和融资计划讨论</p>
+<p><s>锦秋家园，互联网公司的风水宝地</s></p>
+<p>2015~2016，参加创业邦Demo China大赛，获得美国中经合集团A轮投资</p>
+<p>扫地机器人技术迭代：无规则运动–&gt;惯性导航–&gt;有slam技术的第三代扫地机器人</p>
+<p>2016~2017，迅速推出大量家用清洁机器人</p>
+<p>2017~2018，参加美国拉斯维加斯消费电子展，获得头部公司关注</p>
+<p>2018~2019，与大量公司进行合作洽谈；与shark|ninja公司合作推出扫地机器人，占领大量北美市场</p>
+<p>2019~2020，SharkNinja正式对速感提出收购意向；同时资金流出现严重问题，拖延交易谈判进度；2020年1月正式签署收购协议，（2.1亿）</p>
+<h3 id="核心观点：为什么同意并购">核心观点：为什么同意并购</h3>
 <ol>
-<li>Main：负责代码顶层逻辑</li>
-<li>MyScanner：输入处理</li>
-<li>Manager：进行指令的具体分类处理</li>
-<li>FightLogEntry：战斗日志项，存战斗日志</li>
-<li>Adventurer：实现冒险家的操作</li>
+<li>2019年，家用扫地机器人没有保持高增长态势，团队担心行业增长到达顶峰</li>
+<li>当时行业入局者纷至沓来，核心技术的优势和行业壁垒快速降低。行业过度分化导致无法“赚大钱”</li>
+<li>当时行业的主导公司iRobot存在技术和市场两方面问题，速感科技和SharkNinja的合作能够打破对手的防守</li>
+<li>一个学生团队是存在天花板的，并购才能打破僵局</li>
 </ol>
-<p>要追求高内聚，低耦合！各部分逻辑<strong>不胡乱参杂</strong></p>
-<h2 id="各种类型错误">各种类型错误</h2>
-<p>这个老师给了十几种不同的错误类型及常见的错误代码</p>
-<p>不想记录了…</p>
-<hr>
-<p>真被wxm说中了</p>
+<h3 id="总结感想">总结感想</h3>
+<ol>
+<li>作为典型的学生创业，核心团队从朋友创业到市场化运营需要不断变化</li>
+<li>资本市场的加持使得资源获得更加容易，而非单单是货币的支持（当然货币支持也很重要）</li>
+<li>创始人的意志和对行业的判断极其重要</li>
+</ol>
+<h2 id="如何看待并购">如何看待并购</h2>
+<ol>
+<li>
+<p>并购成为技术型创业公司的重要退出方式</p>
+</li>
+<li>
+<p>上市并非一片坦途</p>
+<p>科沃斯、石头科技、商汤科技市值纷纷跳水</p>
+</li>
+<li>
+<p>正确地表达传递信息至关重要</p>
+<ul>
+<li>选修交流谈判相关课程</li>
+<li>观看《硅谷传奇》（）</li>
+<li>知道自己的底线，维护核心利益，做好团队内部沟通</li>
+</ul>
+</li>
+</ol>
+<h2 id="享刻智能">享刻智能</h2>
+<p>经过思考，陈震学长认为具身智能模型及系统有可能带来与vSlam相似的成功，于是创办了享刻智能公司</p>
+<p>使机器人具备自主思考及行动能力，具体在厨房行业进行实践</p>
+<p>新公司董事会</p>
+<ol>
+<li>学长北航导师</li>
+<li>学长清华导师</li>
+<li>九阳公司董事</li>
+<li>SharkNinja机器人事业部CTO</li>
+</ol>
+<h2 id="最后总结">最后总结</h2>
+<h3 id="无法复制">无法复制</h3>
+<ol>
+<li>无法复刻“大众创新，万众创业”的社会趋势</li>
+<li>无法复刻2013年的美元体系</li>
+</ol>
+<h3 id="可以复制">可以复制</h3>
+<ol>
+<li>抓住行业趋势，<strong>顺势而为</strong></li>
+<li>思考未来身份，<strong>掌控大局</strong></li>
+<li>格局、视野、勇气</li>
+</ol>
+<h2 id="同学提问">同学提问</h2>
+<ol>
+<li>
+<p>为什么选择厨房这个场景？除了厨房还有什么行业可以应用具身智能？</p>
+<ol>
+<li>对厨房场景了解；认为厨房行业（如茶艺、预置菜、餐饮）当下成本较高，具身智能在厨房行业依然有较大潜力；在传统万亿级行业赛道利用新技术出现的窗口期进行弯道超车；需要成本的大幅降低和鲁棒性大幅提升以抢占市场</li>
+<li>家政服务；类人型通用机器人</li>
+</ol>
+</li>
+<li>
+<p>创业时还没有本科毕业，如何从技术团队转变成管理团队？（周学长太强了吧）</p>
+<ul>
+<li>并行地做科研和管理，不需要太多担心</li>
+<li>快速学习的能力，快速弥补不足</li>
+</ul>
+</li>
+<li>
+<p>对创新创业有一定向往，对缺乏核心技术，如何走出困境？</p>
+<ul>
+<li>大学中对未来迷茫是正常现象</li>
+<li>要和更多比你年长的学长交流，以了解未来的发展，辅助决策</li>
+</ul>
+</li>
+<li>
+<p>计算机系的学生如何寻求在机器人行业找突破点</p>
+<p>具身智能、视觉推演、人工智能会是大爆发</p>
+</li>
+</ol>
 ]]></content>
       <categories>
-        <category>笔记</category>
+        <category>经验</category>
       </categories>
       <tags>
-        <tag>OOpre</tag>
+        <tag>记录</tag>
       </tags>
   </entry>
   <entry>
@@ -3675,128 +3912,85 @@ NP=验证问题的解很容易<br>
       </tags>
   </entry>
   <entry>
-    <title>陈震：创业及并购经验分享</title>
-    <url>/2023/11/24/%E9%99%88%E9%9C%87%EF%BC%9A%E5%88%9B%E4%B8%9A%E5%8F%8A%E5%B9%B6%E8%B4%AD%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/</url>
-    <content><![CDATA[<h1>陈震：创业及并购经验分享</h1>
-<h2 id="个人经历">个人经历</h2>
-<h3 id="学习方面">学习方面</h3>
+    <title>OOpre Lec6-继承与接口的使用</title>
+    <url>/2023/10/20/OOpre-Lec6-%E7%BB%A7%E6%89%BF%E4%B8%8E%E6%8E%A5%E5%8F%A3%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1>Lec6-继承与接口的使用</h1>
+<hr>
+<h2 id="继承及其应用">继承及其应用</h2>
+<h3 id="extends">extends</h3>
 <ul>
-<li>2013年担任北航微软技术俱乐部主席，进入微软亚洲研究院实习（世界top公司CEO孵化基地，学长大力推荐）</li>
-<li>2013年了解机器人定位导航系统，2015年产业大爆发抓住风口</li>
-<li>2015保送”清华大学计算机系“硕士、研究生，机器人/人机交互方向</li>
-<li>2021攻读”清华大学未来实验室“博士研究生，机器人/人机交互方向</li>
-<li>本科进入”北航软件开发环境国家重点实验室“进行机器人定位导航技术及系统设计、开发等研究工作</li>
+<li>子类可以访问父类的公共（public）和受保护 （protected）成员</li>
+<li>私有（private）成员无法被直接被访问，但可以通过调用父类的方法来访问</li>
 </ul>
-<h3 id="创业方面">创业方面</h3>
+<p>可以使用obj instanceof MyCLass 表达式来判断对象 obj是否为MyClass的实例化对象</p>
+<h3 id="super">super</h3>
 <ul>
-<li>2014年创立“速感科技”任CEO</li>
-<li>2017年全国互联网+创业大赛金奖（第二名）</li>
-<li>2018年福布斯亚洲30Under30，北京市中关村“高举工程”高端领军人才</li>
-<li>2019年北京市优秀人才（青年骨干个人）</li>
-<li>2020年1月“速感科技”被JS全资收购</li>
-<li>2021年10月任九阳（北京）产品负责人</li>
-<li>2023年1月，二次创业，创办“享刻智能”，专注人工智能在厨房场景的落地及应用</li>
+<li>
+<p>使用 super.attribute 可以 引用父类中定义的非私有属性</p>
+</li>
+<li>
+<p>如果子类重写了父类的某个方法，那么子类通过super.methodName() 可以 调用父类所实现的那个方法</p>
+<p>(this.methodName()是子类自己重写的方法)</p>
+</li>
+<li>
+<p>一般<strong>使用 super(arguments) 来调用父类的构造方法</strong>，从而完成对父类所定义属性的初始化</p>
+</li>
 </ul>
-<h2 id="速感科技：2014-2020">速感科技：2014~2020</h2>
-<h3 id="时间线">时间线</h3>
-<p>大二下加入软国重，获得冯如杯一等奖</p>
-<p>开始在中国技术创业社区、媒体演讲“vSLAM”技术及其重要作用</p>
-<p>2014年，获得超过百万的投资，租小办公室</p>
-<p>2014~2015，密集的路演和融资计划讨论</p>
-<p><s>锦秋家园，互联网公司的风水宝地</s></p>
-<p>2015~2016，参加创业邦Demo China大赛，获得美国中经合集团A轮投资</p>
-<p>扫地机器人技术迭代：无规则运动–&gt;惯性导航–&gt;有slam技术的第三代扫地机器人</p>
-<p>2016~2017，迅速推出大量家用清洁机器人</p>
-<p>2017~2018，参加美国拉斯维加斯消费电子展，获得头部公司关注</p>
-<p>2018~2019，与大量公司进行合作洽谈；与shark|ninja公司合作推出扫地机器人，占领大量北美市场</p>
-<p>2019~2020，SharkNinja正式对速感提出收购意向；同时资金流出现严重问题，拖延交易谈判进度；2020年1月正式签署收购协议，（2.1亿）</p>
-<h3 id="核心观点：为什么同意并购">核心观点：为什么同意并购</h3>
-<ol>
-<li>2019年，家用扫地机器人没有保持高增长态势，团队担心行业增长到达顶峰</li>
-<li>当时行业入局者纷至沓来，核心技术的优势和行业壁垒快速降低。行业过度分化导致无法“赚大钱”</li>
-<li>当时行业的主导公司iRobot存在技术和市场两方面问题，速感科技和SharkNinja的合作能够打破对手的防守</li>
-<li>一个学生团队是存在天花板的，并购才能打破僵局</li>
-</ol>
-<h3 id="总结感想">总结感想</h3>
-<ol>
-<li>作为典型的学生创业，核心团队从朋友创业到市场化运营需要不断变化</li>
-<li>资本市场的加持使得资源获得更加容易，而非单单是货币的支持（当然货币支持也很重要）</li>
-<li>创始人的意志和对行业的判断极其重要</li>
-</ol>
-<h2 id="如何看待并购">如何看待并购</h2>
-<ol>
-<li>
-<p>并购成为技术型创业公司的重要退出方式</p>
-</li>
-<li>
-<p>上市并非一片坦途</p>
-<p>科沃斯、石头科技、商汤科技市值纷纷跳水</p>
-</li>
-<li>
-<p>正确地表达传递信息至关重要</p>
+<h3 id="Override">@Override</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span> </span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">getClassName</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> “XBottle<span class="string">&quot;; </span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>可在子类重写父类方法时标注，非强制要求，可选</p>
+<p>子类方法的<strong>方法名</strong>和<strong>参数列表</strong>必须与父类方法<strong>完全相同</strong></p>
+<hr>
+<h2 id="接口及其应用">接口及其应用</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Myinterface</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">myMethod1</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">myMethod2</span><span class="params">()</span>;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">myMethod3</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Myclass</span> <span class="keyword">implements</span> <span class="title class_">Myinterface</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myMethod1</span><span class="params">()</span> &#123;</span><br><span class="line">    	System.out.println(<span class="string">&quot;Implementation of myMethod1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myMethod2</span><span class="params">()</span> &#123;</span><br><span class="line">    	System.out.println(<span class="string">&quot;Implementation of myMethod2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">myMethod3</span><span class="params">()</span> &#123;</span><br><span class="line">    	System.out.println(<span class="string">&quot;Implementation of myMethod3&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>选修交流谈判相关课程</li>
-<li>观看《硅谷传奇》（）</li>
-<li>知道自己的底线，维护核心利益，做好团队内部沟通</li>
+<li>要求接口中的所有方法都被实现（覆写）</li>
+<li>可以用a instanceof B判断对象a是否实现了接口B，即是否类型B的实例</li>
+<li>若父类实现了某个接口，则子类也可以使用父类的接口方法</li>
 </ul>
-</li>
-</ol>
-<h2 id="享刻智能">享刻智能</h2>
-<p>经过思考，陈震学长认为具身智能模型及系统有可能带来与vSlam相似的成功，于是创办了享刻智能公司</p>
-<p>使机器人具备自主思考及行动能力，具体在厨房行业进行实践</p>
-<p>新公司董事会</p>
-<ol>
-<li>学长北航导师</li>
-<li>学长清华导师</li>
-<li>九阳公司董事</li>
-<li>SharkNinja机器人事业部CTO</li>
-</ol>
-<h2 id="最后总结">最后总结</h2>
-<h3 id="无法复制">无法复制</h3>
-<ol>
-<li>无法复刻“大众创新，万众创业”的社会趋势</li>
-<li>无法复刻2013年的美元体系</li>
-</ol>
-<h3 id="可以复制">可以复制</h3>
-<ol>
-<li>抓住行业趋势，<strong>顺势而为</strong></li>
-<li>思考未来身份，<strong>掌控大局</strong></li>
-<li>格局、视野、勇气</li>
-</ol>
-<h2 id="同学提问">同学提问</h2>
-<ol>
-<li>
-<p>为什么选择厨房这个场景？除了厨房还有什么行业可以应用具身智能？</p>
-<ol>
-<li>对厨房场景了解；认为厨房行业（如茶艺、预置菜、餐饮）当下成本较高，具身智能在厨房行业依然有较大潜力；在传统万亿级行业赛道利用新技术出现的窗口期进行弯道超车；需要成本的大幅降低和鲁棒性大幅提升以抢占市场</li>
-<li>家政服务；类人型通用机器人</li>
-</ol>
-</li>
-<li>
-<p>创业时还没有本科毕业，如何从技术团队转变成管理团队？（周学长太强了吧）</p>
+<hr>
+<h2 id="接口和继承的区别">接口和继承的区别</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>数量</th>
+<th>关系</th>
+<th>概念本质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>继承</td>
+<td>一个类只能有一个父类</td>
+<td>子类继承了父类的所有属性和方法</td>
+<td>建立了数据抽象层次</td>
+</tr>
+<tr>
+<td>接口</td>
+<td>一个类可以实现多个接口</td>
+<td>实现接口中所定义的全部方法</td>
+<td>建立了行为抽象层次</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="作业内容与建议">作业内容与建议</h2>
 <ul>
-<li>并行地做科研和管理，不需要太多担心</li>
-<li>快速学习的能力，快速弥补不足</li>
+<li>仍为冒险者游戏，在第四次作业的基础上迭代开发</li>
+<li>允许冒险者雇佣另一个冒险者，且赋予装备、药水瓶、食物、冒 险者价值的概念</li>
+<li>细化装备和药水瓶的类型，具有不同的功效</li>
+<li>建议把装备、药水瓶、食物和冒险者都看作是价值体 （commodity）</li>
+<li>建议引入Commodity接口来建立行为层次关系</li>
+<li>冒险者 Adventurer 类、装备 Equipment 类、药水瓶 Bottle 类、食物 Food  类实现该接口</li>
+<li>装备和药水瓶的细分，建议通过继承实现</li>
 </ul>
-</li>
-<li>
-<p>对创新创业有一定向往，对缺乏核心技术，如何走出困境？</p>
-<ul>
-<li>大学中对未来迷茫是正常现象</li>
-<li>要和更多比你年长的学长交流，以了解未来的发展，辅助决策</li>
-</ul>
-</li>
-<li>
-<p>计算机系的学生如何寻求在机器人行业找突破点</p>
-<p>具身智能、视觉推演、人工智能会是大爆发</p>
-</li>
-</ol>
 ]]></content>
       <categories>
-        <category>经验</category>
+        <category>笔记</category>
       </categories>
       <tags>
-        <tag>记录</tag>
+        <tag>OOpre</tag>
       </tags>
   </entry>
 </search>
